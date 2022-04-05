@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import HomePage from "../pages/HomePage";
 import {Navigate} from "react-router";
+import AuthContext from "../context/AuthContext";
 
 const PrivateRoute = ({children, ...rest}) => {
-    const auth = 1
-    return auth? <HomePage/> : <Navigate to="/login" />
+    const {user} = useContext(AuthContext)
+    return user? <HomePage/> : <Navigate to="/login" />
 
 };
 
