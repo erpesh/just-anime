@@ -15,22 +15,35 @@ export const AuthProvider = ({children}) => {
     const navigate = useNavigate()
 
 
-    const registerUser = async (e) => {
-        e.preventDefault()
-        const response = await fetch('http://127.0.0.1:8000/api/register/', {
-            method : "POST",
-            headers : {
-                'Content-Type': 'application/json'
-            },
-            body : JSON.stringify({
-                "username": e.target.username.value,
-                "password" : e.target.password.value,
-            })
-        })
-    }
+    // const registerUser = async (e) => {
+    //     e.preventDefault()
+    //     console.log(e)
+    //     const response = await fetch('http://127.0.0.1:8000/api/register/', {
+    //         method : "POST",
+    //         headers : {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body : JSON.stringify({
+    //             "username": e.target.value.username,
+    //             "password": e.target.value.password,
+    //             "password2": e.target.value.password2,
+    //             "email": e.target.value.email
+    //         })
+    //     })
+    //     const data = await response.json()
+    //     if (data.password && data.password === "Password fields didn't match.") {
+    //         alert("Passwords do not match!")
+    //     }
+    //     else if (response.status === 200) {
+    //         await loginUser(e)
+    //     }else {
+    //         alert("Something went wrong")
+    //     }
+    // }
 
     const loginUser = async (e) => {
         e.preventDefault()
+        console.log(e.target.value)
         const response = await fetch('http://127.0.0.1:8000/api/token/', {
             method : "POST",
             headers : {
@@ -43,12 +56,14 @@ export const AuthProvider = ({children}) => {
         })
         const data = await response.json()
         if (response.status === 200) {
-            setAuthTokens(data)
-            setUser(jwtDecode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate('/')
-        }else {
-            alert("Something went wrong")
+            if (response.status === 200) {
+                setAuthTokens(data)
+                setUser(jwtDecode(data.access))
+                localStorage.setItem('authTokens', JSON.stringify(data))
+                navigate('/')
+            }else {
+                alert("Something went wrong")
+            }
         }
     }
 
@@ -77,9 +92,9 @@ export const AuthProvider = ({children}) => {
         }else {
             logoutUser()
         }
-        if (loading) {
-            setLoading(false)
-        }
+        // if (loading) {
+        //     setLoading(false)
+        // }
     }
 
     const contextData = {
@@ -88,12 +103,14 @@ export const AuthProvider = ({children}) => {
 
         loginUser : loginUser,
         logoutUser : logoutUser,
+        // registerUser : registerUser,
     }
 
     useEffect(() => {
 
         if (loading) {
-            updateToken()
+            // updateToken()
+            setLoading(false)
         }
 
         const fourMinutes = 1000*60*4
