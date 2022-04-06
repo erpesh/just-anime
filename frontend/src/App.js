@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import React from "react";
 import {AuthProvider} from "./context/AuthContext";
 import RegisterPage from "./pages/RegisterPage";
+import AnimePage from "./pages/AnimePage";
 
 function App() {
     return (
@@ -18,12 +19,12 @@ function App() {
                         <Route exact path='/' element={<PrivateRoute/>}/>
                         <Route exact path="/login" element={<LoginPage/>}/>
                         <Route exact path="/register" element={<RegisterPage/>}/>
+                        <Route path="/anime/:id" element={<AnimePage/>}/>
                     </Routes>
                 </AuthProvider>
 
             </div>
         </Router>
-
     );
 }
 

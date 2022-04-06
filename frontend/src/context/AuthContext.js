@@ -15,32 +15,6 @@ export const AuthProvider = ({children}) => {
     const navigate = useNavigate()
 
 
-    // const registerUser = async (e) => {
-    //     e.preventDefault()
-    //     console.log(e)
-    //     const response = await fetch('http://127.0.0.1:8000/api/register/', {
-    //         method : "POST",
-    //         headers : {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body : JSON.stringify({
-    //             "username": e.target.value.username,
-    //             "password": e.target.value.password,
-    //             "password2": e.target.value.password2,
-    //             "email": e.target.value.email
-    //         })
-    //     })
-    //     const data = await response.json()
-    //     if (data.password && data.password === "Password fields didn't match.") {
-    //         alert("Passwords do not match!")
-    //     }
-    //     else if (response.status === 200) {
-    //         await loginUser(e)
-    //     }else {
-    //         alert("Something went wrong")
-    //     }
-    // }
-
     const loginUser = async (e) => {
         e.preventDefault()
         console.log(e.target.value)
@@ -97,15 +71,6 @@ export const AuthProvider = ({children}) => {
         // }
     }
 
-    const contextData = {
-        user : user,
-        authTokens : authTokens,
-
-        loginUser : loginUser,
-        logoutUser : logoutUser,
-        // registerUser : registerUser,
-    }
-
     useEffect(() => {
 
         if (loading) {
@@ -122,6 +87,16 @@ export const AuthProvider = ({children}) => {
         return () => clearInterval(interval)
 
     }, [authTokens, loading])
+
+
+    const contextData = {
+        user : user,
+        authTokens : authTokens,
+
+        loginUser : loginUser,
+        logoutUser : logoutUser,
+        // registerUser : registerUser,
+    }
 
     return(
         <AuthContext.Provider value={contextData}>

@@ -1,19 +1,19 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const AnimeCard = ({anime}) => {
+
+
     return (
         <article>
-            <a
-            href={anime.url}
-            target="_blank"
-            rel="noreferrer">
+            <Link to={`/anime/${anime.mal_id}`}>
                 <figure>
                     <img
                     src={anime.image_url}
                     alt="Anime image"/>
                 </figure>
                 <h3>{anime.title}</h3>
-            </a>
+            </Link>
         </article>
     );
 };

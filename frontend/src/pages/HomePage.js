@@ -41,6 +41,7 @@ const HomePage = ({isAuth}) => {
                         return <li key={note.id}>{note.body}</li>
                     })}
                 </ul>)}
+
             <AnimeSearch/>
         </div>
     );
