@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../context/AuthContext";
+import AnimeSearch from "../components/AnimeSearch";
 
 const HomePage = ({isAuth}) => {
     const [notes, setNotes] = useState([])
@@ -40,6 +41,7 @@ const HomePage = ({isAuth}) => {
                         return <li key={note.id}>{note.body}</li>
                     })}
                 </ul>)}
+            <AnimeSearch/>
         </div>
     );
 };
