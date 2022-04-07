@@ -19,7 +19,7 @@ function App() {
                         <Route exact path='/' element={<PrivateRoute/>}/>
                         <Route exact path="/login" element={<LoginPage/>}/>
                         <Route exact path="/register" element={<RegisterPage/>}/>
-                        <Route path="/anime/:id" element={<AnimePage/>}/>
+                        <Route exact path="/anime/:id" element={<AnimePage/>}/>
                     </Routes>
                 </AuthProvider>
 

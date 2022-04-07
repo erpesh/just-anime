@@ -9,7 +9,6 @@ const AnimeSearch = () => {
         const data = await fetch(`https://api.jikan.moe/v3/search/anime?q=${search}&page=1&order_by=title&sort=asc&limit=20`)
             .then(response => response.json())
         setAnimeList(data.results)
-        console.log(data)
     }
 
     const handleSubmit = (e) => {

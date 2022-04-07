@@ -11,6 +11,7 @@ export const AuthProvider = ({children}) => {
     const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')): null)
     const [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')): null)
     const [loading, setLoading] = useState(true)
+    const [animeData, setAnimeData] = useState({})
 
     const navigate = useNavigate()
 
@@ -71,6 +72,17 @@ export const AuthProvider = ({children}) => {
         // }
     }
 
+    const getAnime = async (animeId) => {
+        const response = await fetch(`https://api.jikan.moe/v3/anime/${animeId}`)
+        // console.log(data)
+        if (response.status === 200) {
+            const data = await response.json()
+            setAnimeData(data)
+        } else {
+            setAnimeData({'type' : 'fetchError'})
+        }
+    }
+
     useEffect(() => {
 
         if (loading) {
@@ -92,7 +104,9 @@ export const AuthProvider = ({children}) => {
     const contextData = {
         user : user,
         authTokens : authTokens,
+        animeData : animeData,
 
+        getAnime : getAnime,
         loginUser : loginUser,
         logoutUser : logoutUser,
         // registerUser : registerUser,
