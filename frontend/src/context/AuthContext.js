@@ -8,8 +8,8 @@ export default AuthContext
 
 export const AuthProvider = ({children}) => {
 
-    const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')): null)
-    const [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')): null)
+    const [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
+    const [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
     const [loading, setLoading] = useState(true)
     const [animeData, setAnimeData] = useState({})
 
@@ -18,27 +18,25 @@ export const AuthProvider = ({children}) => {
 
     const loginUser = async (e) => {
         e.preventDefault()
-        console.log(e.target.value)
         const response = await fetch('http://127.0.0.1:8000/api/token/', {
-            method : "POST",
-            headers : {
+            method: "POST",
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify({
+            body: JSON.stringify({
                 "username": e.target.username.value,
-                "password" : e.target.password.value,
+                "password": e.target.password.value,
             })
         })
         const data = await response.json()
         if (response.status === 200) {
-            if (response.status === 200) {
-                setAuthTokens(data)
-                setUser(jwtDecode(data.access))
-                localStorage.setItem('authTokens', JSON.stringify(data))
-                navigate('/')
-            }else {
-                alert("Something went wrong")
-            }
+            setAuthTokens(data)
+            setUser(jwtDecode(data.access))
+            localStorage.setItem('authTokens', JSON.stringify(data))
+            // if (authTokens) await createList(e)
+            navigate('/')
+        } else {
+            alert("Something went wrong")
         }
     }
 
@@ -52,11 +50,11 @@ export const AuthProvider = ({children}) => {
     const updateToken = async () => {
 
         const response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
-            method : "POST",
-            headers : {
+            method: "POST",
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify({'refresh': authTokens?.refresh})
+            body: JSON.stringify({'refresh': authTokens?.refresh})
         })
         const data = await response.json()
 
@@ -64,7 +62,7 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
-        }else {
+        } else {
             logoutUser()
         }
         // if (loading) {
@@ -79,9 +77,27 @@ export const AuthProvider = ({children}) => {
             const data = await response.json()
             setAnimeData(data)
         } else {
-            setAnimeData({'type' : 'fetchError'})
+            setAnimeData({'type': 'fetchError'})
         }
     }
+
+    // const createList = async () => {
+    //     const response = await fetch('http://127.0.0.1:8000/api/anime/', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': "application/json",
+    //             'Authorization': 'Bearer ' + String(authTokens.access)
+    //         },
+    //         body: JSON.stringify({
+    //             "Watching": [],
+    //             "Completed": [],
+    //             "Plan to watch": []
+    //         })
+    //     })
+    //     const data = await response.json()
+    //     console.log(data)
+    // }
+
 
     useEffect(() => {
 
@@ -90,7 +106,7 @@ export const AuthProvider = ({children}) => {
             setLoading(false)
         }
 
-        const fourMinutes = 1000*60*4
+        const fourMinutes = 1000 * 60 * 4
         const interval = setInterval(() => {
             if (authTokens) {
                 updateToken()
@@ -102,17 +118,17 @@ export const AuthProvider = ({children}) => {
 
 
     const contextData = {
-        user : user,
-        authTokens : authTokens,
-        animeData : animeData,
+        user: user,
+        authTokens: authTokens,
+        animeData: animeData,
 
-        getAnime : getAnime,
-        loginUser : loginUser,
-        logoutUser : logoutUser,
+        getAnime: getAnime,
+        loginUser: loginUser,
+        logoutUser: logoutUser,
         // registerUser : registerUser,
     }
 
-    return(
+    return (
         <AuthContext.Provider value={contextData}>
             {!loading && children}
         </AuthContext.Provider>

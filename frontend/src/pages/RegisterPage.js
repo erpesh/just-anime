@@ -19,13 +19,13 @@
 //
 // export default RegisterPage;
 
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../context/AuthContext";
 import {Button, Form} from "react-bootstrap";
 
 const RegisterPage = () => {
     // const {registerUser} = useContext(AuthContext)
-    const {loginUser} = useContext(AuthContext)
+    const {loginUser, authTokens} = useContext(AuthContext)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("")
@@ -38,31 +38,55 @@ const RegisterPage = () => {
     const registerUser = async (e) => {
         e.preventDefault()
         const response = await fetch('http://127.0.0.1:8000/api/register/', {
-            method : "POST",
-            headers : {
+            method: "POST",
+            headers: {
                 'Content-Type': 'application/json'
             },
-            body : JSON.stringify({
+            body: JSON.stringify({
                 "username": username,
                 "password": password,
                 "password2": password2,
                 "email": email
             })
         })
+
         const data = await response.json()
         if (data.password && data.password === "Password fields didn't match.") {
             alert("Passwords do not match!")
-        }
-        else if (response.status === 201) {
+        } else if (response.status === 201) {
             await loginUser(e)
-        }else {
+        } else {
             alert("Something went wrong")
         }
     }
 
+    // const createList = async () => {
+    //     const response = await fetch('http://127.0.0.1:8000/api/anime/', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': "application/json",
+    //             'Authorization': 'Bearer ' + String(authTokens.access)
+    //         },
+    //         body: JSON.stringify({
+    //             "Watching": [],
+    //             "Completed": [],
+    //             "Plan to watch": []
+    //         })
+    //     })
+    //     const data = await response.json()
+    //     console.log(data)
+    // }
+
+
+    const handleSubmit = (e) => {
+        registerUser(e)
+        // if (authTokens) createList()
+    }
+
+
     return (
         <div className="Register">
-            <Form onSubmit={registerUser}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group size="lg" controlId="username">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
