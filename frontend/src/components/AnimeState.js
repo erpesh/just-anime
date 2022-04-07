@@ -12,5 +12,9 @@ const AnimeState = ({children}) => {
         </div>
     );
 };
-
+// {
+//     "Watching": null,
+//     "Completed": null,
+//     "Plan to watch": null
+// }
 export default AnimeState;

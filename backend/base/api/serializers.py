@@ -1,17 +1,7 @@
-from rest_framework.serializers import ModelSerializer
-
-from ..models import Note
-
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-
-
-class NoteSerializer(ModelSerializer):
-    class Meta:
-        model = Note
-        fields = '__all__'
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -30,6 +20,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         #     'first_name': {'required': True},
         #     'last_name': {'required': True}
         # }
+
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
