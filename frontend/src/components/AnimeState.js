@@ -1,9 +1,14 @@
 import React from 'react';
 
-const AnimeState = () => {
+const AnimeState = ({children}) => {
+
+    const addToList = async () => {
+
+    }
+
     return (
         <div>
-            
+            {children}
         </div>
     );
 };

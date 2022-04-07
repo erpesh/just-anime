@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import AnimeState from "./AnimeState";
 
 const AnimeStatesPopup = () => {
     const [userState, setUserState] = useState('')
@@ -11,9 +12,9 @@ const AnimeStatesPopup = () => {
     return (
         isVisible ? (
             <div>
-                <div>Watching</div>
-                <div>Completed</div>
-                <div>Plan to watch</div>
+                <AnimeState>Watching</AnimeState>
+                <AnimeState>Completed</AnimeState>
+                <AnimeState>Plan to watch</AnimeState>
             </div>
         ) : (
             <div>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'base.apps.BaseConfig',
+    'base/useranimelist.apps.UseranimelistConfig'
 ]
 
 REST_FRAMEWORK = {
