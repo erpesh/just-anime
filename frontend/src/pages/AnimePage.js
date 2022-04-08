@@ -22,7 +22,7 @@ const AnimePage = () => {
                     </div>
                     <div>
                         <img src={animeData.image_url} alt="Anime picture"/>
-                        <AnimeStatesPopup/>
+                        <AnimeStatesPopup animeData={animeData}/>
                     </div>
                     <div>
                         <article>

@@ -81,24 +81,6 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-    // const createList = async () => {
-    //     const response = await fetch('http://127.0.0.1:8000/api/anime/', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': "application/json",
-    //             'Authorization': 'Bearer ' + String(authTokens.access)
-    //         },
-    //         body: JSON.stringify({
-    //             "Watching": [],
-    //             "Completed": [],
-    //             "Plan to watch": []
-    //         })
-    //     })
-    //     const data = await response.json()
-    //     console.log(data)
-    // }
-
-
     useEffect(() => {
 
         if (loading) {
