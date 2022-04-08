@@ -1,20 +1,41 @@
-import React, {useState} from 'react';
-import AnimeState from "./AnimeState";
+import React, {useContext, useState} from 'react';
+import AnimeStates from "./AnimeStates";
+import AuthContext from "../context/AuthContext";
 
 const AnimeStatesPopup = ({animeData}) => {
+    const {authTokens} = useContext(AuthContext)
     const [userState, setUserState] = useState('')
     const [isVisible, setIsVisible] = useState(false)
+    const [animeState, setAnimeState] = useState("")
+
+    const getAnimeState = async (tokens, anime) => {
+        const response = await fetch('http://127.0.0.1:8000/api/anime/', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + String(tokens.access)
+            }
+        })
+        const data = await response.json()
+        let jsonList = data[0].anime_list
+        const array = ["Watching", "Completed", "Plan to watch"]
+        array.forEach((state) => {
+            if (jsonList[state].filter(el => el["Title"] === anime.title).length === 1) {
+                    setAnimeState(state)
+                }
+            })
+        }
+
 
     const handleClick = () => {
         setIsVisible(true)
+        getAnimeState(authTokens, animeData)
     }
 
     return (
         isVisible ? (
             <div>
-                <AnimeState animeData={animeData}>Watching</AnimeState>
-                <AnimeState animeData={animeData}>Completed</AnimeState>
-                <AnimeState animeData={animeData}>Plan to watch</AnimeState>
+                <AnimeStates animeData={animeData} animeState={animeState}/>
             </div>
         ) : (
             <div>
