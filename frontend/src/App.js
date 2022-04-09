@@ -8,7 +8,7 @@ import React from "react";
 import {AuthProvider} from "./context/AuthContext";
 import RegisterPage from "./pages/RegisterPage";
 import AnimePage from "./pages/AnimePage";
-import ProfilePage from "./pages/ProfilePage";
+import HomePage from "./pages/HomePage";
 
 function App() {
     return (
@@ -17,11 +17,11 @@ function App() {
                 <AuthProvider>
                     <Header/>
                     <Routes>
-                        <Route exact path='/' element={<PrivateRoute/>}/>
+                        <Route exact path='/' element={<HomePage/>}/>
                         <Route exact path="/login" element={<LoginPage/>}/>
                         <Route exact path="/register" element={<RegisterPage/>}/>
                         <Route exact path="/anime/:id" element={<AnimePage/>}/>
-                        <Route exact path="/profile" element={<ProfilePage/>}/>
+                        <Route exact path="/profile" element={<PrivateRoute/>}/>
                     </Routes>
                 </AuthProvider>
 

@@ -18,7 +18,7 @@ const AnimePage = () => {
             (
                 <div>
                     <div className="title">
-                        <h1>{animeData.title_english}</h1>
+                        <h1>{animeData.title_english ? animeData.title_english : animeData.title}</h1>
                     </div>
                     <div>
                         <img src={animeData.image_url} alt="Anime picture"/>

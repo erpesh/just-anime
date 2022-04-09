@@ -7,9 +7,16 @@ const Header = () => {
     return (
         <div>
             <Link to="/"><button type="button">Home</button></Link>
-            <span>    </span>
-            {user? <button onClick={logoutUser}>Logout</button> : <Link to="/login"><button type="button">Login</button></Link>}
-            {user && <p>Hello {user.username}</p>}
+            {user? <button onClick={logoutUser}>Logout</button> :
+                <>
+                <Link to="/login"><button type="button">Login</button></Link>
+                <Link to="/register"><button type="button">Register</button></Link>
+                </>}
+            {user &&
+            <div>
+                <p>Hello {user.username}</p>
+                <Link to="/profile"><button>Profile</button></Link>
+            </div>}
         </div>
     );
 };

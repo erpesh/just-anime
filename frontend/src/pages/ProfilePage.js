@@ -1,13 +1,15 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../context/AuthContext";
+import {Link} from "react-router-dom";
+import AnimeLink from "../components/AnimeLink";
 
 const ProfilePage = () => {
 
     const {authTokens} = useContext(AuthContext)
-    const [list, setList] = useState({})
+    const [data, setData] = useState({})
     const [isFetched, setIsFetched] = useState(false)
 
-    const getList = async (tokens) => {
+    const getData = async (tokens) => {
         const response = await fetch('http://127.0.0.1:8000/api/anime/', {
             method: "GET",
             headers: {
@@ -16,20 +18,37 @@ const ProfilePage = () => {
             }
         })
         const data = await response.json()
-        setList(data[0])
+        setData(data[0])
         setIsFetched(true)
     }
 
-    const handleClick = () => {
-        getList(authTokens)
-    }
+    useEffect(() => {
+        getData(authTokens)
+    }, [data])
 
     return (
         <div>
-            <p onClick={handleClick}>Get list</p>
-            {isFetched? (<div>{list.anime_list['Watching'].map((anime, index) => {
-                return <p key={index}>{anime}</p>
-            })}</div>): null}
+            <div>
+                <h3>Watching</h3>
+                {isFetched ? (<div>{data.anime_list['Watching'].map(anime => {
+                    // return <div><Link to={`/anime/${anime['id']}`} key={anime}>{anime["Title"]}</Link></div>
+                    return <AnimeLink/>
+                })}</div>) : null}
+            </div>
+            <div>
+                <h3>Completed</h3>
+                {isFetched ? (<div>{data.anime_list['Completed'].map(anime => {
+                    // return <div><Link to={`/anime/${anime['id']}`} key={anime}>{anime["Title"]}</Link></div>
+                    return <AnimeLink/>
+                })}</div>) : null}
+            </div>
+            <div>
+                <h3>Plan to watch</h3>
+                {isFetched ? (<div>{data.anime_list['Plan to watch'].map(anime => {
+                    // return <div><Link to={`/anime/${anime['id']}`} key={anime}>{anime["Title"]}</Link></div>
+                    return <AnimeLink/>
+                })}</div>) : null}
+            </div>
         </div>
     );
 };
