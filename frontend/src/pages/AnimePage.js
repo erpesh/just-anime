@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import AuthContext from "../context/AuthContext";
 import {useParams} from "react-router";
 import AnimeStatesPopup from "../components/AnimeStatesPopup";
 import AnimeDataContext from "../context/AnimeDataContext";

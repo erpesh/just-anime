@@ -1,73 +1,94 @@
-import React, {useContext, useEffect, useState} from 'react';
-import AuthContext from "../context/AuthContext";
+// import React, {useContext, useEffect, useState} from 'react';
+// import AuthContext from "../context/AuthContext";
+// import AnimeLink from "../components/AnimeLink";
+//
+// const ProfilePage = () => {
+//
+//     const {authTokens} = useContext(AuthContext)
+//     const [data, setData] = useState({})
+//     const [isFetched, setIsFetched] = useState(false)
+//     const [isDeleted, setIsDeleted] = useState(false)
+//
+//     const getData = async (tokens) => {
+//         const response = await fetch('http://127.0.0.1:8000/api/anime/', {
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": "Bearer " + String(tokens.access)
+//             }
+//         })
+//         const responseData = await response.json()
+//         setData(responseData[0])
+//         setIsFetched(true)
+//     }
+//
+//     useEffect(() => {
+//         console.log("effected")
+//         getData(authTokens)
+//         // setIsDeleted(false)
+//     }, [])
+//
+//     // return
+// };
+
+// export default ProfilePage;
+
+import React, {Component} from 'react';
 import AnimeLink from "../components/AnimeLink";
+import AuthContext from "../context/AuthContext";
 
-const ProfilePage = () => {
+class ProfilePage extends Component {
 
-    const {authTokens} = useContext(AuthContext)
-    const [data, setData] = useState({})
-    const [isFetched, setIsFetched] = useState(false)
-    const [isDeleted, setIsDeleted] = useState(false)
+    static contextType = AuthContext
 
-    const getData = async (tokens) => {
-        const response = await fetch('http://127.0.0.1:8000/api/anime/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + String(tokens.access)
-            }
-        })
-        const responseData = await response.json()
-        setData(responseData[0])
-        setIsFetched(true)
+    constructor() {
+        super();
+        this.state = {
+            data: {},
+            isFetched: false,
+        }
     }
 
-    useEffect(() => {
-        console.log("effected")
-        getData(authTokens)
-        // setIsDeleted(false)
-    }, [])
+    async componentDidMount() {
+        const {authTokens} = this.context
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/anime/', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + String(authTokens.access)
+                }
+            })
+            this.setState({data: await response.json(), isFetched: false})
+            if (this.state.data.anime_list !== undefined) {
+                this.setState({data: this.state.data, isFetched: true})
+                console.log(this.state)
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
 
-    return (
-        <div>
-            {isFetched ? (
-                <div>
-                    <h3>Watching ({data.anime_list['Watching'].length})</h3>
-                    <div>{data.anime_list['Watching'].map(anime => {
-                        return <AnimeLink
-                            key={anime.id}
-                            anime={anime}
-                            state="Watching"
-                            data={data}
-                            setIsDeleted={setIsDeleted}/>
+    render() {
+        const {data} = this.state
 
-                    })}</div>
-                </div>) : null}
-
-            {isFetched ? (
-                <div>
-                    <h3>Completed ({data.anime_list['Completed'].length})</h3>
-                    <div>{data.anime_list['Completed'].map(anime => {
-                        return <AnimeLink
-                            key={anime.id}
-                            anime={anime}
-                            state="Completed"
-                            data={data}/>
-                    })}</div>
-                </div>) : null}
-            {isFetched ? (
-                <div>
-                    <h3>Plan to watch ({data.anime_list['Plan to watch'].length})</h3>
-                    <div>{data.anime_list['Plan to watch'].map(anime => {
-                        return <AnimeLink
-                            key={anime.id}
-                            anime={anime}
-                            state="Plan to watch"
-                            data={data}/>
-                    })}</div>
-                </div>) : null}
+        return data[0] && <div>{["Watching", "Completed", "Plan to watch"].map((listState) => {
+            return (
+                <div key={listState}>
+                    <h3>{listState} ({data[0].anime_list[listState].length})</h3>
+                    <div>{data[0].anime_list[listState].map(anime => {
+                        return <div onClick={() => this.forceUpdate()} key={anime.id}>
+                            <AnimeLink
+                                anime={anime}
+                                state={listState}
+                                data={data[0]}/>
+                        </div>
+                    })}
+                    </div>
+                </div>)
+        })}
         </div>
-    );
-};
+    }
+}
 
 export default ProfilePage;
