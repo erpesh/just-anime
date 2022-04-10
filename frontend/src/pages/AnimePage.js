@@ -2,16 +2,18 @@ import React, {useContext, useEffect, useState} from 'react';
 import AuthContext from "../context/AuthContext";
 import {useParams} from "react-router";
 import AnimeStatesPopup from "../components/AnimeStatesPopup";
+import AnimeDataContext from "../context/AnimeDataContext";
 
 const AnimePage = () => {
     const {id} = useParams()
-    const {getAnime, animeData} = useContext(AuthContext)
+    const {animeData, getAnime} = useContext(AnimeDataContext)
     const [isFetched, setIsFetched] = useState(false)
 
     useEffect(() => {
+        console.log('ef')
         getAnime(id)
         setIsFetched(false)
-    }, [!isFetched])
+    }, [])
 
     return animeData.API_DEPRECATION && (
         animeData.type === 'fetchError' ? (<p>Page does not exist</p>) :

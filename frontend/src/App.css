@@ -2,3 +2,6 @@
     font-weight: bold;
     font-size: 17px;
 }
+.text-right {
+    float: right;
+}

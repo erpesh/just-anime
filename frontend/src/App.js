@@ -6,6 +6,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import React from "react";
 import {AuthProvider} from "./context/AuthContext";
+import {AnimeDataProvider} from "./context/AnimeDataContext"
 import RegisterPage from "./pages/RegisterPage";
 import AnimePage from "./pages/AnimePage";
 import HomePage from "./pages/HomePage";
@@ -14,6 +15,7 @@ function App() {
     return (
         <Router>
             <div className="App">
+                <AnimeDataProvider>
                 <AuthProvider>
                     <Header/>
                     <Routes>
@@ -24,7 +26,7 @@ function App() {
                         <Route exact path="/profile" element={<PrivateRoute/>}/>
                     </Routes>
                 </AuthProvider>
-
+                </AnimeDataProvider>
             </div>
         </Router>
     );

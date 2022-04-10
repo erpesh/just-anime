@@ -1,22 +1,22 @@
-import React from 'react';
-import {Dropdown} from "react-bootstrap";
+import React, {useContext, useState} from 'react';
+import {Link} from "react-router-dom";
+import AnimeDataContext from "../context/AnimeDataContext";
+import AuthContext from "../context/AuthContext";
 
-const AnimeLink = () => {
+const AnimeLink = ({anime, state, data, setIsDeleted}) => {
+    const [isSpanVisible, setIsSpanVisible] = useState(false)
+    const {deleteFromProfileList} = useContext(AnimeDataContext)
+    const {authTokens} = useContext(AuthContext)
 
     return (
-        // <Dropdown>
-        //     <Dropdown.Toggle variant="success" id="dropdown-basic">
-        //         Dropdown Button
-        //     </Dropdown.Toggle>
-        //
-        //     <Dropdown.Menu>
-        //         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        //         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        //         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-        //     </Dropdown.Menu>
-        // </Dropdown>
-        <div>
-
+        <div onMouseEnter={() => setIsSpanVisible(true)} onMouseLeave={() => setIsSpanVisible(false)}>
+            <Link to={`/anime/${anime['id']}`}>{anime["Title"]}</Link>
+            {isSpanVisible ? <span
+                className="text-right"
+                onClick={() => {
+                    deleteFromProfileList(anime, state, authTokens, data)
+                    // setIsDeleted(true)
+                }}>Delete from list</span> : null}
         </div>
     );
 };

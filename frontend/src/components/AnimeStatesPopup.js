@@ -1,35 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
 import AnimeStates from "./AnimeStates";
 import AuthContext from "../context/AuthContext";
+import AnimeDataContext from "../context/AnimeDataContext";
 
 const AnimeStatesPopup = ({animeData}) => {
-    const {authTokens} = useContext(AuthContext)
     // const [userState, setUserState] = useState('')
     const [isVisible, setIsVisible] = useState(false)
     const [animeState, setAnimeState] = useState("")
     const [popupState, setPopupState] = useState(animeState)
-
-    const getAnimeState = async (tokens, anime) => {
-        if (!anime.title_english) {
-            anime.title_english = anime.title
-        }
-        const response = await fetch('http://127.0.0.1:8000/api/anime/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + String(tokens.access)
-            }
-        })
-        const data = await response.json()
-        let jsonList = data[0].anime_list
-        const array = ["Watching", "Completed", "Plan to watch"]
-        array.forEach((state) => {
-            if (jsonList[state].filter(el => el["Title"] === anime.title_english).length === 1) {
-                    setAnimeState(state)
-                }
-            })
-        }
-
+    const {getAnimeState} = useContext(AnimeDataContext)
+    const {authTokens} = useContext(AuthContext)
 
     const handleClick = () => {
         setIsVisible(true)
@@ -37,7 +17,7 @@ const AnimeStatesPopup = ({animeData}) => {
     }
 
     useEffect(() => {
-        getAnimeState(authTokens, animeData)
+        getAnimeState(animeData, authTokens, setAnimeState)
         setPopupState(animeState)
     }, [animeState])
 

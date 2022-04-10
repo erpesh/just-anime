@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AnimeDataContext from "../context/AnimeDataContext";
 
 const AnimeCard = ({anime}) => {
 
-    const {getAnime} = useContext(AuthContext)
+    const {getAnime} = useContext(AnimeDataContext)
 
     // const getAnime = async (animeId) => {
     //     const response = await fetch(`https://api.jikan.moe/v3/anime/${animeId}`
@@ -26,7 +26,7 @@ const AnimeCard = ({anime}) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        getAnime(anime.mal_id)
+        // getAnime(anime.mal_id)
     }
 
     return (
