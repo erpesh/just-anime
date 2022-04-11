@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom'
 import Header from "./components/Header";
-import {Route, Routes} from "react-router";
+import {Route, Routes, Search} from "react-router";
 import PrivateRoute from "./utils/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import React from "react";
@@ -10,6 +10,7 @@ import {AnimeDataProvider} from "./context/AnimeDataContext"
 import RegisterPage from "./pages/RegisterPage";
 import AnimePage from "./pages/AnimePage";
 import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route exact path="/register" element={<RegisterPage/>}/>
                         <Route exact path="/anime/:id" element={<AnimePage/>}/>
                         <Route exact path="/profile" element={<PrivateRoute/>}/>
+                        <Route exact path='/search/:request' element={<SearchPage/>}/>
                     </Routes>
                 </AuthProvider>
                 </AnimeDataProvider>

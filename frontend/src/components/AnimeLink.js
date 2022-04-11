@@ -15,7 +15,6 @@ const AnimeLink = ({anime, state, data}) => {
                 className="text-right"
                 onClick={() => {
                     deleteFromProfileList(anime, state, authTokens, data)
-                    // setIsDeleted(true)
                 }}>Delete from list</span> : null}
         </div>
     );

@@ -1,38 +1,3 @@
-// import React, {useContext, useEffect, useState} from 'react';
-// import AuthContext from "../context/AuthContext";
-// import AnimeLink from "../components/AnimeLink";
-//
-// const ProfilePage = () => {
-//
-//     const {authTokens} = useContext(AuthContext)
-//     const [data, setData] = useState({})
-//     const [isFetched, setIsFetched] = useState(false)
-//     const [isDeleted, setIsDeleted] = useState(false)
-//
-//     const getData = async (tokens) => {
-//         const response = await fetch('http://127.0.0.1:8000/api/anime/', {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 "Authorization": "Bearer " + String(tokens.access)
-//             }
-//         })
-//         const responseData = await response.json()
-//         setData(responseData[0])
-//         setIsFetched(true)
-//     }
-//
-//     useEffect(() => {
-//         console.log("effected")
-//         getData(authTokens)
-//         // setIsDeleted(false)
-//     }, [])
-//
-//     // return
-// };
-
-// export default ProfilePage;
-
 import React, {Component} from 'react';
 import AnimeLink from "../components/AnimeLink";
 import AuthContext from "../context/AuthContext";

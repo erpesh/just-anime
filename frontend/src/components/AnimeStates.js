@@ -8,57 +8,6 @@ const AnimeStates = ({animeData, animeState, setIsVisible, setPopupState, popupS
         const {authTokens} = useContext(AuthContext)
         const [checkbox, setCheckbox] = useState("")
 
-        // const addToList = async (tokens, anime, children, deleteAnime = false) => {
-        //     if (!anime.title_english) {
-        //         anime.title_english = anime.title
-        //     }
-        //     const response = await fetch('http://127.0.0.1:8000/api/anime/', {
-        //         method: "GET",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": "Bearer " + String(tokens.access)
-        //         }
-        //     })
-        //     const data = await response.json()
-        //     let jsonList = data[0].anime_list
-        //     const stateMent = jsonList["Watching"].filter(el => el["Title"] === animeData.title_english).length === 0 &&
-        //         jsonList["Completed"].filter(el => el["Title"] === animeData.title_english).length === 0 &&
-        //         jsonList["Plan to watch"].filter(el => el["Title"] === animeData.title_english).length === 0
-        //
-        //     if (stateMent) {
-        //         jsonList[children].push({
-        //             "Title": anime.title_english,
-        //             "id": anime.mal_id
-        //         })
-        //
-        //     } else {
-        //         const array = ["Watching", "Completed", "Plan to watch"]
-        //         array.forEach((state) => {
-        //             if (jsonList[state].filter(el => el["Title"] === animeData.title_english).length === 1) {
-        //                 jsonList[state] = jsonList[state].filter(el => el['Title'] !== animeData.title_english)
-        //
-        //                 if (!deleteAnime) {
-        //                     jsonList[children].push({
-        //                         "Title": anime.title_english,
-        //                         "id": anime.mal_id
-        //                     })
-        //                 }
-        //             }
-        //         })
-        //     }
-        //
-        //     await fetch('http://127.0.0.1:8000/api/anime/', {
-        //         method: "PUT",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Authorization": "Bearer " + String(tokens.access)
-        //         },
-        //         body: JSON.stringify({
-        //             "anime_list": jsonList
-        //         })
-        //     })
-        // }
-
         const handleWatchClick = (e) => {
             e.preventDefault()
             addToList(animeData, 'Watching', authTokens)
@@ -105,9 +54,12 @@ const AnimeStates = ({animeData, animeState, setIsVisible, setPopupState, popupS
                     watch {popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch") ?
                     <span>&#10003;</span> : null}
                 </div>
-                <div onClick={handleDeleteClick}>
-                    Delete from My list
-                </div>
+                {popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ||
+                popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ||
+                popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch")?
+                    <div onClick={handleDeleteClick}>
+                        Delete from My list
+                    </div> : null}
             </div>
         );
     }

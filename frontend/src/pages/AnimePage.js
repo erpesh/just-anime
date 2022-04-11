@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useReducer, useState} from 'react';
 import {useParams} from "react-router";
 import AnimeStatesPopup from "../components/AnimeStatesPopup";
 import AnimeDataContext from "../context/AnimeDataContext";
@@ -6,15 +6,15 @@ import AnimeDataContext from "../context/AnimeDataContext";
 const AnimePage = () => {
     const {id} = useParams()
     const {animeData, getAnime} = useContext(AnimeDataContext)
-    const [isFetched, setIsFetched] = useState(false)
+    const [dummy, setDummy] = useState(false)
+
 
     useEffect(() => {
-        console.log('ef')
-        getAnime(id)
-        setIsFetched(false)
+        getAnime(id);
+        setDummy(!dummy)
     }, [])
 
-    return animeData.API_DEPRECATION && (
+    return animeData.mal_id == id && (
         animeData.type === 'fetchError' ? (<p>Page does not exist</p>) :
             (
                 <div>
@@ -29,6 +29,9 @@ const AnimePage = () => {
                         <article>
                             <div>
                                 <p><span className="bold-span">Japanese title: </span>{animeData.title_japanese}</p>
+                            </div>
+                            <div>
+                                <h3>Year: {animeData.aired.prop.from.year}</h3>
                             </div>
                             <div>
                                 <h3>Score: {animeData.score} </h3>
