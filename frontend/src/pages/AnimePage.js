@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import AnimeStatesPopup from "../components/AnimeStatesPopup";
 import AnimeDataContext from "../context/AnimeDataContext";
@@ -30,19 +30,17 @@ const AnimePage = () => {
                             <div>
                                 <p><span className="bold-span">Japanese title: </span>{animeData.title_japanese}</p>
                             </div>
-                            <div>
-                                <h3>Year: {animeData.aired.prop.from.year}</h3>
-                            </div>
-                            <div>
+                            {animeData.aired.prop.from.year? <div><h3>{"Year: ".concat(animeData.aired.prop.from.year)}</h3></div> : null}
+                            {animeData.score? <div>
                                 <h3>Score: {animeData.score} </h3>
                                 <p>by {animeData.scored_by} users</p>
-                            </div>
-                            <div>
+                            </div>: null}
+                            {animeData.rank? <div>
                                 <h3>Rank: #{animeData.rank}</h3>
-                            </div>
-                            <div>
+                            </div> : null}
+                            {animeData.popularity ? <div>
                                 <h3>Popularity: #{animeData.popularity}</h3>
-                            </div>
+                            </div> : null}
                         </article>
                     </div>
                     <main>
@@ -50,7 +48,7 @@ const AnimePage = () => {
                     </main>
                     <div>
                         <p>Type: {animeData.type}</p>
-                        <p>Episodes: {animeData.episodes}</p>
+                        {animeData.episodes? <p>Episodes: {animeData.episodes}</p> : null}
                         <p>Status: {animeData.status}</p>
                         <p>Genres: {
                             animeData.genres.map((genre, index) => {

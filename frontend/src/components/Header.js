@@ -13,10 +13,7 @@ const Header = () => {
                 <Link to="/register"><button type="button">Register</button></Link>
                 </>}
             {user &&
-            <div>
-                <p>Hello {user.username}</p>
-                <Link to="/profile"><button>Profile</button></Link>
-            </div>}
+                <Link to="/profile"><button>{user.username}</button></Link>}
         </div>
     );
 };

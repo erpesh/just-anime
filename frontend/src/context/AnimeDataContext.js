@@ -31,26 +31,32 @@ export const AnimeDataProvider = ({children}) => {
         })
         const data = await response.json()
         let jsonList = data[0].anime_list
-        const stateMent = jsonList["Watching"].filter(el => el["Title"] === animeData.title_english).length === 0 &&
-            jsonList["Completed"].filter(el => el["Title"] === animeData.title_english).length === 0 &&
-            jsonList["Plan to watch"].filter(el => el["Title"] === animeData.title_english).length === 0
+        const stateMent = jsonList["Watching"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
+            jsonList["Completed"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
+            jsonList["Plan to watch"].filter(el => el["id"] === animeData.mal_id).length === 0
 
         if (stateMent) {
             jsonList[state].push({
                 "Title": anime.title_english,
-                "id": anime.mal_id
+                "id": anime.mal_id,
+                "type": anime.type,
+                "episodes": anime.episodes,
+                "progress": state === 'Completed'? anime.episodes : 0
             })
 
         } else {
             const array = ["Watching", "Completed", "Plan to watch"]
             array.forEach((state) => {
-                if (jsonList[state].filter(el => el["Title"] === animeData.title_english).length === 1) {
-                    jsonList[state] = jsonList[state].filter(el => el['Title'] !== animeData.title_english)
+                if (jsonList[state].filter(el => el["id"] === animeData.mal_id).length === 1) {
+                    jsonList[state] = jsonList[state].filter(el => el['id'] !== animeData.mal_id)
 
                     if (!deleteAnime) {
                         jsonList[state].push({
                             "Title": anime.title_english,
-                            "id": anime.mal_id
+                            "id": anime.mal_id,
+                            "type": anime.type,
+                            "episodes": anime.episodes,
+                            "progress": state === 'Completed'? anime.episodes : 0
                         })
                     }
                 }
@@ -101,7 +107,7 @@ export const AnimeDataProvider = ({children}) => {
         let jsonList = data[0].anime_list
         const array = ["Watching", "Completed", "Plan to watch"]
         array.forEach((state) => {
-            if (jsonList[state].filter(el => el["Title"] === anime.title_english).length === 1) {
+            if (jsonList[state].filter(el => el["id"] === anime.mal_id).length === 1) {
                 setAnimeState(state)
             }
         })

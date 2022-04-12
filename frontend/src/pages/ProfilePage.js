@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import AnimeLink from "../components/AnimeLink";
 import AuthContext from "../context/AuthContext";
+import AnimeTable from "../components/AnimeTable";
+import Tabs from "../components/Tabs";
 
 class ProfilePage extends Component {
 
@@ -27,7 +29,6 @@ class ProfilePage extends Component {
             this.setState({data: await response.json(), isFetched: false})
             if (this.state.data.anime_list !== undefined) {
                 this.setState({data: this.state.data, isFetched: true})
-                console.log(this.state)
             }
         } catch (e) {
             console.error(e);
@@ -36,23 +37,11 @@ class ProfilePage extends Component {
 
     render() {
         const {data} = this.state
-
-        return data[0] && <div>{["Watching", "Completed", "Plan to watch"].map((listState) => {
-            return (
-                <div key={listState}>
-                    <h3>{listState} ({data[0].anime_list[listState].length})</h3>
-                    <div>{data[0].anime_list[listState].map(anime => {
-                        return <div onClick={() => this.forceUpdate()} key={anime.id}>
-                            <AnimeLink
-                                anime={anime}
-                                state={listState}
-                                data={data[0]}/>
-                        </div>
-                    })}
-                    </div>
-                </div>)
-        })}
-        </div>
+        return data[0] && <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>
+        //     <div>{["Watching", "Completed", "Plan to watch"].map((listState) => {
+        //         return <AnimeTable header={listState} data={data[0].anime_list[listState]} key={listState}/>
+        // })}
+        // </div>
     }
 }
 
