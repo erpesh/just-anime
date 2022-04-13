@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import AnimeSearch from "../components/AnimeSearch";
+import TopAiring from "../components/TopAiring";
 
 const HomePage = ({isAuth}) => {
 
@@ -7,10 +7,9 @@ const HomePage = ({isAuth}) => {
     return (
         <div>
             <p>Here is a home page</p>
-
-            <AnimeSearch/>
+            <TopAiring/>
         </div>
-    );
+);
 };
 
 export default HomePage;

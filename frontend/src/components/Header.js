@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import AnimeSearch from "./AnimeSearch";
 
 const Header = () => {
     const {user, logoutUser} = useContext(AuthContext)
     return (
-        <div>
+        <div className="header-container">
             <Link to="/"><button type="button">Home</button></Link>
             {user? <button onClick={logoutUser}>Logout</button> :
                 <>
@@ -14,6 +15,7 @@ const Header = () => {
                 </>}
             {user &&
                 <Link to="/profile"><button>{user.username}</button></Link>}
+            <AnimeSearch/>
         </div>
     );
 };

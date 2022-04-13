@@ -21,9 +21,7 @@ const SearchPage = () => {
     })
 
     return (
-
         animeList[1] ? <div>
-            <AnimeSearch/>
             {animeList.map((anime) => {
                 return <AnimeCard anime={anime} key={anime.mal_id}/>
             })}

@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import AnimeStatesPopup from "../components/AnimeStatesPopup";
 import AnimeDataContext from "../context/AnimeDataContext";
+import AuthContext from "../context/AuthContext";
 
 const AnimePage = () => {
     const {id} = useParams()
@@ -17,7 +18,7 @@ const AnimePage = () => {
     return animeData.mal_id == id && (
         animeData.type === 'fetchError' ? (<p>Page does not exist</p>) :
             (
-                <div>
+                <div className="main-container">
                     <div className="title">
                         <h1>{animeData.title_english ? animeData.title_english : animeData.title}</h1>
                     </div>

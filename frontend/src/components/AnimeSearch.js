@@ -3,14 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 const AnimeSearch = () => {
     const [searchValue, setSearchValue] = useState("")
-    const [animeList, setAnimeList] = useState([])
     const navigate = useNavigate()
-
-    const searchAnime = async (search) => {
-        const data = await fetch(`https://api.jikan.moe/v3/search/anime?q=${search}&page=1&order_by=title&sort=asc&limit=20`)
-            .then(response => response.json())
-        setAnimeList(data.results)
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()

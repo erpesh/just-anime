@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import ListSection from "./ListSection";
+import ListEdit from "./ListEdit";
 
 const AnimeTable = ({header, data, tabs}) => {
 
@@ -27,17 +27,17 @@ const AnimeTable = ({header, data, tabs}) => {
                 </thead>
                 <tbody>
                 {data[header].map((anime, index) => {
-                    return (
+                    return (<>
                         <tr key={index} className="content-tr">
                             <td className="index-column">
                                 <span>{index + 1}</span>
                             </td>
                             <td className="name">
                                 <Link to={`/anime/${anime['id']}`}>{anime["Title"]}</Link>
-                                {/*<span className="edit-span" onClick={() => {*/}
-                                {/*    editItem !== index? setEditItem(index) : setEditItem(-1)*/}
-                                {/*}}>edit</span>*/}
-                                <ListSection activeOption={header} tabs={tabs} data={data}/>
+                                <span className="edit-span" onClick={() => {
+                                    editItem !== index? setEditItem(index) : setEditItem(-1)
+                                }}>edit</span>
+                                {/*<ListEdit activeOption={header} tabs={tabs} data={data} anime={anime}/>*/}
                             </td>
                             <td className="episodes">
                                 <span className="current-value">
@@ -48,6 +48,14 @@ const AnimeTable = ({header, data, tabs}) => {
                             </td>
                             <td className="anime-type">{anime['type']}</td>
                         </tr>
+                        {editItem === index?
+                            <ListEdit
+                                activeOption={header}
+                                tabs={tabs}
+                                data={data}
+                                anime={anime}
+                                setEditItem={setEditItem}/> : null}
+                        </>
                     )})}
                 </tbody>
             </table>}

@@ -1,10 +1,9 @@
+
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-weight: 500px;
-    /*color: #fff;*/
-    /*background-color: #222222;*/
 }
 
 h1,
@@ -30,7 +29,6 @@ h6 {
     flex-direction: column;
     position: relative;
     width: 70%;
-    /*height: 300px;*/
     background: #f1f1f1;
     margin: 100px auto 0;
     word-break: break-all;
@@ -114,22 +112,76 @@ h6 {
     text-align: center;
 }
 
-/*.edit-span {*/
-/*    float: right;*/
-/*    margin-right: 10px;*/
-/*    font-size: 0.93em;*/
-/*}*/
-
-/*.edit-input {*/
-/*    width: 30px;*/
-/*    float: right;*/
-/*    margin-right: 10px;*/
-/*    line-height: 50%;*/
-/*}*/
-
-.select-table {
-    margin-right: 10px;
+.edit-span {
     float: right;
-    border: white;
-    background: white;
+    margin-right: 10px;
+    font-size: 0.93em;
 }
+
+/*.edit-tr {*/
+/*    */
+/*}*/
+
+.main-container {
+    max-width: 1200px;
+    background: #fff;
+    clear: both;
+    margin: 0 auto;
+    padding: 15px 10px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.header-container {
+    background: #302D2D;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    height: 100%;
+    width: 100%;
+}
+
+/*slider*/
+
+.window {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider__main-container {
+    width: 1000px;
+    display: flex;
+    align-items: center;
+}
+
+
+.all-items-container {
+    height: 100%;
+    width: 225px;
+    display: flex;
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+}
+
+.arrow {
+    cursor: pointer;
+}
+
+.anime-card-article {
+}
+
+.anime-card-figure {
+    width: 225px;
+}
+
+.top-airing-cards {
+    display: flex;
+}
+
