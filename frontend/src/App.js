@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter as Router} from 'react-router-dom'
-import Header from "./components/Header";
 import {Route, Routes, Search} from "react-router";
 import PrivateRoute from "./utils/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
@@ -11,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage";
 import AnimePage from "./pages/AnimePage";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
+import Navbar from "./components/Navbar";
 
 function App() {
     return (
@@ -18,7 +18,7 @@ function App() {
             <div className="App">
                 <AnimeDataProvider>
                 <AuthProvider>
-                    <Header/>
+                    <Navbar/>
                     <Routes>
                         <Route exact path='/' element={<HomePage/>}/>
                         <Route exact path="/login" element={<LoginPage/>}/>

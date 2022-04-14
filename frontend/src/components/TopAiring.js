@@ -21,7 +21,7 @@ const TopAiring = () => {
                 <span className="top-airing-title-span">Top Airing</span>
             </div>
             <div className="top-airing-cards">
-                {animeList.filter((item, index) => index < 8).map(anime => <AnimeCard anime={anime}/>)}
+                {animeList.filter((item, index) => index < 6).map(anime => <AnimeCard  anime={anime}/>)}
             </div>
         </div>
     );

@@ -1,7 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #FCFCFC;
+}
 
 body {
+    background: #070707;
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-weight: 500px;
 }
@@ -174,14 +181,35 @@ h6 {
     cursor: pointer;
 }
 
-.anime-card-article {
+/*cards*/
+
+.anime-card-image {
+    max-width: 134px;
+    max-height: 190px;
+    object-fit: cover;
 }
 
-.anime-card-figure {
-    width: 225px;
+.cards__img {
+    width: 500px;
+    height: 283px;
+    /*padding-left: 55px;*/
+    /*padding-right: 54px;*/
+    text-align: center;
+    display: block;
+    /*flex-flow: row;*/
+    align-items: center;
 }
 
 .top-airing-cards {
+    margin: 0;
+    padding: 10px;
+    width: 70%;
+    height: 250px;
     display: flex;
+    flex-direction: row;
+    color: #FCFCFC;
+    border: 2px solid;
+    /*justify-content: space-between;*/
+    /*flex-wrap: wrap;*/
+    /*padding-top: 32px;*/
 }
-

@@ -4,14 +4,15 @@ import {Link} from "react-router-dom";
 const AnimeCard = ({anime}) => {
 
     return (
-        <article className="anime-card-article">
+        <article className="cards__img">
             <Link to={`/anime/${anime.mal_id}`}>
-                <figure className="anime-card-figure">
-                    <img
-                        src={anime.image_url}
-                        alt="Anime image"/>
-                </figure>
-                <h3>{anime.title}</h3>
+                <img
+                    className="anime-card-image"
+                    src={anime.image_url}
+                    alt="Anime image"/>
+                <figcaption className="figcaption">
+                    <span className="anime-card-title">{anime.title}</span>
+                </figcaption>
             </Link>
         </article>
     );
