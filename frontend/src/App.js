@@ -11,6 +11,7 @@ import AnimePage from "./pages/AnimePage";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import Navbar from "./components/Navbar";
+import SideBar from "./components/SideBar";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <AnimeDataProvider>
                 <AuthProvider>
                     <Navbar/>
+                    {/*<SideBar/>*/}
                     <Routes>
                         <Route exact path='/' element={<HomePage/>}/>
                         <Route exact path="/login" element={<LoginPage/>}/>

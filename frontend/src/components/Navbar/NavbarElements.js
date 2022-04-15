@@ -66,7 +66,8 @@ export const SignContainer = styled.div`
   justify-self: flex-end;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  box-sizing: border-box;
 
   @media screen and (max-width: 600px) {
     display: none;
@@ -74,7 +75,7 @@ export const SignContainer = styled.div`
 `
 
 export const NavBtn = styled.nav`
-  display: flex;
+  display: block;
 
   //@media screen and (max-width: 768px) {
   //  display: none;
@@ -82,15 +83,17 @@ export const NavBtn = styled.nav`
 `
 
 export const NavBtnLink = styled(Link)`
-  font-weight: 300;
+  font-weight: 400;
   border-radius: 5px;
   background: #BD00FF;
   white-space: nowrap;
   padding: 5px 25px;
+  margin: 0 7px;
   color: #FCFCFC;
   font-size: 16px;
   outline: none;
-  border-color: #BD00FF;
+  border: 2px solid #070707;
+  
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;

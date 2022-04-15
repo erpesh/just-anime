@@ -7,7 +7,7 @@ const Input = styled.input`
   margin: 0.85em;
   color: #E5E5E5;
   background: #302D2D;
-  border: none;
+  border: 1px solid #070707;
   border-radius: 3px;
   
   :focus {

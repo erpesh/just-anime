@@ -40,7 +40,23 @@ const AnimeStatesPopup = ({animeData}) => {
                 : (<div onClick={handleClick}>Add to My list</div>) }
             </div> : <div><p onClick={() => navigate("/login")}>Add to My list</p></div>
         )
-    );
+        // <><div>
+        //     <AnimeStates
+        //         animeData={animeData}
+        //         animeState={animeState}
+        //         setIsVisible={setIsVisible}
+        //         setPopupState={setPopupState}
+        //         popupState={popupState}
+        //     />
+        // </div>
+        //
+        // user ? <div>
+        //     {popupState? (<div onClick={handleClick}>On your list: {popupState}</div>)
+        //         : (<div onClick={handleClick}>Add to My list</div>) }
+        // </div> : <div><p onClick={() => navigate("/login")}>Add to My list</p></div>
+        //     </>
+    )
+
 };
 
 export default AnimeStatesPopup;

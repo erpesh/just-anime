@@ -15,33 +15,27 @@ import {FaBars} from "react-icons/fa";
 
 const Navbar = () => {
     return (
-        <>
-          <Nav>
-              <NavbarContainer>
-                  <NavLogo to={"/"}>
-                      <Logo/>
-                      <NavTitle>Just Anime</NavTitle>
-                  </NavLogo>
-                  <MobileIcon>
-                      <FaBars/>
-                  </MobileIcon>
-                  {/*<NavMenu>*/}
-                  {/*    <NavItem>*/}
+        <Nav>
+            <NavbarContainer>
+                <NavLogo to={"/"}>
+                    <Logo/>
+                    <NavTitle>Just Anime</NavTitle>
+                </NavLogo>
+                {/*<MobileIcon>*/}
+                {/*    <FaBars/>*/}
+                {/*</MobileIcon>*/}
+                <SignContainer>
+                    <AnimeSearch/>
+                    <NavBtn>
+                        <NavBtnLink to="/login">Sign in</NavBtnLink>
+                    </NavBtn>
+                    <NavBtn>
+                        <NavBtnLink to="/register">Sign up</NavBtnLink>
+                    </NavBtn>
+                </SignContainer>
+            </NavbarContainer>
+        </Nav>
 
-                  {/*    </NavItem>*/}
-                  {/*</NavMenu>*/}
-                  <SignContainer>
-                      <AnimeSearch/>
-                      <NavBtn>
-                          <NavBtnLink to="/login">Sign in</NavBtnLink>
-                      </NavBtn>
-                      <NavBtn>
-                          <NavBtnLink to="/register">Sign up</NavBtnLink>
-                      </NavBtn>
-                  </SignContainer>
-              </NavbarContainer>
-          </Nav>
-        </>
     );
 };
 

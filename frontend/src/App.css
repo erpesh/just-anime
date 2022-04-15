@@ -3,213 +3,272 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    background: #070707;
     color: #FCFCFC;
 }
 
-body {
-    background: #070707;
+:root {
+    --bg:  #242526;
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 1px solid #474a4d;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+ul {
+    list-style: none;
     margin: 0;
-    font-size: 15px;
-    font-weight: 500px;
+    padding: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/*Anime page*/
+
+.main-anime-container {
+    display: block;
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    border: none;
 }
 
-
-.text-right {
-    float: right;
-}
-
-.text-center {
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
+.anime-image-block {
+    width: 30.5%;
+    clear: left;
+    float: left;
+    margin-right: 4%;
     position: relative;
-    width: 70%;
-    background: #f1f1f1;
-    margin: 100px auto 0;
-    word-break: break-all;
-    border: 1px solid rgba(0, 0, 0, 0.274);
+    line-height: 1.65;
 }
 
-.bloc-tabs {
-    display: flex;
+.anime-image {
+    border-radius: 10px;
 }
-.tabs {
 
-    padding: 15px;
-    text-align: center;
-    width: 50%;
-    background: rgba(128, 128, 128, 0.075);
-    cursor: pointer;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
-    box-sizing: content-box;
+.anime-ranking-block {
+    width: 65.5%;
+    margin-right: 0;
+    z-index: 1;
+    float: left;
     position: relative;
-    outline: none;
-}
-.tabs:not(:last-child){
-    border-right: 1px solid rgba(0, 0, 0, 0.274);
+    line-height: 1.65;
 }
 
-.active-tabs  {
-    background: white;
-    border-bottom: 1px solid transparent;
-}
 
-.active-tabs::before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% + 2px);
-    height: 5px;
-    background: rgb(88, 147, 241);
-}
 
-.content-tabs {
-    flex-grow : 1;
-}
-.content {
-    background: white;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-.content h2 {
-    padding: 0px 0 5px 0px;
-}
-.content hr {
-    width: 100px;
-    height: 2px;
-    background: #222;
-    margin-bottom: 5px;
-}
-.content p {
-    width: 100%;
-    height: 100%;
-}
-.active-content {
-    display: block;
-}
 
-.table {
-    border-collapse: collapse;
-    width: 100%;
-}
 
-.table-titles {
-    text-align: left;
-}
 
-.index-column {
-    color: #9da2a8;
-    text-align: center;
-}
-
-.edit-span {
-    float: right;
-    margin-right: 10px;
-    font-size: 0.93em;
-}
-
-/*.edit-tr {*/
-/*    */
+/*body {*/
+/*    background: #070707;*/
+/*    margin: 0;*/
+/*    font-size: 15px;*/
+/*    font-weight: 500px;*/
 /*}*/
 
-.main-container {
-    max-width: 1200px;
-    background: #fff;
-    clear: both;
-    margin: 0 auto;
-    padding: 15px 10px 0;
-    position: relative;
-    z-index: 1;
-}
-
-.header-container {
-    background: #302D2D;
-}
-
-.item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    height: 100%;
-    width: 100%;
-}
-
-/*slider*/
-
-.window {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-}
-
-.slider__main-container {
-    width: 1000px;
-    display: flex;
-    align-items: center;
-}
+/*h1,*/
+/*h2,*/
+/*h3,*/
+/*h4,*/
+/*h5,*/
+/*h6 {*/
+/*    margin: 0;*/
+/*}*/
 
 
-.all-items-container {
-    height: 100%;
-    width: 225px;
-    display: flex;
-    transition: translate;
-    transition-property: transform;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
-}
+/*.text-right {*/
+/*    float: right;*/
+/*}*/
 
-.arrow {
-    cursor: pointer;
-}
+/*.text-center {*/
+/*}*/
 
-/*cards*/
 
-.anime-card-image {
-    max-width: 134px;
-    max-height: 190px;
-    object-fit: cover;
-}
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    position: relative;*/
+/*    width: 70%;*/
+/*    background: #f1f1f1;*/
+/*    margin: 100px auto 0;*/
+/*    word-break: break-all;*/
+/*    border: 1px solid rgba(0, 0, 0, 0.274);*/
+/*}*/
 
-.cards__img {
-    width: 500px;
-    height: 283px;
-    /*padding-left: 55px;*/
-    /*padding-right: 54px;*/
-    text-align: center;
-    display: block;
-    /*flex-flow: row;*/
-    align-items: center;
-}
+/*.bloc-tabs {*/
+/*    display: flex;*/
+/*}*/
+/*.tabs {*/
 
-.top-airing-cards {
-    margin: 0;
-    padding: 10px;
-    width: 70%;
-    height: 250px;
-    display: flex;
-    flex-direction: row;
-    color: #FCFCFC;
-    border: 2px solid;
-    /*justify-content: space-between;*/
-    /*flex-wrap: wrap;*/
-    /*padding-top: 32px;*/
-}
+/*    padding: 15px;*/
+/*    text-align: center;*/
+/*    width: 50%;*/
+/*    background: rgba(128, 128, 128, 0.075);*/
+/*    cursor: pointer;*/
+/*    border-bottom: 1px solid rgba(0, 0, 0, 0.274);*/
+/*    box-sizing: content-box;*/
+/*    position: relative;*/
+/*    outline: none;*/
+/*}*/
+/*.tabs:not(:last-child){*/
+/*    border-right: 1px solid rgba(0, 0, 0, 0.274);*/
+/*}*/
+
+/*.active-tabs  {*/
+/*    background: white;*/
+/*    border-bottom: 1px solid transparent;*/
+/*}*/
+
+/*.active-tabs::before {*/
+/*    content: "";*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    top: -5px;*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*    width: calc(100% + 2px);*/
+/*    height: 5px;*/
+/*    background: rgb(88, 147, 241);*/
+/*}*/
+
+/*.content-tabs {*/
+/*    flex-grow : 1;*/
+/*}*/
+/*.content {*/
+/*    background: white;*/
+/*    padding: 20px;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    display: none;*/
+/*}*/
+/*.content h2 {*/
+/*    padding: 0px 0 5px 0px;*/
+/*}*/
+/*.content hr {*/
+/*    width: 100px;*/
+/*    height: 2px;*/
+/*    background: #222;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+/*.content p {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+/*.active-content {*/
+/*    display: block;*/
+/*}*/
+
+/*.table {*/
+/*    border-collapse: collapse;*/
+/*    width: 100%;*/
+/*}*/
+
+/*.table-titles {*/
+/*    text-align: left;*/
+/*}*/
+
+/*.index-column {*/
+/*    color: #9da2a8;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.edit-span {*/
+/*    float: right;*/
+/*    margin-right: 10px;*/
+/*    font-size: 0.93em;*/
+/*}*/
+
+/*!*.edit-tr {*!*/
+/*!*    *!*/
+/*!*}*!*/
+
+/*.main-container {*/
+/*    max-width: 1200px;*/
+/*    !*background: #fff;*!*/
+/*    clear: both;*/
+/*    margin: 0 auto;*/
+/*    padding: 15px 10px 0;*/
+/*    position: relative;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.header-container {*/
+/*    background: #302D2D;*/
+/*}*/
+
+/*.item {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    user-select: none;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*}*/
+
+/*!*slider*!*/
+
+/*.window {*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.slider__main-container {*/
+/*    width: 1000px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+
+/*.all-items-container {*/
+/*    height: 100%;*/
+/*    width: 225px;*/
+/*    display: flex;*/
+/*    transition: translate;*/
+/*    transition-property: transform;*/
+/*    transition-duration: 300ms;*/
+/*    transition-timing-function: ease-in-out;*/
+/*}*/
+
+/*.arrow {*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*!*cards*!*/
+
+/*.anime-card-image {*/
+/*    max-width: 134px;*/
+/*    max-height: 190px;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*.cards__img {*/
+/*    width: 500px;*/
+/*    height: 283px;*/
+/*    !*padding-left: 55px;*!*/
+/*    !*padding-right: 54px;*!*/
+/*    text-align: center;*/
+/*    display: block;*/
+/*    !*flex-flow: row;*!*/
+/*    align-items: center;*/
+/*}*/
+
+/*.top-airing-cards {*/
+/*    margin: 0;*/
+/*    padding: 10px;*/
+/*    width: 70%;*/
+/*    height: 250px;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    color: #FCFCFC;*/
+/*    border: 2px solid;*/
+/*    !*justify-content: space-between;*!*/
+/*    !*flex-wrap: wrap;*!*/
+/*    !*padding-top: 32px;*!*/
+/*}*/
