@@ -18,7 +18,7 @@ const AnimePage = () => {
         animeData.type === 'fetchError' ? (<p>Page does not exist</p>) :
             (
                 <div className="main-anime-container">
-                    <div className="title">
+                    <div className="anime-page-title">
                         <h1>{animeData.title_english ? animeData.title_english : animeData.title}</h1>
                     </div>
                     <div className="anime-image-block">
@@ -27,40 +27,46 @@ const AnimePage = () => {
                         </div>
                         <AnimeStatesPopup animeData={animeData}/>
                     </div>
-                    <div className="anime-ranking-block">
-                        <article>
-                            <div>
-                                <p><span className="bold-span">Japanese title: </span>{animeData.title_japanese}</p>
-                            </div>
+                    <div className="anime-page-info">
+                        <div className="anime-info-block">
+                            <p className="anime-page-p-text">Type: {animeData.type}</p>
+                            {animeData.episodes ?
+                                <p className="anime-page-p-text">Episodes: {animeData.episodes}</p> : null}
+                            <p className="anime-page-p-text">Status: {animeData.status}</p>
                             {animeData.aired.prop.from.year ?
-                                <div><h3>{"Year: ".concat(animeData.aired.prop.from.year)}</h3></div> : null}
-                            {animeData.score ? <div>
-                                <h3>Score: {animeData.score} </h3>
-                                <p>by {animeData.scored_by} users</p>
-                            </div> : null}
-                            {animeData.rank ? <div>
-                                <h3>Rank: #{animeData.rank}</h3>
-                            </div> : null}
-                            {animeData.popularity ? <div>
-                                <h3>Popularity: #{animeData.popularity}</h3>
-                            </div> : null}
-                        </article>
-                    </div>
-                    <div className="anime-info-block">
-                        <p>Type: {animeData.type}</p>
-                        {animeData.episodes ? <p>Episodes: {animeData.episodes}</p> : null}
-                        <p>Status: {animeData.status}</p>
-                        <p>Genres: {
-                            animeData.genres.map((genre, index) => {
-                                return index === animeData.genres.length - 1 ? (
-                                    <span key={genre.mal_id}> {genre.name}.</span>) : (
-                                    <span key={genre.mal_id}> {genre.name}, </span>)
-                            })
-                        }
-                        </p>
-                    </div>
-                    <div className="anime-synopsis-block">
-                        {animeData.synopsis}
+                                <div><span
+                                    className="anime-page-p-text">{"Year: ".concat(animeData.aired.prop.from.year)}</span>
+                                </div> : null}
+                            <p className="anime-page-p-text">Genres: {
+                                animeData.genres.map((genre, index) => {
+                                    return index === animeData.genres.length - 1 ? (
+                                        <span className="anime-page-p-text"
+                                              key={genre.mal_id}> {genre.name}.</span>) : (
+                                        <span className="anime-page-p-text" key={genre.mal_id}> {genre.name}, </span>)
+                                })
+                            }
+                            </p>
+                        </div>
+                        <div className="anime-ranking-block">
+                            <article>
+                                {animeData.score ? <div>
+                                    <span className="anime-page-p-text">Score: {animeData.score}</span>
+                                </div> : null}
+                                {animeData.rank ? <div>
+                                    <span className="anime-page-p-text">Rank: #{animeData.rank}</span>
+                                </div> : null}
+                                {animeData.popularity ? <div>
+                                    <span className="anime-page-p-text">Popularity: #{animeData.popularity}</span>
+                                </div> : null}
+                                {animeData.rating &&
+                                <div><span className="anime-page-p-text">Rating: {animeData.rating}</span></div>}
+                                {animeData.duration &&
+                                <div><span className="anime-page-p-text">Duration: {animeData.duration}</span></div>}
+                            </article>
+                        </div>
+                        <div className="anime-synopsis-block">
+                            {animeData.synopsis}
+                        </div>
                     </div>
                 </div>
             )

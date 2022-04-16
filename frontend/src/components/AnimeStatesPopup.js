@@ -35,7 +35,7 @@ const AnimeStatesPopup = ({animeData}) => {
                     />
             </div>
         ) : (
-            user ? <div>
+            user ? <div className="add-to-list-button">
                 {popupState? (<div onClick={handleClick}>On your list: {popupState}</div>)
                 : (<div onClick={handleClick}>Add to My list</div>) }
             </div> : <div><p onClick={() => navigate("/login")}>Add to My list</p></div>

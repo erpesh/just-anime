@@ -76,10 +76,6 @@ export const SignContainer = styled.div`
 
 export const NavBtn = styled.nav`
   display: block;
-
-  //@media screen and (max-width: 768px) {
-  //  display: none;
-  //}
 `
 
 export const NavBtnLink = styled(Link)`
@@ -98,6 +94,29 @@ export const NavBtnLink = styled(Link)`
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #070707;
+    border: 2px solid #BD00FF;
+  }
+`
+
+export const NavBtnLogout = styled.div`
+  font-weight: 400;
+  border-radius: 5px;
+  background: #BD00FF;
+  white-space: nowrap;
+  padding: 5px 25px;
+  margin: 0 7px;
+  color: #FCFCFC;
+  font-size: 16px;
+  outline: none;
+  border: 2px solid #070707;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #070707;

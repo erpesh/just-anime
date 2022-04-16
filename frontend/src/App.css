@@ -3,8 +3,12 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background: #070707;
+    /*background: #070707;*/
     color: #FCFCFC;
+}
+
+html {
+    background: #070707;
 }
 
 :root {
@@ -15,6 +19,10 @@
     --border: 1px solid #474a4d;
     --border-radius: 8px;
     --speed: 500ms;
+}
+
+.App {
+    background: #070707;
 }
 
 ul {
@@ -30,39 +38,112 @@ a {
 
 /*Anime page*/
 
+.anime-page-p-text {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+/*.main-anime-container {*/
+/*    margin-left: 130px;*/
+/*    background: #302D2D;*/
+/*    max-width: 80%;*/
+/*    border-radius: 20px;*/
+/*    display: grid;*/
+/*    grid-template: 50px 1fr 1fr/ 20% 1fr 1fr;*/
+/*    grid-gap: 4px 4px;*/
+/*}*/
+
+/*.anime-page-title {*/
+/*    grid-column-start: span 3;*/
+/*    align-self: start;*/
+/*}*/
+
+/*.anime-image-block {*/
+/*    grid-row-start: span 2;*/
+/*}*/
+
+/*.anime-image {*/
+/*    border-radius: 10px;*/
+/*    max-width: 100%;*/
+/*}*/
+
+/*.anime-ranking-block {*/
+
+/*}*/
+
+/*.anime-info-block {*/
+
+/*}*/
+
+/*.anime-synopsis-block {*/
+/*    grid-column-start: span 2;*/
+/*}*/
+
+
 .main-anime-container {
-    display: block;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
+    background: #302D2D;
+    max-width: 1320px;
+    margin: 0 auto;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5%;
+}
+
+.anime-page-title {
+    /*margin-top:1%;*/
+    /*margin-left: 2%;*/
+    margin-bottom: 1%;
+    align-self: start;
+    width: 100%;
 }
 
 .anime-image-block {
-    width: 30.5%;
-    clear: left;
-    float: left;
-    margin-right: 4%;
-    position: relative;
-    line-height: 1.65;
+    /*margin-left: 2%;*/
+    width: 26%;
+    align-self: start;
 }
 
 .anime-image {
     border-radius: 10px;
+    width: 90%;
+}
+
+/*.anime-ranking-block {*/
+/*    align-self: start;*/
+/*    width: 35%;*/
+/*}*/
+
+/*.anime-info-block {*/
+/*    align-self: start;*/
+/*    width: 35%;*/
+/*}*/
+
+/*.anime-synopsis-block {*/
+/*    !*align-self: start;*!*/
+/*    width: 60%;*/
+/*}*/
+
+.anime-page-info {
+    display: flex;
+    align-self: start;
+    width: 74%;
+    flex-wrap: wrap;
+}
+
+.anime-info-block {
+    align-self: start;
+    width: 50%;
 }
 
 .anime-ranking-block {
-    width: 65.5%;
-    margin-right: 0;
-    z-index: 1;
-    float: left;
-    position: relative;
-    line-height: 1.65;
+    align-self: start;
+    width: 50%;
 }
 
-
-
-
+.anime-synopsis-block {
+    padding-top: 30px;
+}
 
 
 /*body {*/
