@@ -40,25 +40,27 @@ const AnimeStates = ({animeData, animeState, setIsVisible, setPopupState, popupS
         }
 
         return (
-            <div>
-                <div onClick={handleWatchClick}>
-                    Watching {popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ?
-                    <span>&#10003;</span> : null}
+            <div className="anime-states-dropped">
+                <div className={`anime-button ${
+                    popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ? "green-back" : "purp-back"
+                }`}  onClick={handleWatchClick}>
+                    Watching
                 </div>
-                <div onClick={handleCompletedClick}>
-                    Completed {popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ?
-                    <span>&#10003;</span> : null}
+                <div className={`anime-button ${
+                    popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ? "green-back" : "purp-back"
+                }`}  onClick={handleCompletedClick}>
+                    Completed
                 </div>
-                <div onClick={handlePlanClick}>
-                    Plan to
-                    watch {popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch") ?
-                    <span>&#10003;</span> : null}
+                <div className={`anime-button ${
+                    popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch") ? "green-back" : "purp-back"
+                }`} onClick={handlePlanClick}>
+                    Planning
                 </div>
                 {popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ||
                 popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ||
                 popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch")?
-                    <div onClick={handleDeleteClick}>
-                        Delete from My list
+                    <div className="anime-button red-back" onClick={handleDeleteClick}>
+                        Remove
                     </div> : null}
             </div>
         );

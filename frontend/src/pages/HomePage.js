@@ -5,7 +5,7 @@ const HomePage = ({isAuth}) => {
 
 
     return (
-        <div>
+        <div className="page">
             <p>Here is a home page</p>
             <TopAiring/>
         </div>

@@ -21,14 +21,14 @@ const SearchPage = () => {
     })
 
     return (
-        animeList[1] ? <div>
+        animeList[1] ? <div className="page">
             {animeList.map((anime) => {
                 return <AnimeCard anime={anime} key={anime.mal_id}/>
             })}
         </div> :
-            <h2>
+            <div className="page">
                 Loading
-            </h2>
+            </div>
     );
 };
 

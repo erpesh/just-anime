@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthContext";
 import AnimeDataContext from "../context/AnimeDataContext";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 
 const AnimeStatesPopup = ({animeData}) => {
     const [isVisible, setIsVisible] = useState(false)
@@ -17,44 +18,42 @@ const AnimeStatesPopup = ({animeData}) => {
         setIsVisible(true)
     }
 
-
     useEffect(() => {
         getAnimeState(animeData, authTokens, setAnimeState)
         setPopupState(animeState)
     }, [animeState])
 
     return (
-        isVisible ? (
-            <div>
-                <AnimeStates
-                    animeData={animeData}
-                    animeState={animeState}
-                    setIsVisible={setIsVisible}
-                    setPopupState={setPopupState}
-                    popupState={popupState}
-                    />
-            </div>
-        ) : (
-            user ? <div className="add-to-list-button">
-                {popupState? (<div onClick={handleClick}>On your list: {popupState}</div>)
-                : (<div onClick={handleClick}>Add to My list</div>) }
-            </div> : <div><p onClick={() => navigate("/login")}>Add to My list</p></div>
-        )
-        // <><div>
-        //     <AnimeStates
-        //         animeData={animeData}
-        //         animeState={animeState}
-        //         setIsVisible={setIsVisible}
-        //         setPopupState={setPopupState}
-        //         popupState={popupState}
-        //     />
-        // </div>
-        //
-        // user ? <div>
-        //     {popupState? (<div onClick={handleClick}>On your list: {popupState}</div>)
-        //         : (<div onClick={handleClick}>Add to My list</div>) }
-        // </div> : <div><p onClick={() => navigate("/login")}>Add to My list</p></div>
-        //     </>
+        <>
+            <SwitchTransition mode="out-in">
+                <CSSTransition
+                    timeout={500}
+                    key={isVisible}
+                    classNames="fade"
+                >
+                    {isVisible ? (
+                            <AnimeStates
+                                animeData={animeData}
+                                animeState={animeState}
+                                setIsVisible={setIsVisible}
+                                setPopupState={setPopupState}
+                                popupState={popupState}
+                            />
+                        ) :
+                        (<div className="anime-button purp-back">
+                            {user ?
+                                <>
+                                    {popupState ?
+                                        (<span onClick={handleClick}>{popupState}</span>)
+                                        :
+                                        (<span onClick={handleClick}>Add to My list</span>)}
+                                </>
+                                :
+                                <span onClick={() => navigate("/login")}>Add to My list</span>}
+                        </div>)}
+                </CSSTransition>
+            </SwitchTransition>
+        </>
     )
 
 };

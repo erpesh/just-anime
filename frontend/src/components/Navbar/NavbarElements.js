@@ -42,6 +42,10 @@ export const NavTitle = styled.span`
   font-family: 'Aubrey',sans-serif;
   font-size: 33px;
   margin-left: 5px;
+  
+  @media screen and (max-width: 615px) {
+    display: none;
+  }
 `
 
 export const MobileIcon = styled.div`
@@ -69,7 +73,7 @@ export const SignContainer = styled.div`
   max-width: 420px;
   box-sizing: border-box;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 615px) {
     display: none;
   }
 `

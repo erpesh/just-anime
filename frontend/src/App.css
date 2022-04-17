@@ -38,318 +38,259 @@ a {
 
 /*Anime page*/
 
-.anime-page-p-text {
-    font-size: 24px;
+.anime-page-text {
+    font-size: 22px;
     font-weight: 400;
+    padding: 4px;
 }
-
-/*.main-anime-container {*/
-/*    margin-left: 130px;*/
-/*    background: #302D2D;*/
-/*    max-width: 80%;*/
-/*    border-radius: 20px;*/
-/*    display: grid;*/
-/*    grid-template: 50px 1fr 1fr/ 20% 1fr 1fr;*/
-/*    grid-gap: 4px 4px;*/
-/*}*/
-
-/*.anime-page-title {*/
-/*    grid-column-start: span 3;*/
-/*    align-self: start;*/
-/*}*/
-
-/*.anime-image-block {*/
-/*    grid-row-start: span 2;*/
-/*}*/
-
-/*.anime-image {*/
-/*    border-radius: 10px;*/
-/*    max-width: 100%;*/
-/*}*/
-
-/*.anime-ranking-block {*/
-
-/*}*/
-
-/*.anime-info-block {*/
-
-/*}*/
-
-/*.anime-synopsis-block {*/
-/*    grid-column-start: span 2;*/
-/*}*/
-
 
 .main-anime-container {
     background: #302D2D;
     max-width: 1320px;
     margin: 0 auto;
     border-radius: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1.5%;
+    display: grid;
+    padding: 25px;
+    grid-template: auto 440px auto auto/ 310px 35% 1fr;
+    grid-gap: 10px;
 }
+
 
 .anime-page-title {
-    /*margin-top:1%;*/
-    /*margin-left: 2%;*/
-    margin-bottom: 1%;
-    align-self: start;
-    width: 100%;
-}
-
-.anime-image-block {
-    /*margin-left: 2%;*/
-    width: 26%;
-    align-self: start;
+    grid-column-start: span 3;
 }
 
 .anime-image {
     border-radius: 10px;
-    width: 90%;
+    width: 280px;
 }
 
-/*.anime-ranking-block {*/
-/*    align-self: start;*/
-/*    width: 35%;*/
-/*}*/
+.anime-states-block {
+    height: auto;
+    grid-row-start: 3;
+    grid-column-start: span 3;
+}
 
-/*.anime-info-block {*/
-/*    align-self: start;*/
-/*    width: 35%;*/
-/*}*/
+.anime-states-button {
+    width: 250px;
+}
 
-/*.anime-synopsis-block {*/
-/*    !*align-self: start;*!*/
-/*    width: 60%;*/
-/*}*/
+.anime-trailer-block {
+    align-self: center;
+    text-align: center;
+}
 
-.anime-page-info {
-    display: flex;
-    align-self: start;
-    width: 74%;
-    flex-wrap: wrap;
+.anime-iframe {
+    height: 280px;
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+}
+
+.trailer-text {
+    font-size: 24px;
+    font-weight: 400;
 }
 
 .anime-info-block {
-    align-self: start;
-    width: 50%;
-}
-
-.anime-ranking-block {
-    align-self: start;
-    width: 50%;
+    padding-right: 10px;
 }
 
 .anime-synopsis-block {
-    padding-top: 30px;
+    margin-top: 30px;
+    grid-column-start: span 3;
+}
+
+@media screen and (max-width: 900px){
+    .main-anime-container {
+        grid-template: 52px 1fr auto auto/ 280px 1fr;
+        grid-row-gap: 20px;
+    }
+
+
+    .anime-page-title {
+        grid-column-start: span 2;
+    }
+
+    .anime-states-block {
+        grid-row-start: 3;
+        grid-column-start: span 2;
+    }
+
+    .anime-trailer-block {
+        grid-column-start: span 2;
+        grid-row-start: 4;
+    }
+
+    .anime-synopsis-block {
+        margin-top: 0;
+        grid-column-start: span 2;
+    }
+
+}
+
+.anime-button {
+    width: fit-content;
+}
+
+@media screen and (max-width: 645px){
+    .main-anime-container {
+        grid-template: repeat(6, auto)/  1fr;
+        grid-row-gap: 20px;
+    }
+
+
+    .anime-page-title {
+        grid-column-start: span 1;
+    }
+
+    .anime-image {
+        width: 95%;
+    }
+
+    .anime-states-block {
+        grid-row-start: 3;
+        grid-column-start: span 1;
+    }
+
+    .anime-trailer-block {
+        grid-column-start: span 1;
+        grid-row-start: 6;
+    }
+
+    .anime-synopsis-block {
+        margin-top: 0;
+        grid-column-start: span 1;
+    }
+
+    .anime-states-button {
+        width: 95%;
+    }
+
+    .anime-button {
+        width: 95%;
+    }
+}
+
+/*states change anime page*/
+
+.anime-states-dropped, .anime-states-button {
+    border-radius: 20px;
+    text-align: center;
+}
+
+.anime-button {
+    transition: all 0.2s ease-in-out;
+    background: #BD00FF;
+    border: 2px solid #302D2D;
+    border-radius: 20px;
+    cursor: pointer;
+    height: auto;
+    text-align: center;
+    padding: 10px 40px;
+}
+
+.anime-button:hover {
+    background: #070707;
+}
+
+.purp-back {
+    background: #BD00FF;
+}
+
+.purp-back:hover {
+    border: 2px solid #BD00FF;
+}
+
+.red-back {
+    background: #FD7B52;
+}
+
+.red-back:hover {
+    border: 2px solid #FD7B52;
+}
+
+.green-back {
+    background: #27AE60;
+}
+
+.green-back:hover {
+    border: 2px solid #27AE60;
+}
+
+.fade-enter-active {
+    animation: fade-in 500ms forwards;
+}
+
+.fade-exit-active {
+    animation: fade-out 500ms forwards;
+}
+
+.anime-states-dropped {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
+}
+
+.anime-states-item {
+    cursor: pointer;
+    border-radius: 20px;
+    height: auto;
+    border: 2px solid #302D2D;
+}
+
+.anime-states-item:hover {
+    background: #302D2D;
+    border: 2px solid #302D2D;
+}
+
+/*.not-first {*/
+/*    background: #BD00FF;*/
+/*}*/
+
+/*.not-first:hover {*/
+/*    border: 2px solid #BD00FF;*/
+/*}*/
+
+/*.del-item {*/
+/*    background: #FF908B;*/
+/*}*/
+
+/*.del-item:hover {*/
+/*    border: 2px solid #FF908B;*/
+/*}*/
+
+/*.active-item {*/
+/*    background: rgb(39, 174, 96);*/
+/*}*/
+
+/*.active-item:hover {*/
+/*    border: 2px solid rgb(39, 174, 96);*/
+/*}*/
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
 
 
-/*body {*/
-/*    background: #070707;*/
-/*    margin: 0;*/
-/*    font-size: 15px;*/
-/*    font-weight: 500px;*/
-/*}*/
-
-/*h1,*/
-/*h2,*/
-/*h3,*/
-/*h4,*/
-/*h5,*/
-/*h6 {*/
-/*    margin: 0;*/
-/*}*/
-
-
-/*.text-right {*/
-/*    float: right;*/
-/*}*/
-
-/*.text-center {*/
-/*}*/
-
-
-/*.container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    position: relative;*/
-/*    width: 70%;*/
-/*    background: #f1f1f1;*/
-/*    margin: 100px auto 0;*/
-/*    word-break: break-all;*/
-/*    border: 1px solid rgba(0, 0, 0, 0.274);*/
-/*}*/
-
-/*.bloc-tabs {*/
-/*    display: flex;*/
-/*}*/
-/*.tabs {*/
-
-/*    padding: 15px;*/
-/*    text-align: center;*/
-/*    width: 50%;*/
-/*    background: rgba(128, 128, 128, 0.075);*/
-/*    cursor: pointer;*/
-/*    border-bottom: 1px solid rgba(0, 0, 0, 0.274);*/
-/*    box-sizing: content-box;*/
-/*    position: relative;*/
-/*    outline: none;*/
-/*}*/
-/*.tabs:not(:last-child){*/
-/*    border-right: 1px solid rgba(0, 0, 0, 0.274);*/
-/*}*/
-
-/*.active-tabs  {*/
-/*    background: white;*/
-/*    border-bottom: 1px solid transparent;*/
-/*}*/
-
-/*.active-tabs::before {*/
-/*    content: "";*/
-/*    display: block;*/
-/*    position: absolute;*/
-/*    top: -5px;*/
-/*    left: 50%;*/
-/*    transform: translateX(-50%);*/
-/*    width: calc(100% + 2px);*/
-/*    height: 5px;*/
-/*    background: rgb(88, 147, 241);*/
-/*}*/
-
-/*.content-tabs {*/
-/*    flex-grow : 1;*/
-/*}*/
-/*.content {*/
-/*    background: white;*/
-/*    padding: 20px;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    display: none;*/
-/*}*/
-/*.content h2 {*/
-/*    padding: 0px 0 5px 0px;*/
-/*}*/
-/*.content hr {*/
-/*    width: 100px;*/
-/*    height: 2px;*/
-/*    background: #222;*/
-/*    margin-bottom: 5px;*/
-/*}*/
-/*.content p {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
-/*.active-content {*/
-/*    display: block;*/
-/*}*/
-
-/*.table {*/
-/*    border-collapse: collapse;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.table-titles {*/
-/*    text-align: left;*/
-/*}*/
-
-/*.index-column {*/
-/*    color: #9da2a8;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.edit-span {*/
-/*    float: right;*/
-/*    margin-right: 10px;*/
-/*    font-size: 0.93em;*/
-/*}*/
-
-/*!*.edit-tr {*!*/
-/*!*    *!*/
-/*!*}*!*/
-
-/*.main-container {*/
-/*    max-width: 1200px;*/
-/*    !*background: #fff;*!*/
-/*    clear: both;*/
-/*    margin: 0 auto;*/
-/*    padding: 15px 10px 0;*/
-/*    position: relative;*/
-/*    z-index: 1;*/
-/*}*/
-
-/*.header-container {*/
-/*    background: #302D2D;*/
-/*}*/
-
-/*.item {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    user-select: none;*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*}*/
-
-/*!*slider*!*/
-
-/*.window {*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*    overflow: hidden;*/
-/*}*/
-
-/*.slider__main-container {*/
-/*    width: 1000px;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
-
-
-/*.all-items-container {*/
-/*    height: 100%;*/
-/*    width: 225px;*/
-/*    display: flex;*/
-/*    transition: translate;*/
-/*    transition-property: transform;*/
-/*    transition-duration: 300ms;*/
-/*    transition-timing-function: ease-in-out;*/
-/*}*/
-
-/*.arrow {*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*!*cards*!*/
-
-/*.anime-card-image {*/
-/*    max-width: 134px;*/
-/*    max-height: 190px;*/
-/*    object-fit: cover;*/
-/*}*/
-
-/*.cards__img {*/
-/*    width: 500px;*/
-/*    height: 283px;*/
-/*    !*padding-left: 55px;*!*/
-/*    !*padding-right: 54px;*!*/
-/*    text-align: center;*/
-/*    display: block;*/
-/*    !*flex-flow: row;*!*/
-/*    align-items: center;*/
-/*}*/
-
-/*.top-airing-cards {*/
-/*    margin: 0;*/
-/*    padding: 10px;*/
-/*    width: 70%;*/
-/*    height: 250px;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    color: #FCFCFC;*/
-/*    border: 2px solid;*/
-/*    !*justify-content: space-between;*!*/
-/*    !*flex-wrap: wrap;*!*/
-/*    !*padding-top: 32px;*!*/
-/*}*/

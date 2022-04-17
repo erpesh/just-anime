@@ -85,7 +85,7 @@ const RegisterPage = () => {
 
 
     return (
-        <div className="Register">
+        <div className="page Register">
             <Form onSubmit={handleSubmit}>
                 <Form.Group size="lg" controlId="username">
                     <Form.Label>Username</Form.Label>
