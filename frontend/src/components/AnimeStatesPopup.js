@@ -40,7 +40,7 @@ const AnimeStatesPopup = ({animeData}) => {
                                 popupState={popupState}
                             />
                         ) :
-                        (<div className="anime-button purp-back">
+                        (<div className="anime-button width-100 purp-back">
                             {user ?
                                 <>
                                     {popupState ?

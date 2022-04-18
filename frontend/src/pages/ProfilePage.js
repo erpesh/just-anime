@@ -38,8 +38,10 @@ class ProfilePage extends Component {
     render() {
         const {data} = this.state
         return data[0] &&
-            <div className="page main-container">
-                <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>
+            <div className="page">
+                <div className="main-container">
+                    <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>
+                </div>
             </div>
         //     <div>{["Watching", "Completed", "Plan to watch"].map((listState) => {
         //         return <AnimeTable header={listState} data={data[0].anime_list[listState]} key={listState}/>

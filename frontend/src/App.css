@@ -36,6 +36,44 @@ a {
     text-decoration: none;
 }
 
+/*page*/
+
+.page {
+    position: absolute;
+    margin: 10px auto;
+    left: 0;
+    right: 0;
+    max-width: 1320px;
+}
+.fadeIn {
+    animation: 0.5s fadeIn forwards;
+}
+
+.fadeOut {
+    animation: 0.5s fadeOut forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-400px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(400px);
+    }
+}
 /*Anime page*/
 
 .anime-page-text {
@@ -47,12 +85,11 @@ a {
 .main-anime-container {
     background: #302D2D;
     max-width: 1320px;
-    margin: 0 auto;
     border-radius: 20px;
     display: grid;
     padding: 25px;
     grid-template: auto 440px auto auto/ 310px 35% 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
 }
 
 
@@ -73,6 +110,13 @@ a {
 
 .anime-states-button {
     width: 250px;
+}
+
+.anime-states-dropped {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    width: 100%;
 }
 
 .anime-trailer-block {
@@ -97,13 +141,13 @@ a {
 }
 
 .anime-synopsis-block {
-    margin-top: 30px;
+    margin-top: 10px;
     grid-column-start: span 3;
 }
 
 @media screen and (max-width: 900px){
     .main-anime-container {
-        grid-template: 52px 1fr auto auto/ 280px 1fr;
+        grid-template: auto auto auto auto/ 280px 1fr;
         grid-row-gap: 20px;
     }
 
@@ -119,7 +163,7 @@ a {
 
     .anime-trailer-block {
         grid-column-start: span 2;
-        grid-row-start: 4;
+        grid-row-start: 5;
     }
 
     .anime-synopsis-block {
@@ -135,7 +179,7 @@ a {
 
 @media screen and (max-width: 645px){
     .main-anime-container {
-        grid-template: repeat(6, auto)/  1fr;
+        grid-template: repeat(2, auto) 107px repeat(3, auto)/  1fr;
         grid-row-gap: 20px;
     }
 
@@ -145,7 +189,7 @@ a {
     }
 
     .anime-image {
-        width: 95%;
+        width: 100%;
     }
 
     .anime-states-block {
@@ -167,8 +211,19 @@ a {
         width: 95%;
     }
 
+    .anime-states-dropped {
+        /*flex-direction: column;*/
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
     .anime-button {
-        width: 95%;
+        margin: 5px;
+        width: 45%;
+    }
+
+    .width-100 {
+        width: 100%;
     }
 }
 
@@ -224,13 +279,6 @@ a {
 
 .fade-exit-active {
     animation: fade-out 500ms forwards;
-}
-
-.anime-states-dropped {
-    display: flex;
-    justify-content: space-between;
-    height: auto;
-    width: 100%;
 }
 
 .anime-states-item {
