@@ -24,7 +24,7 @@ const AnimeSearch = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         // searchAnime(searchValue)
-        navigate(`/search/anime?q=${searchValue}&page=1&order_by=title&sort=asc&limit=20`, {replace: true})
+        navigate(`/search/anime?q=${searchValue}`, {replace: true})
     }
 
     return (

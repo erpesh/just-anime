@@ -293,30 +293,6 @@ a {
     border: 2px solid #302D2D;
 }
 
-/*.not-first {*/
-/*    background: #BD00FF;*/
-/*}*/
-
-/*.not-first:hover {*/
-/*    border: 2px solid #BD00FF;*/
-/*}*/
-
-/*.del-item {*/
-/*    background: #FF908B;*/
-/*}*/
-
-/*.del-item:hover {*/
-/*    border: 2px solid #FF908B;*/
-/*}*/
-
-/*.active-item {*/
-/*    background: rgb(39, 174, 96);*/
-/*}*/
-
-/*.active-item:hover {*/
-/*    border: 2px solid rgb(39, 174, 96);*/
-/*}*/
-
 @keyframes fade-in {
     0% {
         opacity: 0;
