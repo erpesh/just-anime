@@ -44,6 +44,9 @@ a {
     left: 0;
     right: 0;
     max-width: 1320px;
+    background: #302D2D;
+    border-radius: 20px;
+    padding: 25px;
 }
 .fadeIn {
     animation: 0.5s fadeIn forwards;
@@ -83,11 +86,7 @@ a {
 }
 
 .main-anime-container {
-    background: #302D2D;
-    max-width: 1320px;
-    border-radius: 20px;
     display: grid;
-    padding: 25px;
     grid-template: auto 440px auto auto/ 310px 35% 1fr;
     grid-gap: 5px;
 }
@@ -317,4 +316,79 @@ a {
     }
 }
 
+/*Search Page*/
 
+.search-page-container {
+    display: grid;
+    grid-template: auto auto / auto auto;
+}
+
+.search-header {
+    grid-column-start: span 2;
+    align-self: flex-start;
+    width: 100%;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.search-section {
+    display: grid;
+    grid-gap: 15px;
+    grid-template: repeat(10, auto)/ repeat(5, auto);
+}
+
+.search-aside {
+    margin-right: 0;
+    margin-left: auto;
+    width: 250px;
+}
+
+.cards__img {
+    width: 180px;
+    height: 290px;
+}
+
+.anime-card-image {
+    width: 100%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.figcaption {
+    height: fit-content;
+}
+
+@media screen and (max-width: 1285px) and (min-width: 975px) {
+    .cards__img {
+        width: 150px;
+        height: fit-content;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1140px) and (min-width: 1040px) {
+    .cards__img {
+        width: 130px;
+        height: fit-content;
+    }
+}
+
+@media screen and (max-width: 1040px){
+    .search-section {
+        display: grid;
+        grid-gap: 15px;
+        grid-template: repeat(13, auto)/ repeat(4, auto);
+    }
+}
+
+@media screen and (max-width: 975px) {
+    .search-section {
+        display: grid;
+        grid-gap: 15px;
+        grid-template: repeat(17, auto)/ repeat(3, auto);
+    }
+}
+
+@media screen and (max-width: 885px) {
+    /*Sidebar*/
+}
