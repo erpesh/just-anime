@@ -331,6 +331,11 @@ a {
     margin-bottom: 10px;
 }
 
+.search-input {
+    background: #302D2D;
+    color: #E5E5E5;
+}
+
 .search-section {
     display: grid;
     grid-gap: 15px;

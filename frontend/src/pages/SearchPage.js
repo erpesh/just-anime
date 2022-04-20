@@ -8,37 +8,72 @@ const SearchPage = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [animeList, setAnimeList] = useState([])
     const [genres, setGenres] = useState([])
+    const [dummy, setDummy] = useState(false)
+    const [searchValue, setSearchValue] = useState("")
 
-    let genreQuery = 'genre='
-    const Genre = ({data}) => {
+    let queryObject = {}
+    for (const entry of searchParams.entries()) {
+        const [param, value] = entry;
+        queryObject[param] = value
+    }
 
-        const [isActive, setIsActive] = useState(false)
+    let genreQuery = queryObject.genre? `${queryObject.genre},` : ''
+
+    const Genre = ({data, gQuery}) => {
+
+        let isActive = false;
+        if (gQuery) {
+            gQuery = gQuery.slice(0, -1).split(',')
+            isActive = gQuery.includes(String(data.mal_id))
+        }
+
+        function handleChange(e) {
+            if (e.target.checked && !isActive) {
+                genreQuery += `${data.mal_id},`
+            } else {
+                let statement;
+                if (String(data.mal_id).length === 1) {
+                    for (let i = 1; i < genreQuery.length; i++) {
+                        statement = genreQuery.charAt(i - 1) == data.mal_id &&
+                            genreQuery.charAt(i) === ","
+                        if (statement) {
+                            genreQuery = genreQuery.substring(0, i - 1) + genreQuery.substring(i + 1)
+                        }
+                    }
+                } else {
+                    for (let i = 2; i < genreQuery.length; i++) {
+                        statement = genreQuery.charAt(i - 2) === String(data.mal_id).charAt(0) &&
+                            genreQuery.charAt(i - 1) === String(data.mal_id).charAt(1) &&
+                            genreQuery.charAt(i) === ","
+                        if (statement) {
+                            genreQuery = genreQuery.substring(0, i - 2) + genreQuery.substring(i + 1)
+                        }
+                    }
+                }
+            }
+            isActive = false
+        }
 
         return (
-            <li className="genre">
-                <input onChange={event => {
-                    if (event.target.value === "on") {
-                        genreQuery += data.mal_id
-                    }else {
-
-                    }
-                }} autoComplete="off" type="checkbox"/>
+            <li>
+                <input type="checkbox" onChange={e => handleChange(e)} defaultChecked={isActive}/>
                 {data.name}
             </li>
         )
     }
 
+    const searchAnime = async () => {
 
-    let query = ""
+        let query = ""
 
-    for (const entry of searchParams.entries()) {
-        const [param, value] = entry;
-        query += `${param}=${value}&`
-    }
+        for (const entry of searchParams.entries()) {
+            const [param, value] = entry;
+            if (value) {
+                query += `${param}=${value}&`
+            }
+        }
 
-    const searchAnime = async (queryString) => {
-
-        const data = await fetch(`https://api.jikan.moe/v3/search/anime?${queryString}`.slice(0, -1))
+        const data = await fetch(`https://api.jikan.moe/v3/search/anime?${query}`.slice(0, -1))
             .then(response => response.json())
         setAnimeList(data.results)
     }
@@ -50,27 +85,28 @@ const SearchPage = () => {
         const data2 = data.data.filter((genre) => {
             if (array.includes(genre.mal_id) || genre.mal_id > 49) {
                 return false
-            }else {
+            } else {
                 array.push(genre.mal_id)
                 genre.active = false
                 return true
             }
         })
-        console.log(data2);
         setGenres(data2)
     }
 
     useEffect(() => {
-        searchAnime(query)
+        console.log(222);
+        searchAnime()
         getGenres()
-    }, [])
+    }, [dummy])
 
     return (
         animeList ?
             <div className="page">
                 <div className="search-page-container">
                     <header className="search-header">
-                        Query b
+                        <div>Query</div>
+
                     </header>
                     <section className="search-section">
                         {animeList.map((anime) => {
@@ -79,13 +115,34 @@ const SearchPage = () => {
                         })}
                     </section>
                     <aside className="search-aside">
-                        <div className="search-genres">
-                            <ul className="genres-ul">
-                            {
-                                genres.map(genre => <Genre data={genre}/>)
+                        <form className="search-genres" onSubmit={(e) => {
+                            e.preventDefault()
+                            if (genreQuery) {
+                                queryObject.genre = genreQuery.slice(0, -1)
+                            }else {
+                                delete queryObject.genre
                             }
-                            </ul>
-                        </div>
+                            queryObject.q = searchValue
+                            queryObject.order_by = "score"
+                            setSearchParams(queryObject)
+                            setDummy(!dummy)
+                        }}>
+                            <input
+                                className="search-input"
+                                type="search"
+                                placeholder="Search for an anime"
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                                />
+                            <ul>
+                            {
+                                genres.map(genre => {
+                                    return <Genre key={genre.mal_id} data={genre} gQuery={genreQuery}/>
+                                })
+                            }
+                        </ul>
+                            <input type="submit"/>
+                        </form>
                     </aside>
                 </div>
             </div> :
