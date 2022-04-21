@@ -70,7 +70,7 @@ export const SignContainer = styled.div`
   justify-self: flex-end;
   align-items: center;
   width: 100%;
-  max-width: 420px;
+  max-width: 350px;
   box-sizing: border-box;
 
   @media screen and (max-width: 615px) {

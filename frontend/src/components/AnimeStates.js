@@ -9,6 +9,7 @@ const AnimeStates = ({animeData, animeState, setIsVisible, setPopupState, popupS
         const [checkbox, setCheckbox] = useState("")
 
         const handleWatchClick = (e) => {
+            console.log("22", animeData);
             e.preventDefault()
             addToList(animeData, 'Watching', authTokens)
             setCheckbox("Watching")

@@ -41,14 +41,14 @@ export const AnimeDataProvider = ({children}) => {
                 "id": anime.mal_id,
                 "type": anime.type,
                 "episodes": anime.episodes,
-                "progress": state === 'Completed'? anime.episodes : 0
+                "progress": state === 'Completed' && anime.episodes? anime.episodes : 0
             })
 
         } else {
             const array = ["Watching", "Completed", "Plan to watch"]
-            array.forEach((state) => {
-                if (jsonList[state].filter(el => el["id"] === animeData.mal_id).length === 1) {
-                    jsonList[state] = jsonList[state].filter(el => el['id'] !== animeData.mal_id)
+            array.forEach((stateFor) => {
+                if (jsonList[stateFor].filter(el => el["id"] === animeData.mal_id).length === 1) {
+                    jsonList[stateFor] = jsonList[stateFor].filter(el => el['id'] !== animeData.mal_id)
 
                     if (!deleteAnime) {
                         jsonList[state].push({
@@ -56,7 +56,7 @@ export const AnimeDataProvider = ({children}) => {
                             "id": anime.mal_id,
                             "type": anime.type,
                             "episodes": anime.episodes,
-                            "progress": state === 'Completed'? anime.episodes : 0
+                            "progress": state === 'Completed' && anime.episodes? anime.episodes : 0
                         })
                     }
                 }
