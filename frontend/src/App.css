@@ -393,6 +393,24 @@ a {
     box-shadow: inset 0 0 0 20px #BD00FF;
 }
 
+.back-to-top {
+    z-index: 2;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 100px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0 5px 10px #ccc;
+}
+
+.back-to-top:hover {
+    background: red;
+}
+
 @media screen and (max-width: 1285px) and (min-width: 975px) {
     .cards__img {
         width: 150px;

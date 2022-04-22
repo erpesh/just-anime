@@ -31,7 +31,7 @@ const Navbar = () => {
                 <SignContainer>
                     {/*<AnimeSearch/>*/}
                     <NavBtn>
-                        <NavBtnLink to="/search/anime?q=&order_by=score">Search</NavBtnLink>
+                        <NavBtnLink to="/search/anime?q=&order_by=members">Search</NavBtnLink>
                     </NavBtn>
                     {!user ? <>
                             <NavBtn>
