@@ -13,6 +13,7 @@ import SearchPage from "./pages/SearchPage";
 import Navbar from "./components/Navbar";
 import SideBar from "./components/SideBar";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
+import GoToTopButton from "./components/GoToTopButton";
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
                             {/*))}*/}
                         </Routes>
                     </div>
+                    <GoToTopButton/>
                 </AuthProvider>
             </AnimeDataProvider>
         </div>

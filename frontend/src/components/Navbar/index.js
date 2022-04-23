@@ -30,7 +30,7 @@ const Navbar = () => {
                 {/*</MobileIcon>*/}
                 <SignContainer>
                     {/*<AnimeSearch/>*/}
-                    <NavBtn>
+                    <NavBtn onClick={() => window.location.reload()}>
                         <NavBtnLink to="/search/anime?q=&order_by=members">Search</NavBtnLink>
                     </NavBtn>
                     {!user ? <>

@@ -1,49 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
-import {FaArrowCircleUp} from "react-icons/fa";
+import {FaAngleDoubleUp, FaArrowCircleUp} from "react-icons/fa";
 
-export const Button = styled.div`
-   position: fixed; 
-   width: 100%;
-   height: 100px;  
-   left: 50%;
-   bottom: 40px;
-   font-size: 3rem;
-   z-index: 1;
-   cursor: pointer;
-   color: green;
-`
 
 const GoToTopButton = () => {
 
     const [visible, setVisible] = useState(false)
+
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        if (scrolled > 300){
-            setVisible(false)
-        }
-        else if (scrolled <= 300){
+        if (scrolled > 1000){
             setVisible(true)
+        }
+        else if (scrolled <= 1000){
+            setVisible(false)
         }
     };
 
     const scrollToTop = () =>{
         window.scrollTo({
             top: 0,
+            left: 0,
             behavior: 'smooth'
             /* you can also use 'auto' behaviour
                in place of 'smooth' */
         });
     };
 
-    window.addEventListener('scroll', toggleVisible);
+    useEffect(() => {
+        window.addEventListener('scroll', toggleVisible);
+        return function () {
+            window.removeEventListener("scroll", toggleVisible)
+        }
+    }, [])
 
     return (
-        <div>
-        <Button>
-            <FaArrowCircleUp onClick={scrollToTop}
-                             style={{display: visible ? 'inline' : 'none'}} />
-        </Button>
+        <div className="go-to-top-div">
+            <FaAngleDoubleUp onClick={scrollToTop}
+                             style={{display: visible ? 'inline' : 'none'}}
+                             color={"red"}/>
         </div>
     );
 

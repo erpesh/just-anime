@@ -5,6 +5,7 @@
     font-family: 'Roboto', sans-serif;
     /*background: #070707;*/
     color: #FCFCFC;
+    scroll-behavior: smooth !important;
 }
 
 html {
@@ -40,13 +41,14 @@ a {
 
 .page {
     position: absolute;
-    margin: 10px auto;
+    margin: 52px auto 10px;
     left: 0;
     right: 0;
     max-width: 1320px;
     background: #302D2D;
     border-radius: 20px;
     padding: 25px;
+    z-index: 1;
 }
 .fadeIn {
     animation: 0.5s fadeIn forwards;
@@ -77,6 +79,23 @@ a {
         transform: translateX(400px);
     }
 }
+
+.go-to-top-div {
+
+    position: fixed;
+    margin-top: 52px;
+    width: 100%;
+    height: 10px;
+    font-size: 2rem;
+    z-index: 1;
+    float: right;
+    cursor: pointer;
+
+    left: 88%;
+    bottom: 40px;
+}
+
+
 /*Anime page*/
 
 .anime-page-text {
@@ -350,7 +369,7 @@ a {
 
 .cards__img {
     width: 180px;
-    height: 290px;
+    height: fit-content;
 }
 
 .anime-card-image {
@@ -393,28 +412,10 @@ a {
     box-shadow: inset 0 0 0 20px #BD00FF;
 }
 
-.back-to-top {
-    z-index: 2;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 100px;
-    background: orange;
-    color: white;
-    cursor: pointer;
-    border-radius: 100px;
-    border: none;
-    box-shadow: 0 5px 10px #ccc;
-}
-
-.back-to-top:hover {
-    background: red;
-}
 
 @media screen and (max-width: 1285px) and (min-width: 975px) {
     .cards__img {
         width: 150px;
-        height: fit-content;
         font-size: 13px;
     }
 }
@@ -422,7 +423,6 @@ a {
 @media screen and (max-width: 1140px) and (min-width: 1040px) {
     .cards__img {
         width: 130px;
-        height: fit-content;
     }
 }
 

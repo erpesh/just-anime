@@ -50,6 +50,15 @@ const AnimePage = () => {
                                         <span key={genre.mal_id}> {genre.name}, </span>)
                                 })
                             }</div>
+                            {animeData.themes.length !== 0 && <div className="anime-page-text">Themes:
+                                {
+                                    animeData.themes.map((theme, index) => {
+                                        return index === animeData.themes.length - 1 ? (
+                                            <span key={theme.mal_id}> {theme.name}</span>) : (
+                                            <span key={theme.mal_id}> {theme.name}, </span>)
+                                    })
+                                }
+                            </div>}
 
                             {animeData.duration &&
                             <div className="anime-page-text"><span>Duration: {animeData.duration}</span></div>}
@@ -67,9 +76,6 @@ const AnimePage = () => {
                             {animeData.popularity ? <div className="anime-page-text">
                                 <span>Popularity: #{animeData.popularity}</span>
                             </div> : null}
-
-                            {animeData.rating &&
-                            <div className="anime-page-text"><span>Rating: {animeData.rating}</span></div>}
 
                             {animeData.studios[0] &&
                             <div className="anime-page-text"><span>Studio: {animeData.studios[0].name}</span></div>}
