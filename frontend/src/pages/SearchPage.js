@@ -234,7 +234,7 @@ const SearchPage = () => {
                                                     return (
                                                         <li className="filter-li" key={genre.mal_id}>
                                                             <input className="filter-checkbox" type="checkbox"
-                                                                   onChange={() => handleChange(genre.mal_id, 'themes')}
+                                                                   onChange={() => handleChange(genre.mal_id, 'genres')}
                                                                    defaultChecked={queryObject.genres?.split(',').includes(String(genre.mal_id))}/>
                                                             <span className="filter-name">{genre.name}</span>
                                                         </li>
@@ -244,7 +244,7 @@ const SearchPage = () => {
                                         </ul></CSSTransition>
                                 </div>
                                 <div className="filter-div">
-                                    <div className="filter-header" onClick={() => filterHandleClick("status")}>Status
+                                    <div className="filter-header" onClick={() => filterHandleClick("status")}><span className="filter-arrow-up">Status <FaAngleDown/></span>
                                     </div>
                                     <CSSTransition
                                         in={activeFilters.includes("status")}
@@ -271,8 +271,15 @@ const SearchPage = () => {
                                     </ul></CSSTransition>
                                 </div>
                                 <div className="filter-div">
-                                    <div className="filter-header" onClick={() => filterHandleClick("type")}>Type</div>
-                                    {activeFilters.includes("type") && <ul className="filter-ul">
+                                    <div className="filter-header" onClick={() => filterHandleClick("type")}><span className="filter-arrow-up">Type <FaAngleDown/></span></div>
+                                    <CSSTransition
+                                        in={activeFilters.includes("type")}
+                                        timeout={500}
+                                        classNames="filter"
+                                        mountOnEnter
+                                        unmountOnExit
+                                    >
+                                    <ul className="filter-ul">
                                         {
                                             types.map(type => {
                                                 return (
@@ -287,7 +294,7 @@ const SearchPage = () => {
                                                 )
                                             })
                                         }
-                                    </ul>}
+                                    </ul></CSSTransition>
                                 </div>
                                 <input type="submit" hidden/>
                             </form>

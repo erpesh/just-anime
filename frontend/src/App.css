@@ -483,7 +483,7 @@ a {
 
 .filter-enter {
     max-height: 0;
-    -webkit-transition: max-height 1s ease;
+    transition: max-height 500ms ease;
     overflow: hidden; }
 
 .filter-enter.filter-enter-active {
@@ -492,7 +492,7 @@ a {
 
 .filter-exit {
     max-height: 800px;
-    -webkit-transition: max-height 1s ease; }
+    transition: max-height 500ms ease; }
 
 .filter-exit.filter-exit-active {
     overflow: hidden;

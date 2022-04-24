@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useReducer, useState} from 'react';
+import React, {useContext, useEffect, useReducer, useRef, useState} from 'react';
 import AnimeStates from "./AnimeStates";
 import AuthContext from "../context/AuthContext";
 import AnimeDataContext from "../context/AnimeDataContext";
