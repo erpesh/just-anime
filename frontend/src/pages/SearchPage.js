@@ -3,6 +3,8 @@ import AnimeCard from "../components/AnimeCard";
 import {useSearchParams} from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import {FaAngleDown} from "react-icons/fa";
+import {CSSTransition} from "react-transition-group";
 
 
 const Input = styled.input`
@@ -20,119 +22,96 @@ const Input = styled.input`
   }
 `
 
+
 const SearchPage = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [animeList, setAnimeList] = useState([])
-    const [genres, setGenres] = useState([])
-    const [dummy, setDummy] = useState(false)
+    const [queryObject, setQueryObject] = useState({})
+
     const [searchValue, setSearchValue] = useState("")
+
     const [lastPage, setLastPage] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [fetching, setFetching] = useState(true)
-    const status = ["airing", "complete", "upcoming"]
 
+    const [genres, setGenres] = useState([])
+    const [themes, setThemes] = useState([])
+    const [statuses, setStatuses] = useState([])
+    const [types, setTypes] = useState([])
 
-    let queryObject = {}
-    for (const entry of searchParams.entries()) {
-        const [param, value] = entry;
-        queryObject[param] = value
-    }
+    const [activeFilters, setActiveFilters] = useState([])
 
-    let genreQuery = queryObject.genres ? `${queryObject.genres},` : ''
-
-    // GENRE CAN BE SIMPLIFIED BY JOIN METHPD
-
-    const Genre = ({data, gQuery}) => {
-
-        let isActive = false;
-        if (gQuery) {
-            gQuery = gQuery.slice(0, -1).split(',')
-            isActive = gQuery.includes(String(data.mal_id))
-        }
-
-        function handleChange(e) {
-            if (e.target.checked && !isActive) {
-                genreQuery += `${data.mal_id},`
-            } else {
-                let statement;
-                if (String(data.mal_id).length === 1) {
-                    for (let i = 1; i < genreQuery.length; i++) {
-                        statement = genreQuery.charAt(i - 1) == data.mal_id &&
-                            genreQuery.charAt(i) === ","
-                        if (statement) {
-                            genreQuery = genreQuery.substring(0, i - 1) + genreQuery.substring(i + 1)
-                        }
-                    }
-                } else {
-                    for (let i = 2; i < genreQuery.length; i++) {
-                        statement = genreQuery.charAt(i - 2) === String(data.mal_id).charAt(0) &&
-                            genreQuery.charAt(i - 1) === String(data.mal_id).charAt(1) &&
-                            genreQuery.charAt(i) === ","
-                        if (statement) {
-                            genreQuery = genreQuery.substring(0, i - 2) + genreQuery.substring(i + 1)
-                        }
-                    }
-                }
-            }
-            isActive = false
-        }
-
-        return (
-            <li className="filter-li">
-                <input className="filter-checkbox" type="checkbox" onChange={e => handleChange(e)}
-                       defaultChecked={isActive}/>
-                <span className="filter-name">{data.name}</span>
-            </li>
-        )
-    }
-
-    let statusQuery = queryObject.status?.split(',') || []
-
-    const Status = ({value, querySort}) => {
-        // querySort
-        let isActive = querySort?.split(',').includes(value)
-
-        let queryObjectByStatus = {}
-        for (const entry of searchParams.entries()) {
-            const [param, value] = entry;
-            queryObjectByStatus[param] = value
-        }
-
-        const handleChange = (e) => {
-            if (e.target.checked && !isActive) {
-                statusQuery.push(value)
-            } else {
-                statusQuery = statusQuery.filter(el => el !== value)
-            }
-            isActive = false
-            console.log(statusQuery)
-        }
-
-        return (
-            <li className="filter-li">
-                <input className="filter-checkbox" type="checkbox" onChange={e => handleChange(e)}
-                       defaultChecked={isActive}/>
-                <span
-                    className="filter-name">{value.charAt(0).toUpperCase() + value.slice(1)}</span>
-            </li>
-        )
-    }
 
     const getGenres = async () => {
         const data = await fetch(`https://api.jikan.moe/v4/genres/anime`)
             .then(res => res.json())
         let array = []
         const data2 = data.data.filter((genre) => {
-            if (array.includes(genre.mal_id)) {
-                return false
-            } else {
-                array.push(genre.mal_id)
-                genre.active = false
-                return true
+            if (genre.mal_id <= 49) {
+                if (array.includes(genre.mal_id)) {
+                    return false
+                } else {
+                    array.push(genre.mal_id)
+                    genre.active = false
+                    return true
+                }
             }
+
         })
+        const data3 = data.data.filter((genre) => {
+            if (genre.mal_id > 49) {
+                if (array.includes(genre.mal_id)) {
+                    return false
+                } else {
+                    array.push(genre.mal_id)
+                    genre.active = false
+                    return true
+                }
+            }})
         setGenres(data2)
+        setThemes(data3)
+        setStatuses(["airing", "complete", "upcoming"])
+        setTypes(["tv", "movie", 'ova', 'special', 'ona', 'music'])
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        let object = queryObject
+        object.q = searchValue
+        setQueryObject(object)
+
+        for (let value in queryObject) {
+            if (queryObject[value]?.length === 0) {
+                delete queryObject[value]
+            }
+        }
+        setSearchParams(queryObject)
+        window.location.reload();
+    }
+
+    const handleChange = (value, param) => {
+        if (typeof value === "number") {
+            value = String(value)
+        }
+        let query = queryObject[param] ? queryObject[param].split(',') : []
+        if (!query.includes(value)) {
+            query.push(value)
+        } else {
+            query = query.filter(val => val !== value)
+        }
+        let queryObj = queryObject
+        queryObj[param] = query.join(',')
+        setQueryObject(queryObj)
+    }
+
+    const filterHandleClick = (filter) => {
+        if (activeFilters.includes(filter)) {
+            setActiveFilters(activeFilters.filter((value) => value !== filter))
+        } else {
+            setActiveFilters(prevState => [...prevState, filter])
+        }
     }
 
 
@@ -161,18 +140,26 @@ const SearchPage = () => {
     const scrollHandler = (e) => {
         if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 && currentPage <= lastPage) {
             setFetching(true)
-            console.log(currentPage);
         }
     }
 
     useEffect(() => {
-        console.log(22)
+        let queryObj = {}
+        for (const entry of searchParams.entries()) {
+            const [param, value] = entry;
+            queryObj[param] = value
+        }
+        setQueryObject(queryObj)
+        setSearchValue(queryObj.q ? queryObj.q : "")
+    }, [])
+
+    useEffect(() => {
         getGenres()
         document.addEventListener("scroll", scrollHandler)
         return function () {
             document.removeEventListener("scroll", scrollHandler)
         }
-    }, [dummy])
+    }, [])
 
 
     return (
@@ -185,31 +172,14 @@ const SearchPage = () => {
 
                         </header>
                         {animeList.length !== 0 ? <section className="search-section">
-                            {animeList.map((anime) => {
-                                return <AnimeCard title={anime.title} img={anime.images.jpg.image_url} id={anime.mal_id}
-                                                  key={anime.mal_id}/>
-                            })}
-                        </section> : <section className="search-section">Sorry, no matches were found for your query.</section>}
+                                {animeList.map((anime) => {
+                                    return <AnimeCard title={anime.title} img={anime.images.jpg.image_url} id={anime.mal_id}
+                                                      key={anime.mal_id}/>
+                                })}
+                            </section> :
+                            <section className="search-section">Sorry, no matches were found for your query.</section>}
                         <aside className="search-aside">
-                            <form className="search-genres" onSubmit={(e) => {
-                                e.preventDefault()
-                                if (genreQuery) {
-                                    queryObject.genres = genreQuery.slice(0, -1)
-                                } else {
-                                    delete queryObject.genres
-                                }
-                                queryObject.q = searchValue
-                                queryObject.order_by = "members"
-                                queryObject.status = statusQuery.join(',')
-                                for (const item in queryObject) {
-                                    if (!queryObject[item] && item !== "q") {
-                                        delete queryObject[item]
-                                    }
-                                }
-                                setSearchParams(queryObject)
-                                window.location.reload();
-                                setDummy(!dummy)
-                            }}>
+                            <form className="search-genres" onSubmit={handleSubmit}>
                                 <Input
                                     className="search-input"
                                     type="search"
@@ -220,38 +190,108 @@ const SearchPage = () => {
                                     }}
                                 />
                                 <div className="filter-div">
-                                    <div className="filter-header">Genres</div>
+                                    <div
+                                        className="filter-header"
+                                        onClick={() => filterHandleClick("genres")}><span className="filter-arrow-up">Genres <FaAngleDown/></span>
+                                    </div>
+                                    <CSSTransition
+                                        in={activeFilters.includes("genres")}
+                                        timeout={1000}
+                                        classNames="filter"
+                                        mountOnEnter
+                                        unmountOnExit
+                                    >
                                     <ul className="filter-ul">
                                         {
                                             genres.map(genre => {
-                                                return <Genre key={genre.mal_id} data={genre} gQuery={genreQuery}/>
+                                                return (
+                                                    <li className="filter-li" key={genre.mal_id}>
+                                                        <input className="filter-checkbox" type="checkbox"
+                                                               onChange={() => handleChange(genre.mal_id, 'genres')}
+                                                               defaultChecked={queryObject.genres?.split(',').includes(String(genre.mal_id))}/>
+                                                        <span className="filter-name">{genre.name}</span>
+                                                    </li>
+                                                )
                                             })
                                         }
-                                    </ul>
+                                    </ul></CSSTransition>
                                 </div>
                                 <div className="filter-div">
-                                    <div className="filter-header">Status</div>
+                                    <div
+                                        className="filter-header"
+                                        onClick={() => filterHandleClick("themes")}><span className="filter-arrow-up">Themes <FaAngleDown/></span>
+                                    </div>
+                                    <CSSTransition
+                                        in={activeFilters.includes("themes")}
+                                        timeout={1000}
+                                        classNames="filter"
+                                        mountOnEnter
+                                        unmountOnExit
+                                    >
+                                        <ul className="filter-ul">
+                                            {
+                                                themes.map(genre => {
+                                                    return (
+                                                        <li className="filter-li" key={genre.mal_id}>
+                                                            <input className="filter-checkbox" type="checkbox"
+                                                                   onChange={() => handleChange(genre.mal_id, 'themes')}
+                                                                   defaultChecked={queryObject.genres?.split(',').includes(String(genre.mal_id))}/>
+                                                            <span className="filter-name">{genre.name}</span>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul></CSSTransition>
+                                </div>
+                                <div className="filter-div">
+                                    <div className="filter-header" onClick={() => filterHandleClick("status")}>Status
+                                    </div>
+                                    <CSSTransition
+                                        in={activeFilters.includes("status")}
+                                        timeout={1000}
+                                        classNames="filter"
+                                        mountOnEnter
+                                        unmountOnExit
+                                    >
                                     <ul className="filter-ul">
                                         {
-                                            status.map(value => <Status key={value} value={value}
-                                                                        querySort={queryObject.status}/>)
+                                            statuses.map(value => {
+                                                return (
+                                                    <li className="filter-li" key={value}>
+                                                        <input className="filter-checkbox" type="checkbox"
+                                                               onChange={() => handleChange(value, 'status')}
+                                                               defaultChecked={queryObject.status?.split(',').includes(value)}/>
+                                                        <span className="filter-name">{
+                                                            value.charAt(0).toUpperCase() + value.slice(1)
+                                                        }</span>
+                                                    </li>
+                                                )
+                                            })
                                         }
-                                    </ul>
+                                    </ul></CSSTransition>
                                 </div>
-                                {/*<div className="filter-div">*/}
-                                {/*    <div className="filter-header">Order by</div>*/}
-                                {/*    <ul className="filter-ul">*/}
-                                {/*        {*/}
-                                {/*            status.map(value => <Status key={value} value={value} querySort={queryObject.status}/>)*/}
-                                {/*        }*/}
-                                {/*    </ul>*/}
-                                {/*</div>*/}
+                                <div className="filter-div">
+                                    <div className="filter-header" onClick={() => filterHandleClick("type")}>Type</div>
+                                    {activeFilters.includes("type") && <ul className="filter-ul">
+                                        {
+                                            types.map(type => {
+                                                return (
+                                                    <li className="filter-li" key={type}>
+                                                        <input className="filter-checkbox" type="checkbox"
+                                                               onChange={() => handleChange(type, 'type')}
+                                                               defaultChecked={queryObject.type?.split(',').includes(type)}/>
+                                                        <span className="filter-name">{
+                                                            type.length > 3 ? type.charAt(0).toUpperCase() + type.slice(1) : type.toUpperCase()
+                                                        }</span>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>}
+                                </div>
                                 <input type="submit" hidden/>
                             </form>
                         </aside>
-                        {/*<footer className="search-footer">*/}
-                        {/*    <Pagination/>*/}
-                        {/*</footer>*/}
                     </div>
                 </div>
             </> :

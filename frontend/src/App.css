@@ -359,6 +359,7 @@ a {
     display: grid;
     grid-gap: 15px;
     grid-template: repeat(10, auto)/ repeat(5, auto);
+    height: fit-content;
 }
 
 .search-aside {
@@ -386,6 +387,7 @@ a {
     padding: 0 5px;
     margin: 5px 0;
     font-size: 24px;
+    cursor: pointer;
 }
 
 .filter-ul {
@@ -442,6 +444,57 @@ a {
     }
 }
 
-@media screen and (max-width: 885px) {
-    /*Sidebar*/
+@media screen and (max-width: 900px)  and (min-width: 750px){
+    .cards__img {
+        width: 150px;
+        font-size: 13px;
+    }
 }
+
+@media screen and (max-width: 810px)  and (min-width: 750px){
+    .cards__img {
+        width: 130px;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .search-section {
+        display: grid;
+        grid-gap: 10px;
+        grid-template: repeat(25, auto)/ repeat(2, auto);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cards__img {
+        width: 150px;
+        font-size: 13px;
+    }
+}
+
+      /*Filters transition*/
+
+.filter-arrow-up {
+    display: flex;
+    justify-content: space-between;
+    max-width: 50%;
+}
+    /*transition*/
+
+.filter-enter {
+    max-height: 0;
+    -webkit-transition: max-height 1s ease;
+    overflow: hidden; }
+
+.filter-enter.filter-enter-active {
+    height: auto;
+    max-height: 800px; }
+
+.filter-exit {
+    max-height: 800px;
+    -webkit-transition: max-height 1s ease; }
+
+.filter-exit.filter-exit-active {
+    overflow: hidden;
+    height: auto;
+    max-height: 0; }
