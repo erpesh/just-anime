@@ -42,6 +42,8 @@ const SearchPage = () => {
 
     const [activeFilters, setActiveFilters] = useState([])
 
+    const [isMenuActive, setIsMenuActive] = useState(false)
+
 
     const getGenres = async () => {
         const data = await fetch(`https://api.jikan.moe/v4/genres/anime`)
@@ -167,18 +169,18 @@ const SearchPage = () => {
             <>
                 <div className="page">
                     <div className="search-page-container">
-                        <header className="search-header">
+                        <header className={`search-header`}>
                             <div>Search for an Anime</div>
-
+                            <div className="filter-menu" onClick={() => setIsMenuActive(!isMenuActive)}>Filters</div>
                         </header>
-                        {animeList.length !== 0 ? <section className="search-section">
+                        {animeList.length !== 0 ? <section className={`search-section${isMenuActive? " active-section" : ""}`}>
                                 {animeList.map((anime) => {
                                     return <AnimeCard title={anime.title} img={anime.images.jpg.image_url} id={anime.mal_id}
                                                       key={anime.mal_id}/>
                                 })}
                             </section> :
                             <section className="search-section">Sorry, no matches were found for your query.</section>}
-                        <aside className="search-aside">
+                        <aside className={`search-aside${isMenuActive? " filter-menu-active" : ""}`}>
                             <form className="search-genres" onSubmit={handleSubmit}>
                                 <Input
                                     className="search-input"

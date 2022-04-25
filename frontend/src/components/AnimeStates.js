@@ -55,26 +55,29 @@ const AnimeStates = ({animeData, animeState, setIsVisible, setPopupState, popupS
     }
 
     return (
-        <div className="anime-states-dropped" ref={ref}>
+        <div className="anime-states-dropped">
             <div className={`anime-button ${
                 popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ? "green-back" : "purp-back"
-            }`} onClick={handleWatchClick}>
+            }`} onClick={handleWatchClick}
+                 ref={ref}>
                 Watching
             </div>
             <div className={`anime-button ${
                 popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ? "green-back" : "purp-back"
-            }`} onClick={handleCompletedClick}>
+            }`} onClick={handleCompletedClick}
+                 ref={ref}>
                 Completed
             </div>
             <div className={`anime-button ${
                 popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch") ? "green-back" : "purp-back"
-            }`} onClick={handlePlanClick}>
+            }`} onClick={handlePlanClick}
+                 ref={ref}>
                 Planning
             </div>
             {popupState === "Watching" || (checkbox === 'Watching' && animeState !== "Watching") ||
             popupState === "Completed" || (checkbox === 'Completed' && animeState !== "Completed") ||
             popupState === "Plan to watch" || (checkbox === 'Plan to watch' && animeState !== "Plan to watch") ?
-                <div className="anime-button red-back" onClick={handleDeleteClick}>
+                <div className="anime-button red-back" onClick={handleDeleteClick} ref={ref}>
                     Remove
                 </div> : null}
         </div>
