@@ -180,7 +180,7 @@ const SearchPage = () => {
                                 })}
                             </section> :
                             <section className="search-section">Sorry, no matches were found for your query.</section>}
-                        <aside className={`search-aside${isMenuActive? " filter-menu-active" : ""}`}>
+                        <aside className={`search-aside${isMenuActive? " filter-menu-active" : " filter-menu-disactive"}`}>
                             <form className="search-genres" onSubmit={handleSubmit}>
                                 <Input
                                     className="search-input"
