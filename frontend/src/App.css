@@ -580,3 +580,21 @@ a {
     height: auto;
     max-height: 0;
 }
+
+/*Login page*/
+
+.login-page {
+    margin-top:52px;
+    display: flex;
+    width: 100%;
+}
+
+.login-page-main {
+    width: 45%;
+}
+
+.login-aside {
+    float:right;
+    width: 100%;
+}
+

@@ -6,15 +6,19 @@ const LoginPage = () => {
     const {loginUser} = useContext(AuthContext)
 
     return (
-        <div className="page">
-            <form onSubmit={loginUser}>
-                <input type="text" name="username" placeholder="Enter Username"/>
-                <input type="password" name="password" placeholder="Enter Password"/>
-                <input type="submit"/>
-            </form>
-            <p>Do not have an account? You can <Link to="/register"> register.</Link>
+        <div className="login-page">
+            <main className="login-page-main">
+                <form onSubmit={loginUser}>
+                    <input type="text" name="username" placeholder="Enter Username"/>
+                    <input type="password" name="password" placeholder="Enter Password"/>
+                    <input type="submit" className="log-submit" value="my-friend"/>
+                </form>
+                <p>Do not have an account? You can <Link to="/register"> register.</Link>
 
-            </p>
+                </p>
+            </main>
+            <aside className="login-aside">
+            </aside>
         </div>
 )}
 

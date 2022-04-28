@@ -106,7 +106,7 @@ export const NavBtnLink = styled(Link)`
   }
 `
 
-export const NavBtnLogout = styled.div`
+export const NavButton = styled.div`
   font-weight: 400;
   border-radius: 5px;
   background: #BD00FF;

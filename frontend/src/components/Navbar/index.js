@@ -4,7 +4,8 @@ import {
     Nav,
     NavbarContainer,
     NavBtn,
-    NavBtnLink, NavBtnLogout,
+    NavBtnLink,
+    NavButton,
     NavLogo,
     NavTitle,
     SignContainer
@@ -14,7 +15,7 @@ import AnimeSearch from "../AnimeSearch";
 import {FaBars} from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 
-const Navbar = () => {
+const Navbar = ({setIsModalActive}) => {
 
     const {user, logoutUser} = useContext(AuthContext)
 
@@ -34,8 +35,11 @@ const Navbar = () => {
                         <NavBtnLink to="/search/anime?q=&order_by=members">Search</NavBtnLink>
                     </NavBtn>
                     {!user ? <>
+                            {/*<NavBtn>*/}
+                            {/*    <NavBtnLink to="/login">Sign in</NavBtnLink>*/}
+                            {/*</NavBtn>*/}
                             <NavBtn>
-                                <NavBtnLink to="/login">Sign in</NavBtnLink>
+                                <NavButton onClick={() => setIsModalActive(true)}>Sign in</NavButton>
                             </NavBtn>
                             <NavBtn>
                                 <NavBtnLink to="/register">Sign up</NavBtnLink>
@@ -45,7 +49,7 @@ const Navbar = () => {
                                 <NavBtnLink to="/profile">Profile</NavBtnLink>
                             </NavBtn>
                             <NavBtn>
-                                <NavBtnLogout onClick={() => logoutUser()}>Logout</NavBtnLogout>
+                                <NavButton onClick={() => logoutUser()}>Logout</NavButton>
                             </NavBtn>
                         </>}
                 </SignContainer>
