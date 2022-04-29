@@ -37,12 +37,14 @@ export const NavLogo = styled(Link)`
   align-items: center;
   font-weight: bold;
   text-decoration: none;
+  width: 300px;
 `
 
 export const NavTitle = styled.span`
   font-family: 'Aubrey',sans-serif;
   font-size: 33px;
   margin-left: 5px;
+  
   
   @media screen and (max-width: 615px) {
     display: none;
@@ -67,11 +69,10 @@ export const MobileIcon = styled.div`
 
 export const SignContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   justify-self: flex-end;
   align-items: center;
   width: 100%;
-  max-width: 350px;
   box-sizing: border-box;
 
   @media screen and (max-width: 615px) {

@@ -11,8 +11,6 @@ import {
     SignContainer
 } from "./NavbarElements";
 import {ReactComponent as Logo} from "./assets/logo.svg";
-import AnimeSearch from "../AnimeSearch";
-import {FaBars} from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 
 const Navbar = ({setIsModalActive, setIsLoginActive}) => {

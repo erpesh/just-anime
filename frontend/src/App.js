@@ -11,6 +11,7 @@ import SearchPage from "./pages/SearchPage";
 import Navbar from "./components/Navbar";
 import GoToTopButton from "./components/GoToTopButton";
 import Modal from "./components/Modal";
+import NotFound from "./pages/NotFound";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
                                 <Route exact path="/anime/:id" element={<AnimePage setIsModalActive={setIsModalActive}/>}/>
                                 <Route exact path="/profile" element={<PrivateRoute/>}/>
                                 <Route exact path='/search/:request' element={<SearchPage/>}/>
+                                <Route path="*" element={<NotFound/>}/>
                             </Routes>
                         </div>
                         <Modal isModalActive={isModalActive}
