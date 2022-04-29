@@ -1,0 +1,66 @@
+.login__container {
+    background: #302D2D;
+    border-radius: 5px;
+    padding: 20px 25px;
+}
+
+.login__container .popup__header {
+    color: #FCFCFC;
+    font-weight: 500;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
+    text-transform: capitalize;
+}
+.login__container .login__form .field-container {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 25px;
+}
+
+.login__container .login__form .field-container .input__auth {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #e7e7e7;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 30px;
+    background: transparent;
+    outline: none;
+    transition: .3s;
+}
+
+.login__container .login__form .field-container .input__auth:focus, .login__container .login__form .field-container .input__auth:valid {
+    border-color: #BD00FF;
+}
+
+.login__container .login__form .field-container .log-submit {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #302D2D;
+    background: #BD00FF;
+    outline: none;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login__container .login__form .field-container .log-submit:hover {
+    border: 2px solid #BD00FF;
+    background: #302D2D;
+}
+
+.question{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.question span {
+    color: #D255FF;
+    cursor: pointer;
+}

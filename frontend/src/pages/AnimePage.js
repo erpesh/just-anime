@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router";
-import AnimeStatesPopup from "../components/AnimeStatesPopup";
+import AnimeStatesButton from "../components/AnimeStatesButton";
 import AnimeDataContext from "../context/AnimeDataContext";
 
-const AnimePage = () => {
+const AnimePage = ({setIsModalActive}) => {
     const {id} = useParams()
     const {animeData, getAnime} = useContext(AnimeDataContext)
     const [dummy, setDummy] = useState(false)
@@ -28,7 +28,7 @@ const AnimePage = () => {
                             </div>
                         </div>
                         <div className="anime-states-block">
-                            <AnimeStatesPopup animeData={animeData}/>
+                            <AnimeStatesButton animeData={animeData} setIsModalActive={setIsModalActive}/>
                         </div>
                         <div className="anime-info-block">
                             <div className="anime-page-text">Type: {animeData.type}</div>

@@ -1,26 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import AnimeCard from "../components/AnimeCard";
+import Input from "../components/Input";
 import {useSearchParams} from "react-router-dom";
-import styled from "styled-components";
 import axios from "axios";
 import {FaAngleDown} from "react-icons/fa";
 import {CSSTransition} from "react-transition-group";
-
-
-const Input = styled.input`
-  padding: 0.5em;
-  margin: 0.85em 0.85em 0 0;
-  color: #302D2D;
-  background: #E5E5E5;
-  border: 1px solid #070707;
-  border-radius: 3px;
-
-  :focus {
-    border: 1px solid #070707;
-    outline-offset: 0;
-    outline: none;
-  }
-`
 
 
 const SearchPage = () => {

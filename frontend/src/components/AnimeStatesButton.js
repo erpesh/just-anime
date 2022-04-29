@@ -1,12 +1,11 @@
-import React, {useContext, useEffect, useReducer, useRef, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AnimeStates from "./AnimeStates";
 import AuthContext from "../context/AuthContext";
 import AnimeDataContext from "../context/AnimeDataContext";
-import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {CSSTransition, SwitchTransition} from "react-transition-group";
 
-const AnimeStatesPopup = ({animeData}) => {
+const AnimeStatesButton = ({animeData, setIsModalActive}) => {
     const [isVisible, setIsVisible] = useState(false)
     const [animeState, setAnimeState] = useState("")
     const [popupState, setPopupState] = useState("")
@@ -49,7 +48,7 @@ const AnimeStatesPopup = ({animeData}) => {
                                         (<span onClick={handleClick}>Add to My list</span>)}
                                 </>
                                 :
-                                <span onClick={() => navigate("/login")}>Add to My list</span>}
+                                <span onClick={() => setIsModalActive(true)}>Add to My list</span>}
                         </div>)}
                 </CSSTransition>
             </SwitchTransition>
@@ -58,4 +57,4 @@ const AnimeStatesPopup = ({animeData}) => {
 
 };
 
-export default AnimeStatesPopup;
+export default AnimeStatesButton;

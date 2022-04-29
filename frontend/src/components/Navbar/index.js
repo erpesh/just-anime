@@ -15,7 +15,7 @@ import AnimeSearch from "../AnimeSearch";
 import {FaBars} from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 
-const Navbar = ({setIsModalActive}) => {
+const Navbar = ({setIsModalActive, setIsLoginActive}) => {
 
     const {user, logoutUser} = useContext(AuthContext)
 
@@ -39,10 +39,10 @@ const Navbar = ({setIsModalActive}) => {
                             {/*    <NavBtnLink to="/login">Sign in</NavBtnLink>*/}
                             {/*</NavBtn>*/}
                             <NavBtn>
-                                <NavButton onClick={() => setIsModalActive(true)}>Sign in</NavButton>
-                            </NavBtn>
-                            <NavBtn>
-                                <NavBtnLink to="/register">Sign up</NavBtnLink>
+                                <NavButton onClick={() => {
+                                    setIsModalActive(true)
+                                    setIsLoginActive(true)
+                                }}>Sign in</NavButton>
                             </NavBtn></> :
                         <>
                             <NavBtn>
