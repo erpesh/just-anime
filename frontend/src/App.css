@@ -530,12 +530,11 @@ a {
 }
 
 .active-section {
-    /*clear: left;*/
     grid-column-start: 1;
-    /*float: left;*/
     margin-right: 3%;
     position: relative;
-    width: 242%;
+    width: calc(100% + 201px);
+    z-index: 1;
 }
 
 .filter-menu-active {
@@ -543,7 +542,7 @@ a {
     position: relative;
     background: #302D2D;
     padding: 20px;
-    width: 120%;
+    width: 110%;
     z-index: 3;
 }
 
@@ -596,4 +595,17 @@ a {
 .login-aside {
     float:right;
     width: 100%;
+}
+
+/*Not found*/
+
+.not-found-container {
+    display: flex;
+    justify-content: center;
+}
+
+/*Profile*/
+
+.profile {
+    min-height: 100vh;
 }

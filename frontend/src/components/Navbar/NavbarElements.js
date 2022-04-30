@@ -74,10 +74,7 @@ export const SignContainer = styled.div`
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-
-  @media screen and (max-width: 615px) {
-    display: none;
-  }
+  
 `
 
 export const NavBtn = styled.nav`
@@ -105,6 +102,10 @@ export const NavBtnLink = styled(Link)`
     background: #070707;
     border: 2px solid #BD00FF;
   }
+
+  @media screen and (max-width: 600px) {
+    padding: 5px 15px;
+  }
 `
 
 export const NavButton = styled.div`
@@ -127,5 +128,9 @@ export const NavButton = styled.div`
     transition: all 0.2s ease-in-out;
     background: #070707;
     border: 2px solid #BD00FF;
+  }
+  
+  @media screen and (max-width: 600px) {
+    padding: 5px 15px;
   }
 `

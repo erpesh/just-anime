@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import AnimeLink from "../components/AnimeLink";
 import AuthContext from "../context/AuthContext";
-import AnimeTable from "../components/AnimeTable";
 import Tabs from "../components/Tabs";
 
 class ProfilePage extends Component {
@@ -38,7 +36,7 @@ class ProfilePage extends Component {
     render() {
         const {data} = this.state
         return data[0] &&
-            <div className="page">
+            <div className="page profile">
                 <div className="main-container">
                     <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>
                 </div>

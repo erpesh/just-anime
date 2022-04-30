@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import ListEdit from "./ListEdit";
+import ListEdit from "../ListEdit";
 
 const AnimeTable = ({header, data, tabs}) => {
 
@@ -12,14 +12,14 @@ const AnimeTable = ({header, data, tabs}) => {
 
     return (
         data &&
-        <div>
+        <>
             {data[header].length === 0 ? <div>List is empty</div> : <table className="table">
                 <thead>
                     <tr className="table-titles">
                         <th className="index-column">#</th>
-                        <th>Name</th>
-                        <th>Progress</th>
-                        <th>Type</th>
+                        <th className="name-column">Name</th>
+                        <th className="progress-column">Progress</th>
+                        <th className="type-column">Type</th>
                     </tr>
                     <tr>
                         <th colSpan="5"/>
@@ -29,7 +29,7 @@ const AnimeTable = ({header, data, tabs}) => {
                 {data[header].map((anime, index) => {
                     return (<>
                         <tr key={index} className="content-tr">
-                            <td className="index-column">
+                            <td className="index-column" valign="top">
                                 <span>{index + 1}</span>
                             </td>
                             <td className="name">
@@ -39,7 +39,7 @@ const AnimeTable = ({header, data, tabs}) => {
                                 }}>edit</span>
                                 {/*<ListEdit activeOption={header} tabs={tabs} data={data} anime={anime}/>*/}
                             </td>
-                            <td className="episodes">
+                            <td className="episodes" valign="top">
                                 <span className="current-value">
                                     {anime['progress']}
                                 </span>
@@ -59,7 +59,7 @@ const AnimeTable = ({header, data, tabs}) => {
                     )})}
                 </tbody>
             </table>}
-        </div>
+        </>
     );
 };
 

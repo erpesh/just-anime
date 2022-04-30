@@ -1,3 +1,4 @@
+import './tabs.css'
 import React, {useState} from 'react';
 import AnimeTable from "./AnimeTable";
 
