@@ -12,6 +12,7 @@ import {
 } from "./NavbarElements";
 import {ReactComponent as Logo} from "./assets/logo.svg";
 import AuthContext from "../../context/AuthContext";
+import AnimeSearch from "../AnimeSearch";
 
 const Navbar = ({setIsModalActive, setIsLoginActive}) => {
 
@@ -28,9 +29,9 @@ const Navbar = ({setIsModalActive, setIsLoginActive}) => {
                 {/*    <FaBars/>*/}
                 {/*</MobileIcon>*/}
                 <SignContainer>
-                    {/*<AnimeSearch/>*/}
+                    <AnimeSearch/>
                     <NavBtn onClick={() => window.location.reload()}>
-                        <NavBtnLink to="/search/anime?q=&order_by=members">Search</NavBtnLink>
+                        <NavBtnLink to="/search/anime?q=&order_by=members">Anime</NavBtnLink>
                     </NavBtn>
                     {!user ? <>
                             {/*<NavBtn>*/}

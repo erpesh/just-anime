@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 
 const AnimeCard = ({title, img, id}) => {
 
-
-
     return (
         <article className="cards__img">
             <Link to={`/anime/${id}`}>

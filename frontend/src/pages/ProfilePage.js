@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AuthContext from "../context/AuthContext";
 import Tabs from "../components/Tabs";
+import ProgressBar from "../components/ProgressBar";
 
 class ProfilePage extends Component {
 
@@ -37,14 +38,24 @@ class ProfilePage extends Component {
         const {data} = this.state
         return data[0] &&
             <div className="page profile">
-                <div className="main-container">
+                <aside className="profile-aside">
+                    <div className="profile-picture">
+                        <img alt="Profile picture" src="https://i.pinimg.com/originals/10/91/94/1091948c6b80b65b9eef8c163f0ae42a.jpg"/>
+                    </div>
+                    <div className="profile-name">
+                        {this.context.user.username}
+                    </div>
+                </aside>
+                <main className="profile-main">
+                    <div className="anime-line">
+                        <ProgressBar bgcolor="red" data={data[0].anime_list}/>
+                    </div>
+                </main>
+                <div className="profile-tabs">
                     <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>
                 </div>
+
             </div>
-        //     <div>{["Watching", "Completed", "Plan to watch"].map((listState) => {
-        //         return <AnimeTable header={listState} data={data[0].anime_list[listState]} key={listState}/>
-        // })}
-        // </div>
     }
 }
 

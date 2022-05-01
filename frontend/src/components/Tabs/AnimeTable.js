@@ -27,8 +27,8 @@ const AnimeTable = ({header, data, tabs}) => {
                 </thead>
                 <tbody>
                 {data[header].map((anime, index) => {
-                    return (<>
-                        <tr key={index} className="content-tr">
+                    return (<React.Fragment key={index}>
+                        <tr className="content-tr">
                             <td className="index-column" valign="top">
                                 <span>{index + 1}</span>
                             </td>
@@ -50,12 +50,13 @@ const AnimeTable = ({header, data, tabs}) => {
                         </tr>
                         {editItem === index?
                             <ListEdit
+                                key={index}
                                 activeOption={header}
                                 tabs={tabs}
                                 data={data}
                                 anime={anime}
                                 setEditItem={setEditItem}/> : null}
-                        </>
+                        </React.Fragment>
                     )})}
                 </tbody>
             </table>}

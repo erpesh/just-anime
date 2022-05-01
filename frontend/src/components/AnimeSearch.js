@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import styled from 'styled-components'
+import { BsSearch } from "react-icons/bs"
 
 const Input = styled.input`
   padding: 0.5em;
@@ -23,21 +24,19 @@ const AnimeSearch = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // searchAnime(searchValue)
-        navigate(`/search/anime?q=${searchValue}`, {replace: true})
+        navigate(`/search/anime?q=${searchValue}&order_by=members`, {replace: true})
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <Input
+            <form onSubmit={handleSubmit} className="search-box">
+                <input
+                    className="search-txt"
                     type="search"
                     placeholder="Search for an anime"
                     required
-                    // value={props.search}
                     onChange={e => setSearchValue(e.target.value)}/>
+                <div className="search-btn"><BsSearch className="search-icon"/></div>
             </form>
-        </div>
     );
 };
 
