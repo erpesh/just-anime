@@ -8,30 +8,27 @@ const ProgressBar = ({ bgcolor, data }) => {
         display: 'flex',
         height: 20,
         width: '100%',
-        backgroundColor: "#e0e0de",
+        backgroundColor: "#302D2D",
     }
 
     const fillerStyles1 = {
         height: '100%',
         width: `${data["Completed"].length/percentage}%`,
-        backgroundColor: bgcolor,
-        borderRadius: 'inherit',
+        backgroundColor: 'rgb(119, 0, 255)',
         textAlign: 'center'
     }
 
     const fillerStyles2 = {
         height: '100%',
         width: `${data["Watching"].length/percentage}%`,
-        backgroundColor: bgcolor,
-        borderRadius: 'inherit',
+        backgroundColor: 'rgb(165, 0, 255)',
         textAlign: 'center'
     }
 
     const fillerStyles3 = {
         height: '100%',
         width: `${data["Plan to watch"].length/percentage}%`,
-        backgroundColor: bgcolor,
-        borderRadius: 'inherit',
+        backgroundColor: 'rgb(222, 0, 255)',
         textAlign: 'center'
     }
 

@@ -48,7 +48,12 @@ class ProfilePage extends Component {
                 </aside>
                 <main className="profile-main">
                     <div className="anime-line">
+                        <p>Your Anime statistics: </p>
                         <ProgressBar bgcolor="red" data={data[0].anime_list}/>
+                        <p style={{
+                            fontSize: '13px',
+                            lineHeight: 1.85,
+                        }}>Completed ({data[0].anime_list["Completed"].length}) / Watching ({data[0].anime_list["Watching"].length}) / Planning ({data[0].anime_list["Plan to watch"].length})</p>
                     </div>
                 </main>
                 <div className="profile-tabs">
