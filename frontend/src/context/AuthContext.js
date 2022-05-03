@@ -62,15 +62,11 @@ export const AuthProvider = ({children}) => {
         } else {
             logoutUser()
         }
-        // if (loading) {
-        //     setLoading(false)
-        // }
     }
 
     useEffect(() => {
 
         if (loading) {
-            // updateToken()
             setLoading(false)
         }
 

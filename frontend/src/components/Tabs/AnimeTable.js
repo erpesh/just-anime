@@ -46,7 +46,7 @@ const AnimeTable = ({header, data, tabs}) => {
                                 <span className="separator">/</span>
                                 <span className="max-episodes-value">{anime['episodes'] || '?'}</span>
                             </td>
-                            <td className="anime-type">{anime['type']}</td>
+                            <td className="anime-type" valign='top'>{anime['type']}</td>
                         </tr>
                         {editItem === index?
                             <ListEdit
