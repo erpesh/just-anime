@@ -30,19 +30,26 @@ export const AnimeDataProvider = ({children}) => {
                 "Authorization": "Bearer " + String(authTokens.access)
             }
         })
+        // genres
+        let genres = [];
+        anime.genres.forEach(el => {
+            genres.push(el.name);
+        })
         const data = await response.json()
         let jsonList = data[0].anime_list
         const stateMent = jsonList["Watching"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
             jsonList["Completed"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
             jsonList["Plan to watch"].filter(el => el["id"] === animeData.mal_id).length === 0
-
+        console.log(anime);
+        console.log(animeData);
         if (stateMent) {
             jsonList[state].push({
                 "Title": anime.title_english,
                 "id": anime.mal_id,
                 "type": anime.type,
                 "episodes": anime.episodes,
-                "progress": state === 'Completed' && anime.episodes? anime.episodes : 0
+                "progress": state === 'Completed' && anime.episodes? anime.episodes : 0,
+                "genres": genres,
             })
 
         } else {
@@ -57,7 +64,8 @@ export const AnimeDataProvider = ({children}) => {
                             "id": anime.mal_id,
                             "type": anime.type,
                             "episodes": anime.episodes,
-                            "progress": state === 'Completed' && anime.episodes? anime.episodes : 0
+                            "progress": state === 'Completed' && anime.episodes? anime.episodes : 0,
+                            'genres': genres
                         })
                     }
                 }

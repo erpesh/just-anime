@@ -93,4 +93,12 @@ button {
 .table {
     width: 100%;
 }
+.name {
+    display: flex;
+    justify-content: space-between;
+}
+.edit-span {
+    cursor: pointer;
+    margin-right: 10px;
+}
 

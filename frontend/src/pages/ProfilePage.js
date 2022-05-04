@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AuthContext from "../context/AuthContext";
 import Tabs from "../components/Tabs";
 import ProgressBar from "../components/ProgressBar";
+import ProfileGenres from "../components/ProfileGenres";
 
 class ProfilePage extends Component {
 
@@ -13,7 +14,8 @@ class ProfilePage extends Component {
             data: {},
             isFetched: false,
             approximateTime: 0,
-            timeType: 'Minutes',
+            timeType: 'minutes',
+            animeProgress: [],
         }
     }
 
@@ -33,7 +35,6 @@ class ProfilePage extends Component {
                 for (let i = 0; i < data[0].anime_list[key].length; i++) {
                     if (data[0].anime_list[key][i].type === "TV" || data[0].anime_list[key][i].type === "ONA" || data[0].anime_list[key][i].type === "OVA"){
                         approximateTime += data[0].anime_list[key][i].progress * 23;
-                        console.log(data[0].anime_list[key][i].progress)
                     }
                     else if (data[0].anime_list[key][i].type === "Movie"){
                         approximateTime += 90;
@@ -49,13 +50,19 @@ class ProfilePage extends Component {
                     timeType = 'days'
                 }
             }
+            // anime progressbar
+            let animeProps = [];
+            animeProps.push([data[0].anime_list["Completed"].length, data[0].anime_list["Completed"].length]);
+            animeProps.push([data[0].anime_list["Watching"].length, data[0].anime_list["Watching"].length]);
+            animeProps.push([data[0].anime_list["Plan to watch"].length, data[0].anime_list["Plan to watch"].length]);
+
             this.setState({
                 data: data,
                 isFetched: true,
                 approximateTime: Math.round(approximateTime),
-                timeType: timeType
+                timeType: timeType,
+                animeProgress: animeProps,
             })
-            console.log(this.state.data);
             if (this.state.data.anime_list !== undefined) {
                 this.setState({data: this.state.data, isFetched: true})
             }
@@ -81,13 +88,13 @@ class ProfilePage extends Component {
                         <p style={{
                             fontSize: '18px',
                             lineHeight: 2
-                        }}>Your Anime statistics:</p>
-                        <ProgressBar bgcolor="red" data={data[0].anime_list}/>
+                        }}>Anime statistics:</p>
+                        <ProgressBar properties={this.state.animeProgress}/>
                         <p style={{
                             fontSize: '13px',
                             lineHeight: 1.85,
                         }}>Completed ({data[0].anime_list["Completed"].length}) / Watching ({data[0].anime_list["Watching"].length}) / Planning ({data[0].anime_list["Plan to watch"].length})</p>
-
+                        <ProfileGenres data={data[0].anime_list}/>
                     </div>
                 </main>
                 <div className="profile-tabs">
