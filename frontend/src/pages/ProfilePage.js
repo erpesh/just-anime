@@ -33,10 +33,9 @@ class ProfilePage extends Component {
             let approximateTime = 0;
             for (let key in data[0].anime_list) {
                 for (let i = 0; i < data[0].anime_list[key].length; i++) {
-                    if (data[0].anime_list[key][i].type === "TV" || data[0].anime_list[key][i].type === "ONA" || data[0].anime_list[key][i].type === "OVA"){
+                    if (data[0].anime_list[key][i].type === "TV" || data[0].anime_list[key][i].type === "ONA" || data[0].anime_list[key][i].type === "OVA") {
                         approximateTime += data[0].anime_list[key][i].progress * 23;
-                    }
-                    else if (data[0].anime_list[key][i].type === "Movie"){
+                    } else if (data[0].anime_list[key][i].type === "Movie") {
                         approximateTime += 90;
                     }
                 }
@@ -84,18 +83,22 @@ class ProfilePage extends Component {
                     </div>
                 </aside>
                 <main className="profile-main">
-                    <div className="anime-line">
-                        <p style={{
-                            fontSize: '18px',
-                            lineHeight: 2
-                        }}>Anime statistics:</p>
-                        <ProgressBar properties={this.state.animeProgress}/>
-                        <p style={{
-                            fontSize: '13px',
-                            lineHeight: 1.85,
-                        }}>Completed ({data[0].anime_list["Completed"].length}) / Watching ({data[0].anime_list["Watching"].length}) / Planning ({data[0].anime_list["Plan to watch"].length})</p>
-                        <ProfileGenres data={data[0].anime_list}/>
-                    </div>
+                    {(data[0].anime_list["Completed"].length === 0 && data[0].anime_list["Plan to watch"].length === 0 && data[0].anime_list["Watching"].length === 0) ?
+                        <>Add Anime to your list to see statistics</> : <div className="anime-line">
+                            <p style={{
+                                fontSize: '18px',
+                                lineHeight: 2
+                            }}>Anime statistics:</p>
+                            <ProgressBar properties={this.state.animeProgress}/>
+                            <p style={{
+                                fontSize: '13px',
+                                lineHeight: 1.85,
+                            }}>Completed ({data[0].anime_list["Completed"].length}) / Watching
+                                ({data[0].anime_list["Watching"].length}) / Planning
+                                ({data[0].anime_list["Plan to watch"].length})</p>
+                            <ProfileGenres data={data[0].anime_list}/>
+                            <p>{this.state.approximateTime} {this.state.timeType}</p>
+                        </div>}
                 </main>
                 <div className="profile-tabs">
                     <Tabs data={data[0].anime_list} tabs={["Plan to watch", "Watching", "Completed"]}/>

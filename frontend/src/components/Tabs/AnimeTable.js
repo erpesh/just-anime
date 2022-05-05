@@ -6,10 +6,6 @@ const AnimeTable = ({header, data, tabs}) => {
 
     const [editItem, setEditItem] = useState(-1)
 
-    const handleEditClick = () => {
-        setEditItem()
-    }
-
     return (
         data &&
         <>
