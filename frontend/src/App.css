@@ -674,3 +674,29 @@ a {
 .profile-tabs {
     grid-column-start: span 2;
 }
+/*Time bar*/
+.time-bar{
+    color: white;
+    cursor: default;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: normal;
+    height: inherit;
+    line-height: 13px;
+    text-align: center;
+    white-space: nowrap;
+}
+.cuts {
+    position: relative;
+}
+.time-part{
+    color: white;
+    cursor: default;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: normal;
+    height: inherit;
+    line-height: 13px;
+    text-align: center;
+    white-space: nowrap;
+}

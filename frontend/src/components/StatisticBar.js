@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const ProgressBar = ({properties}) => {
+const StatisticBar = ({properties}) => {
 
     const [percentage, setPercentage] = useState();
 
@@ -39,4 +39,4 @@ const ProgressBar = ({properties}) => {
     );
 };
 
-export default ProgressBar;
+export default StatisticBar;

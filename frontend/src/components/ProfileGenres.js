@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import ProgressBar from "./ProgressBar";
+import StatisticBar from "./StatisticBar";
 
 const ProfileGenres = ({data}) => {
 
@@ -38,7 +38,7 @@ const ProfileGenres = ({data}) => {
             }}>
                 Favourite genres:
             </p>
-            <ProgressBar properties={genresProgress}/>
+            <StatisticBar properties={genresProgress}/>
             <p style={{
                 fontSize: '13px',
                 lineHeight: 1.85,

@@ -40,8 +40,6 @@ export const AnimeDataProvider = ({children}) => {
         const stateMent = jsonList["Watching"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
             jsonList["Completed"].filter(el => el["id"] === animeData.mal_id).length === 0 &&
             jsonList["Plan to watch"].filter(el => el["id"] === animeData.mal_id).length === 0
-        console.log(anime);
-        console.log(animeData);
         if (stateMent) {
             jsonList[state].push({
                 "Title": anime.title_english,
@@ -50,6 +48,7 @@ export const AnimeDataProvider = ({children}) => {
                 "episodes": anime.episodes,
                 "progress": state === 'Completed' && anime.episodes? anime.episodes : 0,
                 "genres": genres,
+                "duration": anime.duration,
             })
 
         } else {
@@ -65,7 +64,8 @@ export const AnimeDataProvider = ({children}) => {
                             "type": anime.type,
                             "episodes": anime.episodes,
                             "progress": state === 'Completed' && anime.episodes? anime.episodes : 0,
-                            'genres': genres
+                            'genres': genres,
+                            "duration": anime.duration,
                         })
                     }
                 }
