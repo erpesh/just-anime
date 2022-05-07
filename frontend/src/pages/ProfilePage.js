@@ -72,12 +72,11 @@ class ProfilePage extends Component {
     }
 
     render() {
-        const {data} = this.state
-        console.log(data)
+        const {data} = this.state;
         return data[0] &&
             <div className="page profile">
                 <aside className="profile-aside">
-                    <div className="profile-picture" onClick={() => console.log(data[0].anime_list)}>
+                    <div className="profile-picture">
                         <img alt="Profile picture" src="https://i.pinimg.com/originals/10/91/94/1091948c6b80b65b9eef8c163f0ae42a.jpg"/>
                     </div>
                     <div className="profile-name">
@@ -94,7 +93,7 @@ class ProfilePage extends Component {
                                 }}>Anime statistics:</p>
                                 <StatisticBar properties={this.state.animeProgress}/>
                                 <p style={{
-                                    fontSize: '13px',
+                                    fontSize: '11px',
                                     lineHeight: 1.85,
                                 }}>Completed ({data[0].anime_list["Completed"].length}) / Watching
                                     ({data[0].anime_list["Watching"].length}) / Planning

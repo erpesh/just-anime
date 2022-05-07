@@ -40,7 +40,7 @@ const ProfileGenres = ({data}) => {
             </p>
             <StatisticBar properties={genresProgress}/>
             <p style={{
-                fontSize: '13px',
+                fontSize: '11px',
                 lineHeight: 1.85,
             }}>{`${genresProgress[0][0]} (${genresProgress[0][1]}) / ${genresProgress[1][0]} (${genresProgress[1][1]}) / ${genresProgress[2][0]} (${genresProgress[2][1]})`}
             </p>

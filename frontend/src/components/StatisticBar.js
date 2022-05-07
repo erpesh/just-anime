@@ -6,15 +6,17 @@ const StatisticBar = ({properties}) => {
 
     const containerStyles = {
         display: 'flex',
-        height: 20,
+        height: 14,
         width: '100%',
         backgroundColor: "#302D2D",
     }
 
     const labelStyles = {
-        padding: 5,
+        fontSize: 11,
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        height: 14,
+        margin: "0 auto"
     }
 
     useEffect(() => {
@@ -26,10 +28,11 @@ const StatisticBar = ({properties}) => {
             <>
                 {properties.map((el, index) => {
                     return <div style={{
-                        height: '100%',
                         width: el[1] !== 0 ? `${el[1] / percentage}%` : 0,
                         backgroundColor: `rgb(${120+index*50}, 0, 255)`,
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        display: 'flex',
+                        height: '100%'
                     }} key={index}>
                         <span style={labelStyles}>{el[1] !== 0 ? el[0] : ''}</span>
                     </div>
