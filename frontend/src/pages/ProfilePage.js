@@ -79,11 +79,11 @@ class ProfilePage extends Component {
                     <div className="profile-picture">
                         <img alt="Profile picture" src="https://i.pinimg.com/originals/10/91/94/1091948c6b80b65b9eef8c163f0ae42a.jpg"/>
                     </div>
+                </aside>
+                <main className="profile-main">
                     <div className="profile-name">
                         {this.context.user.username}
                     </div>
-                </aside>
-                <main className="profile-main">
                     {(data[0].anime_list["Completed"].length === 0 && data[0].anime_list["Plan to watch"].length === 0 && data[0].anime_list["Watching"].length === 0) ?
                         <>Add Anime to your list to see statistics</> : <div className="anime-line">
                             <div>

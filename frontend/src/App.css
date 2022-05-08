@@ -661,17 +661,22 @@ a {
     flex-wrap: wrap;
     max-width: 350px;
 }
+.profile-picture{
+    margin-right: 20px;
+}
 .profile-picture img{
-    max-width: 200px;
+    max-width: 250px;
     border-radius: 20px;
 }
 .profile-name {
     width: 100%;
+    font-size: 26px;
 }
 .profile-main {
     width: 100%;
 }
 .profile-tabs {
+    margin-top: 15px;
     grid-column-start: span 2;
 }
 /*Time bar*/
