@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const StatisticBar = ({properties}) => {
+const StatisticBar = ({properties, pageWidth}) => {
 
     const [percentage, setPercentage] = useState();
 
@@ -34,7 +34,7 @@ const StatisticBar = ({properties}) => {
                         display: 'flex',
                         height: '100%'
                     }} key={index}>
-                        <span style={labelStyles}>{el[1] !== 0 ? el[0] : ''}</span>
+                        <span style={labelStyles}>{el[1] !== 0 ? pageWidth > 600 ? el[0] : el[1] : ''}</span>
                     </div>
                 })}
             </>

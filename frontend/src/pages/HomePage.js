@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import TopAiring from "../components/TopAiring";
 
-const HomePage = ({isAuth}) => {
+const HomePage = () => {
 
     return (
-        <div className="page">
-            <p>Here is a home page</p>
+        <div className="home-page">
             <TopAiring/>
         </div>
 );

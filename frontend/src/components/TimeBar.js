@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const TimeBar = ({minutes}) => {
+const TimeBar = ({minutes, pageWidth}) => {
 
     const [time, setTime] = useState('');
     const [progress, setProgress] = useState(0);
@@ -50,24 +50,19 @@ const TimeBar = ({minutes}) => {
             <div style={{
                 fontSize: '18px',
                 lineHeight: 2
-            }}>Time spent watching Anime <span style={{float: "right"}}>{time}</span></div>
+            }}>{pageWidth > 400 ? "Time spent watching Anime" : "Time"}<span style={{float: "right"}}>{time}</span></div>
             <div className="time-bar">
                 <div className="cuts">
                     {Array.from(Array(5).keys()).map(value => {
-                        return <div className="cut" style={{left: `${value*20 + 10}%`}}></div>
+                        return <div key={value} className="cut" style={{left: `${value*20 + 10}%`}}></div>
                     })}
                 </div>
                 <div className="time-part" style={{width: `${progress}%`, background: '#BD00FF'}}></div>
                 <div className="time-part" style={{width: `${100-progress}%`, background: '#aaa'}}></div>
             </div>
             <div className="times">
-                {/*<div className="time">1 week</div>*/}
-                {/*<div className="time">1 month</div>*/}
-                {/*<div className="time">3 months</div>*/}
-                {/*<div className="time">6 months</div>*/}
-                {/*<div className="time">1 year</div>*/}
                 {["1 week", '1 month', '3 month', '6 month', '1 year'].map((el, index) => {
-                    return <div className={`time${progress > index*20 + 10 ? " checked-time" : ""}`} >{el}</div>
+                    return <div key={el} className={`time${progress > index*20 + 10 ? " checked-time" : ""}`} >{el}</div>
                 })}
             </div>
         </>

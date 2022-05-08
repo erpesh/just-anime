@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 const ListEdit = ({activeOption, tabs, data, anime, setEditItem}) => {
 
@@ -15,8 +15,6 @@ const ListEdit = ({activeOption, tabs, data, anime, setEditItem}) => {
             jsonData[changedState].push(anime)
         }
 
-        console.log(anime);
-
         const response = await fetch('http://127.0.0.1:8000/api/anime/', {
             method: "PUT",
             headers: {
@@ -28,7 +26,6 @@ const ListEdit = ({activeOption, tabs, data, anime, setEditItem}) => {
             })
         })
         const respondedData = await response.json()
-        console.log(respondedData);
 
     }
 
@@ -44,28 +41,23 @@ const ListEdit = ({activeOption, tabs, data, anime, setEditItem}) => {
 
     return (
         <tr className="edit-tr">
-            <td colSpan="4">
-                <div>
-                    <form onSubmit={handleSubmit}>
-                        <select name="state_options" className="select-table">
-                            <option>{activeOption}</option>
-
-                            {tabs.filter((tab) => tab !== activeOption).map(tab => <option key={tab}>{tab}</option>)}
-
-                            <option>Delete</option>
-                        </select>
-                        {anime["episodes"] !== null ?
-                            <input
-                                type="number"
-                                name="progress_value"
-                                min="0"
-                                max={anime["episodes"]}
-                                step="1"
-                                defaultValue={anime["progress"]}/> : null}
-                        <input type="submit"/>
-                    </form>
-
-                </div>
+            <td colSpan="4" rowSpan="1">
+                <form onSubmit={handleSubmit} className="edit-form">
+                    <select name="state_options" className="select-table">
+                        <option>{activeOption}</option>
+                        {tabs.filter((tab) => tab !== activeOption).map(tab => <option key={tab}>{tab}</option>)}
+                        <option>Delete</option>
+                    </select>
+                    {anime["episodes"] !== null ?
+                        <input
+                            type="number"
+                            name="progress_value"
+                            min="0"
+                            max={anime["episodes"]}
+                            step="1"
+                            defaultValue={anime["progress"]}/> : null}
+                    <input type="submit"/>
+                </form>
             </td>
         </tr>
     );

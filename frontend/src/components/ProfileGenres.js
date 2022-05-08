@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import StatisticBar from "./StatisticBar";
 
-const ProfileGenres = ({data}) => {
+const ProfileGenres = ({data, pageWidth}) => {
 
     const [genresProgress, setGenresProgress] = useState(null);
 
@@ -38,7 +38,7 @@ const ProfileGenres = ({data}) => {
             }}>
                 Favourite genres:
             </p>
-            <StatisticBar properties={genresProgress}/>
+            <StatisticBar properties={genresProgress} pageWidth={pageWidth}/>
             <p style={{
                 fontSize: '11px',
                 lineHeight: 1.85,
