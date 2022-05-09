@@ -13,6 +13,7 @@ const TopAiring = () => {
 
     useEffect(() => {
         getTopAiringAnime()
+        console.log(2)
     }, [!animeList])
 
     return (
