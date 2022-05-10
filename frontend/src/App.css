@@ -748,8 +748,7 @@ a {
     margin: 52px auto 10px;
     left: 0;
     right: 0;
-    max-width: 1320px;
-    border-radius: 20px;
-    padding: 25px;
+    /*max-width: 1320px;*/
     z-index: 1;
 }
+

@@ -13,7 +13,6 @@ const TopAiring = () => {
 
     useEffect(() => {
         getTopAiringAnime()
-        console.log(2)
     }, [!animeList])
 
     return (
@@ -22,7 +21,12 @@ const TopAiring = () => {
                 <span className="top-airing-title-span">Top Airing</span>
             </div>
             <div className="top-airing-cards">
-                {animeList.filter((item, index) => index < 6).map(anime => <AnimeCard  id={anime.mal_id} title={anime.title} img={anime.images.jpg.image_url}/>)}
+                {animeList.filter((item, index) => index < 6).map(anime =>
+                    <AnimeCard
+                    id={anime.mal_id}
+                    title={anime.title}
+                    img={anime.images.jpg.image_url}/>
+                )}
             </div>
         </div>
     );
