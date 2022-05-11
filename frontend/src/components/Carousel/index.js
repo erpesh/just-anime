@@ -2,7 +2,7 @@ import React from 'react';
 import './carousel.css';
 import PictureCarousel from "./PictureCarousel";
 
-const Index = () => {
+const Carousel = () => {
     return (
         <PictureCarousel>
             <div
@@ -24,4 +24,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Carousel;

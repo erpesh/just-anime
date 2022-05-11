@@ -16,19 +16,17 @@ const TopAiring = () => {
     }, [!animeList])
 
     return (
-        animeList && <div className="top-airing-container">
-            <div className="top-airing-title-div">
-                <span className="top-airing-title-span">Top Airing</span>
-            </div>
-            <div className="top-airing-cards">
-                {animeList.filter((item, index) => index < 6).map(anime =>
-                    <AnimeCard
+        animeList &&
+        <>
+            {animeList.filter((item, index) => index < 20).map(anime =>
+                <AnimeCard
                     id={anime.mal_id}
                     title={anime.title}
-                    img={anime.images.jpg.image_url}/>
-                )}
-            </div>
-        </div>
+                    img={anime.images.jpg.image_url}
+                    _class={"slider-item"}
+                />
+            )}
+        </>
     );
 };
 

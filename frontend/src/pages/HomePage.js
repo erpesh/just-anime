@@ -1,28 +1,62 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import TopAiring from "../components/TopAiring";
 import Carousel from "../components/Carousel";
+import Slider from "../components/Slider";
 
 const HomePage = () => {
-
-    const [data, setData] = useState([]);
-
-    const foo = async () => {
-        const _data = await fetch("https://api.jikan.moe/v4/anime/11757/pictures")
-            .then(response => response.json())
-        setData(_data.data);
-    }
-
-    useEffect(() => {
-        foo()
-    }, [])
 
     return (
         <div className="home-page">
             {/*<TopAiring/>*/}
-            <Carousel/>
-            {data.map(el => {
-                return <img alt="2" src={el.jpg.image_url}/>
-            })}
+            {/*<Carousel/>*/}
+            <Slider>
+                <TopAiring/>
+                {/*<div*/}
+                {/*    style={{background: "deepskyblue", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "lightgreen", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "orange", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "deepskyblue", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "lightgreen", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "orange", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "deepskyblue", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "lightgreen", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+                {/*<div*/}
+                {/*    style={{background: "orange", padding: "20px"}} className="slider-item"*/}
+                {/*>*/}
+                {/*    Text*/}
+                {/*</div>*/}
+            </Slider>
         </div>
 );
 };
