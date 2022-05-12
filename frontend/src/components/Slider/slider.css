@@ -1,5 +1,5 @@
 .slider-container {
-    max-width: 1000px;
+    max-width: 1185px;
     margin: auto auto 200px;
 }
 .slider-items::-webkit-scrollbar{
@@ -8,15 +8,22 @@
     width: 0;
 }
 .slider-items {
+    border: 3px solid #2ecc40;
     overflow-x: scroll;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template: auto / repeat(20, auto);
+    grid-gap: 20px;
+    /*display: flex;*/
+    /*flex-direction: row;*/
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
 .slider-items > * {
-    margin-left: 20px;
 }
 .slider-item {
-    border: 1px solid gray;
+
+}
+/*card*/
+.slider-item-image {
+    max-height: 320px;
 }

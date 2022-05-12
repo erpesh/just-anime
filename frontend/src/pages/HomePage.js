@@ -1,5 +1,5 @@
 import React from 'react';
-import TopAiring from "../components/TopAiring";
+import TopAiring from "../components/Slider/TopAiring";
 import Carousel from "../components/Carousel";
 import Slider from "../components/Slider";
 
