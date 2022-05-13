@@ -773,7 +773,13 @@ a {
     margin: 52px auto 10px;
     left: 0;
     right: 0;
-    /*max-width: 1320px;*/
     z-index: 1;
+}
+.top-airing{
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 1250px;
+    display: flex;
+    justify-content: center;
 }
 

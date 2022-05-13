@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import AnimeCard from "../AnimeCard";
 import {Link} from "react-router-dom";
 
 const TopAiring = () => {
@@ -9,13 +8,12 @@ const TopAiring = () => {
     const getTopAiringAnime = async () => {
         const data = await fetch("https://api.jikan.moe/v4/top/anime?filter=airing")
             .then(response => response.json())
-        console.log(data)
         setAnimeList(data.data)
     }
 
     useEffect(() => {
         getTopAiringAnime()
-    }, [!animeList])
+    }, [])
 
     return (
         animeList &&

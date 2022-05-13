@@ -20,12 +20,14 @@ const Slider = ({children}) => {
         const {clientX, scrollX, isScrolling} = state;
 
         if (isScrolling) {
-            ref.current.scrollLeft = scrollX + e.clientX - clientX;
+            console.log(ref.current.scrollLeft);
+            ref.current.scrollLeft += scrollX + e.clientX - clientX;
             setState({
                 ...state,
                 scrollX: scrollX + e.clientX - clientX,
                 clientX: e.clientX,
             })
+            console.log(scrollX + e.clientX - clientX);
         }
     }
 
@@ -60,8 +62,9 @@ const Slider = ({children}) => {
         if (element) {
             const onWheel = e => {
                 e.preventDefault();
+                console.log(e.deltaY);
                 element.scrollTo({
-                    left: element.scrollLeft + e.deltaY * 8,
+                    left: element.scrollLeft + e.deltaY * 10 , // 1250 - max width, 125 - e.deltaY
                     behavior: "smooth"
                 })
             }
