@@ -782,4 +782,7 @@ a {
     display: flex;
     justify-content: center;
 }
-
+.airing-header{
+    font-size: 1.7em;
+    margin-bottom: 0.73em;
+}

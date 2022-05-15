@@ -44,3 +44,6 @@
     right: 20px;
     transform: translateY(-60%);
 }
+.carousel-image {
+    width:100%;
+}
