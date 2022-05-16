@@ -34,7 +34,6 @@ class ProfilePage extends Component {
     async componentDidMount() {
         window.addEventListener('resize', this.handleResize)
         const {authTokens} = this.context
-        console.log(this.context)
         try {
             const response = await fetch('http://127.0.0.1:8000/api/anime/', {
                 method: "GET",
@@ -103,7 +102,7 @@ class ProfilePage extends Component {
                         {this.context.user.username}
                     </div>}
                 </aside>
-                <main className="profile-main" onClick={() => console.log(window.innerWidth)}>
+                <main className="profile-main">
                     {this.state.pageWidth > 800 && <div className="profile-name">
                         {this.context.user.username}
                     </div>}

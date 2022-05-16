@@ -16,6 +16,7 @@ html {
     --bg: #242526;
     --bg-accent: #484a4d;
     --text-color: #dadce1;
+    --bacground-col: #BD00FF;
     --nav-size: 60px;
     --border: 1px solid #474a4d;
     --border-radius: 8px;
@@ -777,7 +778,7 @@ a {
 }
 .top-airing{
     flex-wrap: wrap;
-    margin: auto;
+    margin: 40px auto auto auto;
     max-width: 1250px;
     display: flex;
     justify-content: center;

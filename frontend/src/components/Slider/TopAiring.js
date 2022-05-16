@@ -9,6 +9,7 @@ const TopAiring = () => {
         const data = await fetch("https://api.jikan.moe/v4/top/anime?filter=airing")
             .then(response => response.json())
         setAnimeList(data.data)
+        console.log(data.data)
     }
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const TopAiring = () => {
         animeList &&
         <>
             {animeList.filter((item, index) => index < 20).map(anime =>
-                <article className="slider-item-article">
+                <article className="slider-item-article" key={anime.mal_id}>
                     <Link to={`/anime/${anime.mal_id}`}>
                         <img
                             className="slider-item-image"

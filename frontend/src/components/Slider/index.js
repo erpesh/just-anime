@@ -62,7 +62,6 @@ const Slider = ({children}) => {
         if (element) {
             const onWheel = e => {
                 e.preventDefault();
-                console.log(e.deltaY);
                 element.scrollTo({
                     left: element.scrollLeft + e.deltaY * 10 , // 1250 - max width, 125 - e.deltaY
                     behavior: "smooth"
