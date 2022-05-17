@@ -20,14 +20,12 @@ const Slider = ({children}) => {
         const {clientX, scrollX, isScrolling} = state;
 
         if (isScrolling) {
-            console.log(ref.current.scrollLeft);
             ref.current.scrollLeft += scrollX + e.clientX - clientX;
             setState({
                 ...state,
                 scrollX: scrollX + e.clientX - clientX,
                 clientX: e.clientX,
             })
-            console.log(scrollX + e.clientX - clientX);
         }
     }
 

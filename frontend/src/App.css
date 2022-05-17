@@ -779,10 +779,11 @@ a {
 .top-airing{
     flex-wrap: wrap;
     margin: 40px auto auto auto;
-    max-width: 1250px;
+    /*max-width: 1250px;*/
     display: flex;
     justify-content: center;
 }
+
 .airing-header{
     font-size: 1.7em;
     margin-bottom: 0.73em;

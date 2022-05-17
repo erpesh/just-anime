@@ -9,7 +9,6 @@ const TopAiring = () => {
         const data = await fetch("https://api.jikan.moe/v4/top/anime?filter=airing")
             .then(response => response.json())
         setAnimeList(data.data)
-        console.log(data.data)
     }
 
     useEffect(() => {

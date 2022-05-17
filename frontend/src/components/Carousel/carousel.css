@@ -4,11 +4,6 @@
     position: relative;
     overflow: hidden;
 }
-@media screen and (max-width: 700px){
-    /*.carousel-div {*/
-    /*    margin: 100px 10px 0;*/
-    /*}*/
-}
 .slide {
     width: 100%;
     height: 100%;
@@ -104,10 +99,65 @@
     }
 }
 @media screen and (max-width: 600px){
+    .carousel-div {
+        min-height: calc(100vh - 52px);
+    }
     .carousel-text {
-        font-size: 12px;
+        top: 70%;
+        right: 10%;
+        font-size: 24px;
+        width: 80%;
     }
     .carousel-text > p {
+        font-size: 28px;
+    }
+    .carousel-poster {
+        top: 5%;
+        position: absolute;
+        left: 22%;
+        height: auto;
+        max-width: 55%;
+    }
+}
+@media screen and (max-width: 550px) {
+    .carousel-text {
+        top: 65%;
+    }
+}
+@media screen and (max-width: 450px){
+    .carousel-div {
+        min-height: calc(100vh - 152px);
+    }
+    .carousel-text {
+        top: 75%;
+        right: 10%;
+        font-size: 16px;
+        width: 80%;
+    }
+    .carousel-text > p {
+        font-size: 20px;
+    }
+    .carousel-poster {
+        top: 5%;
+        position: absolute;
+        left: 22%;
+        height: auto;
+        max-width: 55%;
+    }
+}
+@media screen and (max-width: 400px) {
+    .carousel-text{
         font-size: 14px;
+    }
+    .carousel-text > p {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 375px) {
+    .carousel-text {
+        top: 65%;
+        right: 10%;
+        font-size: 18px;
+        width: 80%;
     }
 }
