@@ -785,6 +785,19 @@ a {
 }
 
 .airing-header{
+    position: relative;
+    width: 100%;
     font-size: 1.7em;
-    margin-bottom: 0.73em;
+    line-height: 1.5em;
+    margin-bottom: 0.43em;
+}
+.airing-header:before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(130deg,#BD00FF,#FF2EF9 41.07%,#A501F7 76.05%);
 }

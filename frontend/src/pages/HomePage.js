@@ -26,7 +26,7 @@ const HomePage = () => {
             <Carousel pageWidth={pageWidth}/>
             <div style={{maxWidth: pageWidth < 400 ? `${pageWidth * 0.95}px` : `${pageWidth * 0.81}px`}} className="top-airing">
                 <div className="airing-header">
-                    Popular airing Animes
+                    <span>Popular airing Animes</span>
                 </div>
                 <Slider>
                     <TopAiring/>
