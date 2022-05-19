@@ -12,7 +12,8 @@ const AnimeCard = ({title, img, id}) => {
                     alt="Anime image"/>
                 <figcaption className="figcaption">
                     <span
-                        className="anime-card-title">{title.length < 21 ? title : title.slice(0, 18).concat("...")}</span>
+                        className="anime-card-title">{title}</span>
+                    {/*{title.length < 21 ? title : title.slice(0, 18).concat("...")}*/}
                 </figcaption>
             </Link>
         </article>

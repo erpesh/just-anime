@@ -10,13 +10,8 @@ const HomePage = () => {
     function handleResize() {
         setPageWidth(window.innerWidth);
     }
-    const fet = async () => {
-        const data = await fetch("https://api.jikan.moe/v4/watch/promos/popular")
-            .then(response => response.json())
-    }
 
     useEffect(() => {
-        fet()
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [pageWidth])
@@ -32,7 +27,7 @@ const HomePage = () => {
                     <TopAiring/>
                 </Slider>
             </div>
-
+            
         </div>
 );
 };
