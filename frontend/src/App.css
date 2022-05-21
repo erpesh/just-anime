@@ -782,6 +782,7 @@ a {
     /*max-width: 1250px;*/
     display: flex;
     justify-content: center;
+    height: 350px;
 }
 
 .airing-header{

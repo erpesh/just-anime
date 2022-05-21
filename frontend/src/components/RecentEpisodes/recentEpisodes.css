@@ -1,0 +1,52 @@
+.recent-container {
+    margin: 0 auto;
+}
+.recent-cards-container{
+    display: grid;
+    grid-template: repeat(10, auto) / repeat(5, auto);
+    grid-gap: 30px;
+}
+/*{maxWidth: pageWidth < 400 ? `${pageWidth * 0.95}px` : `${pageWidth * 0.69}px`}*/
+.recent-background{
+    position: relative;
+    border-radius: 10px;
+    height: 280px;
+    width: 190px;
+    background-repeat: no-repeat!important;
+    background-size: 100%!important;
+}
+.recent-episode-num {
+    position: absolute;
+    margin-top: 6%;
+    margin-left: 6%;
+    background: #BD00FF;
+    padding: 3%;
+    border-radius: 10px;
+}
+@media screen and (max-width: 1125px){
+    .recent-cards-container{
+        grid-template: repeat(13, auto) / repeat(4, auto);
+    }
+}
+@media screen and (max-width: 900px){
+    .recent-cards-container{
+        grid-template: repeat(17, auto) / repeat(3, auto);
+    }
+}
+@media screen and (max-width: 660px){
+    .recent-cards-container{
+        grid-gap: 15px;
+        grid-template: repeat(25, auto) / repeat(2, auto);
+    }
+}
+@media screen and (max-width: 450px){
+    .recent-cards-container{
+        grid-gap: 10px;
+    }
+    .recent-background{
+        height: 205px;
+        width: 140px;
+        background-repeat: no-repeat!important;
+        background-size: 100%!important;
+    }
+}

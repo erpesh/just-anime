@@ -110,6 +110,9 @@ button {
     display: flex;
     justify-content: space-between;
 }
+.name > a{
+    word-break: break-word;
+}
 .edit-span {
     cursor: pointer;
     margin-right: 10px;

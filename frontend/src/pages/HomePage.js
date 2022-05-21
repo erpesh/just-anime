@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import TopAiring from "../components/Slider/TopAiring";
-import Slider from "../components/Slider";
 import Carousel from "../components/Carousel";
+import RecentEpisodes from "../components/RecentEpisodes";
+import Slider from "../components/Slider";
 
 const HomePage = () => {
 
@@ -9,6 +9,20 @@ const HomePage = () => {
 
     function handleResize() {
         setPageWidth(window.innerWidth);
+    }
+
+    function calculateSliderWidth() {
+        if (pageWidth > 1125) {
+            return 5*190 + 4*30;
+        }else if(pageWidth > 900){
+            return 4*190 + 3*30;
+        }else if(pageWidth > 660){
+            return 3*190 + 2*30;
+        }else if(pageWidth > 450){
+            return 2*190 + 2*15;
+        }else if(pageWidth > 300){
+            return 2*140 + 2*10;
+        }
     }
 
     useEffect(() => {
@@ -19,15 +33,8 @@ const HomePage = () => {
     return (
         <div className="home-page">
             <Carousel pageWidth={pageWidth}/>
-            <div style={{maxWidth: pageWidth < 400 ? `${pageWidth * 0.95}px` : `${pageWidth * 0.81}px`}} className="top-airing">
-                <div className="airing-header">
-                    <span>Popular airing Animes</span>
-                </div>
-                <Slider>
-                    <TopAiring/>
-                </Slider>
-            </div>
-            
+            <Slider calculateWidth={calculateSliderWidth}/>
+            <RecentEpisodes calculateWidth={calculateSliderWidth}/>
         </div>
 );
 };
