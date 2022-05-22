@@ -792,6 +792,11 @@ a {
     line-height: 1.5em;
     margin-bottom: 0.43em;
 }
+@media screen and (max-width: 450px){
+    .airing-header{
+        font-size: 1.2em;
+    }
+}
 .airing-header:before{
     content: "";
     position: absolute;
@@ -801,4 +806,12 @@ a {
     height: 4px;
     border-radius: 2px;
     background: linear-gradient(130deg,#BD00FF,#FF2EF9 41.07%,#A501F7 76.05%);
+}
+.view-more{
+    display: inline-block;
+    margin: 0 auto 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px #BD00FF solid;
+    cursor: pointer;
 }

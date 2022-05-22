@@ -9,7 +9,7 @@ const RecentEpisodes = ({calculateWidth}) => {
     const recentEpisodesFetch = async () => {
         const data = await fetch("https://api.jikan.moe/v4/watch/episodes")
             .then(response => response.json())
-        setData(data.data.slice(0, 51))
+        setData(data.data)
     }
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const RecentEpisodes = ({calculateWidth}) => {
                 <span>Recent Episodes</span>
             </div>
             <div className="recent-cards-container">
-                {data.map((el, index) => <RecentCard key={index} data={data[index]}/>)}
+                {data.map((el, ind) => <RecentCard key={ind} data={data[ind]}/>)}
             </div>
         </div>
     );

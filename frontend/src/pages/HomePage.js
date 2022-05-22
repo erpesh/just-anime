@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Carousel from "../components/Carousel";
 import RecentEpisodes from "../components/RecentEpisodes";
 import Slider from "../components/Slider";
+import Recommendations from "../components/Recommendations";
 
 const HomePage = () => {
 
@@ -34,6 +35,7 @@ const HomePage = () => {
         <div className="home-page">
             <Carousel pageWidth={pageWidth}/>
             <Slider calculateWidth={calculateSliderWidth}/>
+            <Recommendations calculateWidth={calculateSliderWidth}/>
             <RecentEpisodes calculateWidth={calculateSliderWidth}/>
         </div>
 );

@@ -62,8 +62,6 @@ const AnimePage = ({setIsModalActive}) => {
 
                             {animeData.duration &&
                             <div className="anime-page-text"><span>Duration: {animeData.duration}</span></div>}
-                            {/*</div>*/}
-                            {/*<div className="anime-info2-block">*/}
 
                             {animeData.score ? <div className="anime-page-text">
                                 <span>Score: {animeData.score}</span>
