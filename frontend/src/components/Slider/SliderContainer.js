@@ -96,14 +96,6 @@ const SliderContainer = ({children}) => {
                 {React.Children.map(children, child => React.Children.only(child))}
             </div>
         </div>
-    // <div style={{maxWidth: calculateSliderWidth()}} className="top-airing">
-    //     <div className="airing-header">
-    //         <span>Season Anime</span>
-    //     </div>
-    //     <Slider>
-    //         <TopAiring/>
-    //     </Slider>
-    // </div>
     );
 };
 

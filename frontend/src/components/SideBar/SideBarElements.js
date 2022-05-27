@@ -8,12 +8,35 @@ export const SidebarContainer = styled.aside`
   width: 100%;
   height: 100%;
   background: #070707;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   left: 0;
   transition: 0.3s ease-in-out;
   opacity: ${({isOpen}) => (isOpen? '100%':'0%')};
   top: ${({isOpen}) => (isOpen? '0':'-100%')};
+`
+
+export const SideLogo = styled.div`
+  position: absolute;
+  top: 1.2rem;
+  left: 1.5rem;
+  color: #BD00FF;
+  justify-self: flex-start;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  text-decoration: none;
+  width: 300px;
+`
+
+export const SideTitle = styled.span`
+  font-family: 'Aubrey',sans-serif;
+  font-size: 33px;
+  margin-left: 5px;
 `
 
 export const CloseIcon = styled(FaTimes)`
@@ -35,27 +58,41 @@ export const SidebarWrapper = styled.div`
 `
 
 export const SidebarMenu = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, 80px);
+  display: flex;
   text-align: center;
-  
-  @media screen and (max-width: 480px) {
-    grid-template-rows: repeat(6, 60px);
-  }
-  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
-export const SidebarLink = styled(Link)`
+export const SidebarSignButton = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   text-decoration: none;
   list-style: none;
   transition: 0.2s ease-in-out;
   text-decoration: none;
   color: #FCFCFC;
   cursor: pointer;
+  margin: 30px 0 0;
+  
+  &:hover {
+    color: #BD00FF;
+    transition: 0.2s ease-in-out;
+  }
+`
+export const SidebarLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  font-size: 2.0rem;
+  text-decoration: none;
+  list-style: none;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  color: #FCFCFC;
+  cursor: pointer;
+  margin: 30px 0 0;
   
   &:hover {
     color: #BD00FF;

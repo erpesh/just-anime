@@ -3,7 +3,7 @@ import AnimeCard from "../components/AnimeCard";
 import Input from "../components/Input";
 import {useSearchParams} from "react-router-dom";
 import axios from "axios";
-import {FaAngleDown} from "react-icons/fa";
+import {FaAngleDown, FaAngleUp} from "react-icons/fa";
 import {CSSTransition} from "react-transition-group";
 
 
@@ -54,7 +54,8 @@ const SearchPage = () => {
                     genre.active = false
                     return true
                 }
-            }})
+            }
+        })
         setGenres(data2)
         setThemes(data3)
         setStatuses(["airing", "complete", "upcoming"])
@@ -157,14 +158,17 @@ const SearchPage = () => {
                             <div>Search for an Anime</div>
                             <div className="filter-menu" onClick={() => setIsMenuActive(!isMenuActive)}>Filters</div>
                         </header>
-                        {animeList.length !== 0 ? <section className={`search-section${isMenuActive? " active-section" : ""}`}>
+                        {animeList.length !== 0 ?
+                            <section className={`search-section${isMenuActive ? " active-section" : ""}`}>
                                 {animeList.map((anime) => {
-                                    return <AnimeCard title={anime.title} img={anime.images.jpg.image_url} id={anime.mal_id}
+                                    return <AnimeCard title={anime.title} img={anime.images.jpg.image_url}
+                                                      id={anime.mal_id}
                                                       key={anime.mal_id}/>
                                 })}
                             </section> :
                             <section className="search-section">Sorry, no matches were found for your query.</section>}
-                        <aside className={`search-aside${isMenuActive? " filter-menu-active" : " filter-menu-disactive"}`}>
+                        <aside
+                            className={`search-aside${isMenuActive ? " filter-menu-active" : " filter-menu-disactive"}`}>
                             <form className="search-genres" onSubmit={handleSubmit}>
                                 <Input
                                     className="search-input"
@@ -178,7 +182,10 @@ const SearchPage = () => {
                                 <div className="filter-div">
                                     <div
                                         className="filter-header"
-                                        onClick={() => filterHandleClick("genres")}><span className="filter-arrow-up">Genres <FaAngleDown/></span>
+                                        onClick={() => filterHandleClick("genres")}>
+                                        <span className="filter-arrow-up">
+                                            Genres {activeFilters.includes("genres") ? <FaAngleUp/> : <FaAngleDown/>}
+                                        </span>
                                     </div>
                                     <CSSTransition
                                         in={activeFilters.includes("genres")}
@@ -187,25 +194,29 @@ const SearchPage = () => {
                                         mountOnEnter
                                         unmountOnExit
                                     >
-                                    <ul className="filter-ul">
-                                        {
-                                            genres.map(genre => {
-                                                return (
-                                                    <li className="filter-li" key={genre.mal_id}>
-                                                        <input className="filter-checkbox" type="checkbox"
-                                                               onChange={() => handleChange(genre.mal_id, 'genres')}
-                                                               defaultChecked={queryObject.genres?.split(',').includes(String(genre.mal_id))}/>
-                                                        <span className="filter-name">{genre.name}</span>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </ul></CSSTransition>
+                                        <ul className="filter-ul">
+                                            {
+                                                genres.map(genre => {
+                                                    return (
+                                                        <li className="filter-li" key={genre.mal_id}>
+                                                            <input className="filter-checkbox" type="checkbox"
+                                                                   onChange={() => handleChange(genre.mal_id, 'genres')}
+                                                                   defaultChecked={queryObject.genres?.split(',').includes(String(genre.mal_id))}/>
+                                                            <span className="filter-name">{genre.name}</span>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </CSSTransition>
                                 </div>
                                 <div className="filter-div">
                                     <div
                                         className="filter-header"
-                                        onClick={() => filterHandleClick("themes")}><span className="filter-arrow-up">Themes <FaAngleDown/></span>
+                                        onClick={() => filterHandleClick("themes")}>
+                                        <span className="filter-arrow-up">
+                                            Themes {activeFilters.includes("themes") ? <FaAngleUp/> : <FaAngleDown/>}
+                                        </span>
                                     </div>
                                     <CSSTransition
                                         in={activeFilters.includes("themes")}
@@ -227,10 +238,16 @@ const SearchPage = () => {
                                                     )
                                                 })
                                             }
-                                        </ul></CSSTransition>
+                                        </ul>
+                                    </CSSTransition>
                                 </div>
                                 <div className="filter-div">
-                                    <div className="filter-header" onClick={() => filterHandleClick("status")}><span className="filter-arrow-up">Status <FaAngleDown/></span>
+                                    <div
+                                        className="filter-header"
+                                        onClick={() => filterHandleClick("status")}>
+                                        <span className="filter-arrow-up">
+                                            Status {activeFilters.includes("status") ? <FaAngleUp/> : <FaAngleDown/>}
+                                        </span>
                                     </div>
                                     <CSSTransition
                                         in={activeFilters.includes("status")}
@@ -239,25 +256,32 @@ const SearchPage = () => {
                                         mountOnEnter
                                         unmountOnExit
                                     >
-                                    <ul className="filter-ul">
-                                        {
-                                            statuses.map(value => {
-                                                return (
-                                                    <li className="filter-li" key={value}>
-                                                        <input className="filter-checkbox" type="checkbox"
-                                                               onChange={() => handleChange(value, 'status')}
-                                                               defaultChecked={queryObject.status?.split(',').includes(value)}/>
-                                                        <span className="filter-name">{
-                                                            value.charAt(0).toUpperCase() + value.slice(1)
-                                                        }</span>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </ul></CSSTransition>
+                                        <ul className="filter-ul">
+                                            {
+                                                statuses.map(value => {
+                                                    return (
+                                                        <li className="filter-li" key={value}>
+                                                            <input className="filter-checkbox" type="checkbox"
+                                                                   onChange={() => handleChange(value, 'status')}
+                                                                   defaultChecked={queryObject.status?.split(',').includes(value)}/>
+                                                            <span className="filter-name">{
+                                                                value.charAt(0).toUpperCase() + value.slice(1)
+                                                            }</span>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </CSSTransition>
                                 </div>
                                 <div className="filter-div">
-                                    <div className="filter-header" onClick={() => filterHandleClick("type")}><span className="filter-arrow-up">Type <FaAngleDown/></span></div>
+                                    <div
+                                        className="filter-header"
+                                        onClick={() => filterHandleClick("type")}>
+                                        <span className="filter-arrow-up">
+                                            Type {activeFilters.includes("type") ? <FaAngleUp/> : <FaAngleDown/>}
+                                        </span>
+                                    </div>
                                     <CSSTransition
                                         in={activeFilters.includes("type")}
                                         timeout={500}
@@ -265,24 +289,25 @@ const SearchPage = () => {
                                         mountOnEnter
                                         unmountOnExit
                                     >
-                                    <ul className="filter-ul">
-                                        {
-                                            types.map(type => {
-                                                return (
-                                                    <li className="filter-li" key={type}>
-                                                        <input className="filter-checkbox" type="checkbox"
-                                                               onChange={() => handleChange(type, 'type')}
-                                                               defaultChecked={queryObject.type?.split(',').includes(type)}/>
-                                                        <span className="filter-name">{
-                                                            type.length > 3 ? type.charAt(0).toUpperCase() + type.slice(1) : type.toUpperCase()
-                                                        }</span>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-                                    </ul></CSSTransition>
+                                        <ul className="filter-ul">
+                                            {
+                                                types.map(type => {
+                                                    return (
+                                                        <li className="filter-li" key={type}>
+                                                            <input className="filter-checkbox" type="checkbox"
+                                                                   onChange={() => handleChange(type, 'type')}
+                                                                   defaultChecked={queryObject.type?.split(',').includes(type)}/>
+                                                            <span className="filter-name">{
+                                                                type.length > 3 ? type.charAt(0).toUpperCase() + type.slice(1) : type.toUpperCase()
+                                                            }</span>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </CSSTransition>
                                 </div>
-                                <input type="submit" hidden/>
+                                <input className="form-submit" type="submit"/>
                             </form>
                         </aside>
                     </div>

@@ -13,8 +13,9 @@ import {
 import {ReactComponent as Logo} from "./assets/logo.svg";
 import AuthContext from "../../context/AuthContext";
 import AnimeSearch from "../AnimeSearch";
+import {FaBars} from "react-icons/fa";
 
-const Navbar = ({setIsModalActive, setIsLoginActive}) => {
+const Navbar = ({setIsModalActive, setIsLoginActive, toggle}) => {
 
     const {user, logoutUser} = useContext(AuthContext)
 
@@ -25,18 +26,15 @@ const Navbar = ({setIsModalActive, setIsLoginActive}) => {
                     <Logo/>
                     <NavTitle>Just Anime</NavTitle>
                 </NavLogo>
-                {/*<MobileIcon>*/}
-                {/*    <FaBars/>*/}
-                {/*</MobileIcon>*/}
+                <MobileIcon onClick={toggle}>
+                    <FaBars/>
+                </MobileIcon>
                 <SignContainer>
                     <AnimeSearch/>
-                    <NavBtn onClick={() => window.location.reload()}>
+                    <NavBtn>
                         <NavBtnLink to="/search/anime?q=&order_by=members">Anime</NavBtnLink>
                     </NavBtn>
                     {!user ? <>
-                            {/*<NavBtn>*/}
-                            {/*    <NavBtnLink to="/login">Sign in</NavBtnLink>*/}
-                            {/*</NavBtn>*/}
                             <NavBtn>
                                 <NavButton onClick={() => {
                                     setIsModalActive(true)

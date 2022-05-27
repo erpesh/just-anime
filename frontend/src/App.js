@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import GoToTopButton from "./components/GoToTopButton";
 import Modal from "./components/Modal";
 import NotFound from "./pages/NotFound";
+import SideBar from "./components/SideBar";
 
 function App() {
 
@@ -21,6 +22,11 @@ function App() {
     const [transitionStage, setTransistionStage] = useState("fadeIn");
     const [isModalActive, setIsModalActive] = useState(false)
     const [isLoginActive, setIsLoginActive] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen)
+    }
 
     useEffect(() => {
         if (location !== displayLocation) setTransistionStage("fadeOut");
@@ -30,8 +36,16 @@ function App() {
             <div className="App">
                 <AnimeDataProvider>
                     <AuthProvider>
-                        <Navbar setIsModalActive={setIsModalActive} setIsLoginActive={setIsLoginActive}/>
-                        {/*<SideBar/>*/}
+                        <Navbar
+                            setIsModalActive={setIsModalActive}
+                            setIsLoginActive={setIsLoginActive}
+                            toggle={toggle}
+                        />
+                        <SideBar
+                            setIsModalActive={setIsModalActive}
+                            setIsLoginActive={setIsLoginActive}
+                            isOpen={isOpen}
+                            toggle={toggle}/>
                         <div
                             className={`${transitionStage}`}
                             onAnimationEnd={() => {
