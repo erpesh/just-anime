@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -100,7 +101,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            "D:/My_Python/django_start/anilist/frontend/build"
+            os.path.join(BASE_DIR, '..', 'frontend/build')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -165,7 +166,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    "D:/My_Python/django_start/anilist/frontend/build/static"
+    os.path.join(BASE_DIR, '..', 'frontend/build/static')
 ]
 
 # Default primary key field type
