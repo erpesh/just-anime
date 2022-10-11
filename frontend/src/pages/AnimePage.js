@@ -24,7 +24,7 @@ const AnimePage = ({setIsModalActive}) => {
                         </div>
                         <div className="anime-image-block">
                             <div className="anime-image-div">
-                                <img className="anime-image" src={animeData.image_url} alt="Anime picture"/>
+                                <img className="anime-image" src={animeData.images.jpg.large_image_url} alt="Anime picture"/>
                             </div>
                         </div>
                         <div className="anime-states-block">
@@ -83,8 +83,8 @@ const AnimePage = ({setIsModalActive}) => {
 
                         </div>
                         <div className="anime-trailer-block">
-                            {animeData.trailer_url ? <span className="trailer-text"><iframe className="anime-iframe"
-                                                                                            src={animeData.trailer_url}></iframe></span> :
+                            {animeData.trailer.embed_url ? <span className="trailer-text"><iframe className="anime-iframe"
+                                                                                            src={animeData.trailer.embed_url}></iframe></span> :
                                 <span className="anime-page-p-text">
                             </span>}
                         </div>

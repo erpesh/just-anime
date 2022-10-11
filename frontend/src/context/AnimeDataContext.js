@@ -9,10 +9,11 @@ export const AnimeDataProvider = ({children}) => {
     const [animeData, setAnimeData] = useState({})
 
     const getAnime = async (animeId) => {
-        const response = await fetch(`https://api.jikan.moe/v3/anime/${animeId}`)
+        const response = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/full`)
         if (response.status === 200) {
             const data = await response.json()
-            setAnimeData(data)
+            console.log(data.data);
+            setAnimeData(data.data)
         } else {
             setAnimeData({'type': 'fetchError'})
         }
