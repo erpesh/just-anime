@@ -6,13 +6,6 @@ import {Navigate} from "react-router";
 const PrivateRoute = ({children, ...rest}) => {
     const {user} = useContext(AuthContext)
 
-    const NotAuthCase = () => {
-
-        return (
-            <Navigate to="/"/>
-        )
-    }
-
     return user? <ProfilePage/> : <Navigate to="/"/>
 
 };

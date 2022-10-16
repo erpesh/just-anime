@@ -1,25 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AnimeStates from "./AnimeStates";
 import AuthContext from "../context/AuthContext";
 import AnimeDataContext from "../context/AnimeDataContext";
-import {useNavigate} from "react-router";
-import {CSSTransition, SwitchTransition} from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
-const AnimeStatesButton = ({animeData, setIsModalActive}) => {
+const AnimeStatesButton = ({ animeData, setIsModalActive }) => {
     const [isVisible, setIsVisible] = useState(false)
     const [animeState, setAnimeState] = useState("")
     const [popupState, setPopupState] = useState("")
-    const {getAnimeState} = useContext(AnimeDataContext)
-    const {authTokens, user} = useContext(AuthContext)
-    const navigate = useNavigate()
+    const { getAnimeState } = useContext(AnimeDataContext)
+    const { authTokens, user } = useContext(AuthContext)
 
     const handleClick = () => {
         setIsVisible(true)
     }
 
     useEffect(() => {
-        getAnimeState(animeData, authTokens, setAnimeState)
-        setPopupState(animeState)
+        if (user) {
+            getAnimeState(animeData, authTokens, setAnimeState)
+            setPopupState(animeState)
+        }
     }, [animeState])
 
     return (
@@ -31,14 +31,14 @@ const AnimeStatesButton = ({animeData, setIsModalActive}) => {
                     classNames="fade"
                 >
                     {isVisible ? (
-                            <AnimeStates
-                                animeData={animeData}
-                                animeState={animeState}
-                                setIsVisible={setIsVisible}
-                                setPopupState={setPopupState}
-                                popupState={popupState}
-                            />
-                        ) :
+                        <AnimeStates
+                            animeData={animeData}
+                            animeState={animeState}
+                            setIsVisible={setIsVisible}
+                            setPopupState={setPopupState}
+                            popupState={popupState}
+                        />
+                    ) :
                         (<div className="anime-button width-100 purp-back">
                             {user ?
                                 <>

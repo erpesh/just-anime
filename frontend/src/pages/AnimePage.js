@@ -43,7 +43,7 @@ const AnimePage = ({setIsModalActive}) => {
                                     <span>{"Year: ".concat(animeData.aired.prop.from.year)}</span>
                                 </div> : null}
 
-                            {!!animeData.genres.length && <div className="anime-page-text" onClick={() => console.log(animeData.genres)}>Genres: {
+                            {!!animeData.genres.length && <div className="anime-page-text">Genres: {
                                 animeData.genres.map((genre, index) => {
                                     return index === animeData.genres.length - 1 ? (
                                         <span key={genre.mal_id}> {genre.name}</span>) : (

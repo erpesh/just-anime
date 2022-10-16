@@ -12,7 +12,6 @@ export const AnimeDataProvider = ({children}) => {
         const response = await fetch(`https://api.jikan.moe/v4/anime/${animeId}/full`)
         if (response.status === 200) {
             const data = await response.json()
-            console.log(data.data);
             setAnimeData(data.data)
         } else {
             setAnimeData({'type': 'fetchError'})
