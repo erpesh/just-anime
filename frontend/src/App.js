@@ -21,7 +21,7 @@ function App() {
 
     const [displayLocation, setDisplayLocation] = useState(location);
     const [transitionStage, setTransistionStage] = useState("fadeIn");
-    const [isModalActive, setIsModalActive] = useState(false)
+    const [isModalActive, setIsModalActive] = useState(false);
     const [isLoginActive, setIsLoginActive] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
 

@@ -22,21 +22,20 @@ const OpeningsPage = () => {
     };
 
     const getThemes = async () => {
-        const response = await fetch(`https://themes.moe/api/themes/269`)
+        const response = await fetch(`https://api.jikan.moe/v4/anime/5114/videos`)
         if (response.status === 200) {
             let data = await response.json();
-            data = data[0]
-            let themeNames = [];
-            data.themes = data.themes.filter(item => {
-                const condition = item.themeType.includes("OP") && !themeNames.includes(item.themeName)
-                if (!themeNames.includes(item.themeName))
-                    themeNames.push(item.themeName);
-                return condition;
-            })
-            console.log(data);
-            let x = new Audio(data.themes[1].mirror.mirrorURL)
-            setVideo(data.themes[4].mirror.mirrorURL);
-            setAudio(x);
+            console.log(data.data.music_videos[0].video.url);
+            // let themeNames = [];
+            // data.themes = data.themes.filter(item => {
+            //     const condition = item.themeType.includes("OP") && !themeNames.includes(item.themeName)
+            //     if (!themeNames.includes(item.themeName))
+            //         themeNames.push(item.themeName);
+            //     return condition;
+            // })
+            // let x = new Audio(data.themes[1].mirror.mirrorURL)
+            setVideo(data.data.music_videos[0].video.url);
+            // setAudio(x);
         } else {
             console.log("error");
         }
@@ -52,8 +51,6 @@ const OpeningsPage = () => {
             <ReactPlayer
                 className='react-player fixed-bottom'
                 url={video}
-                width='80%'
-                height='80%'
                 controls
             />
         </div>
