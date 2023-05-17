@@ -22,10 +22,10 @@ const OpeningsPage = () => {
     };
 
     const getThemes = async () => {
-        const response = await fetch(`https://api.jikan.moe/v4/anime/5114/videos`)
+        const response = await fetch(`https://themes.moe/api/themes/44511`)
         if (response.status === 200) {
             let data = await response.json();
-            console.log(data.data.music_videos[0].video.url);
+            console.log(data);
             // let themeNames = [];
             // data.themes = data.themes.filter(item => {
             //     const condition = item.themeType.includes("OP") && !themeNames.includes(item.themeName)
@@ -46,7 +46,7 @@ const OpeningsPage = () => {
     }, [])
 
     return (
-        <div style={{color: "#FFF", paddingTop: '4rem'}}>
+        <div className={"page"}>
             <div onClick={playPause}>124-281294124124</div>
             <ReactPlayer
                 className='react-player fixed-bottom'

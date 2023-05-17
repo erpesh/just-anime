@@ -47,17 +47,21 @@ class ProfilePage extends Component {
             for (let key in data[0].anime_list) {
                 for (let i = 0; i < data[0].anime_list[key].length; i++) {
                     if (data[0].anime_list[key][i].type === "TV" || data[0].anime_list[key][i].type === "ONA" || data[0].anime_list[key][i].type === "OVA") {
-                        approximateTime += data[0].anime_list[key][i].progress * parseInt(data[0].anime_list[key][i].duration.split(' ')[0]);
+                        let addedTime = data[0].anime_list[key][i].progress * parseInt(data[0].anime_list[key][i].duration.split(' ')[0]);
+                        if (!isNaN(addedTime)) approximateTime += addedTime;
                     } else if (data[0].anime_list[key][i].type === "Movie") {
                         let time = data[0].anime_list[key][i].duration.split(' ');
+                        let addedTime = 0;
                         if (time[1] === "hr") {
-                            approximateTime += data[0].anime_list[key][i].progress * parseInt(time[0]*60) + parseInt(time[2]);
+                            addedTime = data[0].anime_list[key][i].progress * parseInt(time[0]*60) + parseInt(time[2]);
                         }else {
-                            approximateTime += data[0].anime_list[key][i].progress * parseInt(time[0]);
+                            addedTime = data[0].anime_list[key][i].progress * parseInt(time[0]);
                         }
+                        if (!isNaN(addedTime)) approximateTime += addedTime;
                     }
                 }
             }
+            console.log(data, approximateTime);
             this.setState({
                 data: {},
                 isFetched: false,
@@ -92,7 +96,7 @@ class ProfilePage extends Component {
 
     render() {
         const {data} = this.state;
-        return data[0] &&
+        return data && data[0] &&
             <div className="page profile">
                 <aside className="profile-aside">
                     <div className="profile-picture">
