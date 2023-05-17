@@ -1,7 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
 import jwtDecode from "jwt-decode";
-import _asyncToGenerator from "@babel/runtime/helpers/esm/asyncToGenerator";
-import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 
 
 const AuthContext = createContext();
