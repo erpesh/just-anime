@@ -1,5 +1,6 @@
 /env
 
+.idea
 /.idea/.gitignore
 /.idea/anilist.iml
 /.idea/misc.xml
